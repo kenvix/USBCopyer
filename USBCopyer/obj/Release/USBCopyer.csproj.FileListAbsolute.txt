@@ -1,0 +1,9 @@
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.exe.config
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.exe
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.pdb
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Host.resources
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Setting.resources
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Properties.Resources.resources
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csproj.GenerateResource.Cache
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.exe
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.pdb

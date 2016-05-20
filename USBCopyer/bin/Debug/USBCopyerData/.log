@@ -1,0 +1,102 @@
+[2016/5/20 20:55:19][INFO] USBCopyer：运行中: 2016/5/20 20:55:19
+
+[2016/5/20 20:55:38][INFO] USBCopyer：运行中: 2016/5/20 20:55:38
+
+[2016/5/20 21:02:21][INFO] USBCopyer：运行中: 2016/5/20 21:02:21
+
+[2016/5/20 21:31:14][INFO] USBCopyer：运行中: 2016/5/20 21:31:14
+
+[2016/5/20 21:32:15][INFO] USBCopyer：运行中: 2016/5/20 21:32:15
+
+[2016/5/20 21:36:40][INFO] USBCopyer：运行中: 2016/5/20 21:36:40
+
+[2016/5/20 21:39:44][INFO] USBCopyer：运行中: 2016/5/20 21:39:44
+
+[2016/5/20 21:48:54][INFO] USBCopyer：运行中: 2016/5/20 21:48:54
+
+[2016/5/20 21:49:11][INFO] USBCopyer：运行中: 2016/5/20 21:49:11
+
+[2016/5/20 21:50:13][INFO] USBCopyer：运行中: 2016/5/20 21:50:13
+
+[2016/5/20 21:53:42][INFO] USBCopyer：运行中: 2016/5/20 21:53:42
+
+[2016/5/20 21:55:28][INFO] USBCopyer：运行中: 2016/5/20 21:55:28
+
+[2016/5/20 21:58:33][INFO] USBCopyer：运行中: 2016/5/20 21:58:33
+
+[2016/5/20 22:01:36][INFO] USBCopyer：运行中: 2016/5/20 22:01:36
+
+[2016/5/20 22:02:03][INFO] USBCopyer：运行中: 2016/5/20 22:02:03
+
+[2016/5/20 22:04:51][INFO] USBCopyer：运行中: 2016/5/20 22:04:51
+
+[2016/5/20 22:05:03][INFO] USBCopyer：运行中: 2016/5/20 22:05:03
+
+[2016/5/20 22:10:46][INFO] USBCopyer：运行中: 2016/5/20 22:10:46
+
+[2016/5/20 22:13:03][INFO] USBCopyer：运行中: 2016/5/20 22:13:03
+
+[2016/5/20 22:19:01][INFO] USBCopyer：运行中: 2016/5/20 22:19:01
+
+[2016/5/20 22:21:15][INFO] USBCopyer：运行中: 2016/5/20 22:21:15
+
+[2016/5/20 22:21:19][ERROR] 错误：打开失败：System.ComponentModel.Win32Exception: 没有注册类    在 System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)    在 System.Diagnostics.Process.Start(ProcessStartInfo startInfo)    在 USBCopyer.Host.openBlog() 位置 C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\USBCopyer\Host.cs:行号 315
+
+[2016/5/20 22:22:32][INFO] USBCopyer：运行中: 2016/5/20 22:22:32
+
+[2016/5/20 22:23:43][INFO] USBCopyer：运行中: 2016/5/20 22:23:43
+
+[2016/5/20 22:36:07][INFO] USBCopyer：运行中: 2016/5/20 22:36:07
+
+[2016/5/20 22:40:00][INFO] USBCopyer：运行中: 2016/5/20 22:39:59
+
+[2016/5/20 22:54:25][INFO] USBCopyer：运行中: 2016/5/20 22:54:25
+
+[2016/5/20 22:54:42][INFO] USBCopyer：运行中: 2016/5/20 22:54:42
+
+[2016/5/20 22:55:30][INFO] USBCopyer - 存储设备已插入：F: - A636F053
+
+[2016/5/20 22:55:30][INFO] 复制文件：C:\Users\wmzhi\Desktop\XA636F053\System Volume Information\WPSettings.dat
+
+[2016/5/20 22:55:31][INFO] 复制文件：C:\Users\wmzhi\Desktop\XA636F053\System Volume Information\IndexerVolumeGuid
+
+[2016/5/20 22:55:31][INFO] 复制文件：C:\Users\wmzhi\Desktop\XA636F053\365个祝福-蔡国庆.mp3
+
+[2016/5/20 22:55:31][INFO] 复制文件：C:\Users\wmzhi\Desktop\XA636F053\家和万事兴.mp3
+
+[2016/5/20 22:55:31][INFO] 设备数据复制完成：F: - A636F053
+
+[2016/5/20 22:56:58][INFO] USBCopyer：运行中: 2016/5/20 22:56:58
+
+[2016/5/20 22:57:35][INFO] USBCopyer：运行中: 2016/5/20 22:57:35
+
+[2016/5/20 22:58:02][INFO] USBCopyer：运行中: 2016/5/20 22:58:02
+
+[2016/5/20 23:00:09][INFO] USBCopyer：运行中: 2016/5/20 23:00:09
+
+[2016/5/20 23:00:15][INFO] USBCopyer：运行中: 2016/5/20 23:00:15
+
+[2016/5/20 23:01:23][INFO] USBCopyer：运行中: 2016/5/20 23:01:23
+
+[2016/5/20 23:01:36][INFO] USBCopyer：运行中: 2016/5/20 23:01:36
+
+[2016/5/20 23:08:55][INFO] USBCopyer：运行中: 2016/5/20 23:08:55
+
+[2016/5/20 23:09:07][INFO] USBCopyer：运行中: 2016/5/20 23:09:07
+
+[2016/5/20 23:12:58][INFO] USBCopyer：运行中: 2016/5/20 23:12:58
+
+[2016/5/20 23:15:30][INFO] USBCopyer：运行中: 2016/5/20 23:15:30
+
+[2016/5/20 23:18:33][INFO] USBCopyer：运行中: 2016/5/20 23:18:33
+
+[2016/5/20 23:19:04][INFO] USBCopyer：运行中: 2016/5/20 23:19:04
+
+[2016/5/20 23:28:01][INFO] USBCopyer：运行中: 2016/5/20 23:28:01
+
+[2016/5/20 23:34:35][INFO] USBCopyer：运行中: 2016/5/20 23:34:35
+
+[2016/5/20 23:35:03][INFO] USBCopyer：运行中: 2016/5/20 23:35:03
+
+[2016/5/20 23:35:13][INFO] USBCopyer：运行中: 2016/5/20 23:35:13
+
