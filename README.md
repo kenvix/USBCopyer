@@ -16,3 +16,6 @@
 ###命令行
 USBCopyer.exe [/hide]           
    /hide     以隐藏模式启动，只能通过任务管理器结束进程
+##代码仓库
+[Git@OSC](https://git.oschina.net/kenvix/USBCopyer) [GitHub](https://github.com/kenvix/USBCopyer)            
+[我的博客文章](https://zhizhe8.net/?p=86)
