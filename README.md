@@ -16,6 +16,16 @@
 ###命令行
 USBCopyer.exe [/hide]           
    /hide     以隐藏模式启动，只能通过任务管理器结束进程
+###常见问题
+#####学校老师很精明，上课前都要自己重启一次电脑，怎么办
+将本程序设为开机启动，以 **/hide** 参数启动          
+创建一个快捷方式，然后加上参数，拖到 "开始菜单" 的 "启动" 文件夹即可
+#####手机插在电脑上，能偷文件吗
+MTP/PTP不行，如果是挂载到电脑上可以
+#####U盘被拔了怎么办
+诱惑他不要拔啊
+#####电脑关机就还原了，老师上完课都会关电脑的
+用 PCHunter 之类的东西干掉还原程序
 ##代码仓库
 [Git@OSC](https://git.oschina.net/kenvix/USBCopyer) [GitHub](https://github.com/kenvix/USBCopyer)            
 [我的博客文章](https://zhizhe8.net/?p=86)
