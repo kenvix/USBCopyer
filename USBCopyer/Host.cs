@@ -6,13 +6,16 @@ using System.IO;
 using System.Management;
 using System.Threading;
 using System.Diagnostics;
+using System.Linq;
 
 namespace USBCopyer
 {
     public partial class Host : Form
     {
-        public string title = "USBCopyer";
-        public string dir   = Application.StartupPath + @"\USBCopyerData\";
+        public string title   = "USBCopyer";
+        public string dir     = Application.StartupPath + @"\USBCopyerData\";
+        public string[] white;
+        public string[] black;
         public FileStream logf;
         public StreamWriter logw;
         public Host()
@@ -38,7 +41,21 @@ namespace USBCopyer
                 Environment.Exit(1);
             }
             nameMenuItem.Text += " V" + Application.ProductVersion;
-            if(Program.hide)
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.black))
+            {
+                black = Properties.Settings.Default.black.Split(',');
+            } else
+            {
+                black = new string[0];
+            }
+            if(!string.IsNullOrEmpty(Properties.Settings.Default.white))
+            {
+                white = Properties.Settings.Default.white.Split(',');
+            } else
+            {
+                white = new string[0];
+            }
+            if (Program.hide)
             {
                 nicon.Visible = false;
             }
@@ -124,6 +141,16 @@ namespace USBCopyer
                                     msg(disk + " - " + diskser, "存储设备已插入");
                                     Thread th = new Thread(() =>
                                     {
+                                        if(Properties.Settings.Default.sleep > 0)
+                                        {
+                                            log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
+                                            Thread.Sleep(Properties.Settings.Default.sleep * 1000);
+                                            if(!Directory.Exists(disk + "\\"))
+                                            {
+                                                log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser);
+                                                return;
+                                            }
+                                        }
                                         if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
                                         {
                                             log("清空输出目录：" + dir + diskser);
@@ -227,35 +254,38 @@ namespace USBCopyer
 
                     if (fsi is FileInfo)
                     {   //如果是文件，复制文件
-                        log("复制文件：" + destName);
                         try
                         {
-                            if(File.Exists(destName))
+                            FileInfo fi1 = new FileInfo(fsi.FullName);
+                            if(checkExt(fi1.Extension))
                             {
-                                switch(Properties.Settings.Default.conflict)
+                                log("复制文件：" + destName);
+                                if (File.Exists(destName))
                                 {
-                                    case 0:
-                                        FileInfo fi1 = new FileInfo(fsi.FullName);
-                                        FileInfo fi2 = new FileInfo(destName);
-                                        if (fi1.LastWriteTime > fi2.LastWriteTime)
-                                        {
+                                    switch (Properties.Settings.Default.conflict)
+                                    {
+                                        case 0:
+                                            FileInfo fi2 = new FileInfo(destName);
+                                            if (fi1.LastWriteTime > fi2.LastWriteTime)
+                                            {
+                                                File.Copy(fsi.FullName, destName, true);
+                                            }
+                                            break;
+                                        case 1:
+                                            destName = (new Random()).Next(0, 9999999) + "-" + destName;
+                                            File.Copy(fsi.FullName, destName);
+                                            break;
+                                        case 2:
                                             File.Copy(fsi.FullName, destName, true);
-                                        }
-                                        break;
-                                    case 1:
-                                        destName = (new Random()).Next(0,9999999) + "-" + destName;
-                                        File.Copy(fsi.FullName, destName);
-                                        break;
-                                    case 2:
-                                        File.Copy(fsi.FullName, destName, true);
-                                        break;
-                                    default:
-                                        break;
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                File.Copy(fsi.FullName, destName);
+                                else
+                                {
+                                    File.Copy(fsi.FullName, destName);
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -280,6 +310,29 @@ namespace USBCopyer
             catch(Exception ex)
             {
                 log("复制目录失败，设备可能被强行拔出：" + ex.ToString());
+            }
+        }
+
+        private bool checkExt(string ext)
+        {
+            if (string.IsNullOrEmpty(ext) && Properties.Settings.Default.copynoext) return true;
+            string extn = ext.Substring(1);
+            switch(Properties.Settings.Default.mode)
+            {
+                case 1: //黑
+                    if(black.Contains(extn))
+                    {
+                        return false;
+                    }
+                    return true;
+                case 2: //白
+                    if (white.Contains(extn))
+                    {
+                        return true;
+                    }
+                    return false;
+                default:
+                    return true;
             }
         }
 

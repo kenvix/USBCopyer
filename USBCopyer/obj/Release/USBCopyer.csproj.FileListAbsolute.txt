@@ -7,3 +7,4 @@ C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.P
 C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csproj.GenerateResource.Cache
 C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.exe
 C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.pdb
+C:\Work Station\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csprojResolveAssemblyReference.cache

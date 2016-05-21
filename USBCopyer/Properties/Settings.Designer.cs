@@ -70,5 +70,65 @@ namespace USBCopyer.Properties {
                 this["hidemsg"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int sleep {
+            get {
+                return ((int)(this["sleep"]));
+            }
+            set {
+                this["sleep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int mode {
+            get {
+                return ((int)(this["mode"]));
+            }
+            set {
+                this["mode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string black {
+            get {
+                return ((string)(this["black"]));
+            }
+            set {
+                this["black"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string white {
+            get {
+                return ((string)(this["white"]));
+            }
+            set {
+                this["white"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool copynoext {
+            get {
+                return ((bool)(this["copynoext"]));
+            }
+            set {
+                this["copynoext"] = value;
+            }
+        }
     }
 }
