@@ -1,5 +1,6 @@
 #USBCopyer: 插上U盘自动复制U盘文件
 偷U盘文件的神器
+![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/usbcopyer.png)
 ##已编译版本下载
 .Net Framework 3.5       
 [点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/USBCopyer/bin/Release/USBCopyer.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/USBCopyer/bin/Release/USBCopyer.exe?raw=true)           
