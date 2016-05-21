@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -92,5 +93,26 @@ namespace USBCopyer
             return Regex.IsMatch(s, pattern);
         }
 
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(MessageBox.Show("你可以在 \"开始菜单\" 的 \"启动\" 文件夹创建本程序的快捷方式，然后程序就可以自动启动了。\r\n如果你想要以隐藏模式启动程序，请编辑快捷方式，在 USBCopyer.exe 后加上 /hide 参数即可\r\n\r\n按 确定 打开 \"启动\" 目录，按 取消 返回", "开机启动帮助", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            {
+                try
+                {
+                    Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.Startup));
+                }
+                catch (Exception) { }
+            }
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            host.openPage();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            host.openPage();
+        }
     }
 }

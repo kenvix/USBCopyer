@@ -398,7 +398,7 @@ namespace USBCopyer
         {
             try
             {
-                Process.Start("explorer.exe", "http://zhizhe8.net/");
+                Process.Start("explorer.exe", "\"http://zhizhe8.net/\"");
             }
             catch (Exception ex)
             {
@@ -409,6 +409,23 @@ namespace USBCopyer
         private void BlogMenuItem_Click(object sender, EventArgs e)
         {
             openBlog();
+        }
+
+        private void nameMenuItem_Click(object sender, EventArgs e)
+        {
+            openPage();
+        }
+
+        public void openPage()
+        {
+            try
+            {
+                Process.Start("explorer.exe", "\"http://zhizhe8.net/?p=86\"");
+            }
+            catch (Exception ex)
+            {
+                error("打开失败：" + ex.ToString());
+            }
         }
     }
 }

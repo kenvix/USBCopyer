@@ -39,26 +39,29 @@
             this.conflict = new System.Windows.Forms.ComboBox();
             this.fileButton = new System.Windows.Forms.Button();
             this.autorm = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.hidemsg = new System.Windows.Forms.CheckBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.mode = new System.Windows.Forms.ComboBox();
-            this.black = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.white = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.copynoext = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.white = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.black = new System.Windows.Forms.TextBox();
+            this.mode = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.sleep = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.version = new System.Windows.Forms.Label();
-            this.copynoext = new System.Windows.Forms.CheckBox();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,25 +158,16 @@
             this.autorm.Text = "如果之前已经复制过，则先清空再复制";
             this.autorm.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 517);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 12);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "USBCopyer // 作者：";
-            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(129, 517);
+            this.linkLabel1.Location = new System.Drawing.Point(88, 517);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(41, 12);
+            this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 10;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Kenvix";
+            this.linkLabel1.Text = "作者：Kenvix";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.SteelBlue;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -200,12 +194,12 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel2.Location = new System.Drawing.Point(391, 517);
+            this.linkLabel2.Location = new System.Drawing.Point(447, 517);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(113, 12);
+            this.linkLabel2.Size = new System.Drawing.Size(65, 12);
             this.linkLabel2.TabIndex = 13;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "程序命令行参数帮助";
+            this.linkLabel2.Text = "命令行参数";
             this.linkLabel2.VisitedLinkColor = System.Drawing.Color.SteelBlue;
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
@@ -228,14 +222,74 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "按扩展名选择性复制";
             // 
-            // label5
+            // copynoext
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "工作模式：";
+            this.copynoext.AutoSize = true;
+            this.copynoext.Location = new System.Drawing.Point(357, 32);
+            this.copynoext.Name = "copynoext";
+            this.copynoext.Size = new System.Drawing.Size(132, 16);
+            this.copynoext.TabIndex = 22;
+            this.copynoext.Text = "复制无扩展名的文件";
+            this.copynoext.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(10, 182);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(281, 12);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "每个扩展名用半角逗号 , 分割，前面不需要加点 . ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 157);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(431, 12);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "\"白名单模式\" 表示只复制该扩展名的文件  （先选择工作模式再填写黑白名单）";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 133);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(443, 12);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "你可以选择只复制特定扩展名的文件，\"黑名单模式\" 表示不复制这个扩展名的文件";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 12);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "白名单扩展名：";
+            // 
+            // white
+            // 
+            this.white.Location = new System.Drawing.Point(105, 100);
+            this.white.Name = "white";
+            this.white.Size = new System.Drawing.Size(384, 21);
+            this.white.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(10, 68);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 12);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "黑名单扩展名：";
+            // 
+            // black
+            // 
+            this.black.Location = new System.Drawing.Point(105, 65);
+            this.black.Name = "black";
+            this.black.Size = new System.Drawing.Size(384, 21);
+            this.black.TabIndex = 15;
             // 
             // mode
             // 
@@ -250,64 +304,14 @@
             this.mode.Size = new System.Drawing.Size(230, 20);
             this.mode.TabIndex = 15;
             // 
-            // black
+            // label5
             // 
-            this.black.Location = new System.Drawing.Point(105, 65);
-            this.black.Name = "black";
-            this.black.Size = new System.Drawing.Size(384, 21);
-            this.black.TabIndex = 15;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 12);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "黑名单扩展名：";
-            // 
-            // white
-            // 
-            this.white.Location = new System.Drawing.Point(105, 100);
-            this.white.Name = "white";
-            this.white.Size = new System.Drawing.Size(384, 21);
-            this.white.TabIndex = 17;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 103);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 12);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "白名单扩展名：";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 133);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(443, 12);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "你可以选择只复制特定扩展名的文件，\"黑名单模式\" 表示不复制这个扩展名的文件";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 157);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(431, 12);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "\"白名单模式\" 表示只复制该扩展名的文件  （先选择工作模式再填写黑白名单）";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 182);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(281, 12);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "每个扩展名用半角逗号 , 分割，前面不需要加点 . ";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "工作模式：";
             // 
             // label11
             // 
@@ -344,21 +348,63 @@
             this.version.TabIndex = 18;
             this.version.Text = "Version.";
             // 
-            // copynoext
+            // linkLabel3
             // 
-            this.copynoext.AutoSize = true;
-            this.copynoext.Location = new System.Drawing.Point(357, 32);
-            this.copynoext.Name = "copynoext";
-            this.copynoext.Size = new System.Drawing.Size(132, 16);
-            this.copynoext.TabIndex = 22;
-            this.copynoext.Text = "复制无扩展名的文件";
-            this.copynoext.UseVisualStyleBackColor = true;
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.Location = new System.Drawing.Point(364, 517);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(77, 12);
+            this.linkLabel3.TabIndex = 19;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "开机启动帮助";
+            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(71, 518);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(17, 12);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "//";
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel4.Location = new System.Drawing.Point(13, 517);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(59, 12);
+            this.linkLabel4.TabIndex = 21;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "USBCopyer";
+            this.linkLabel4.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel5.Location = new System.Drawing.Point(297, 518);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(53, 12);
+            this.linkLabel5.TabIndex = 22;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "检查更新";
+            this.linkLabel5.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
             // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 539);
+            this.Controls.Add(this.linkLabel5);
+            this.Controls.Add(this.linkLabel4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.version);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.sleep);
@@ -368,7 +414,6 @@
             this.Controls.Add(this.hidemsg);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.autorm);
             this.Controls.Add(this.fileButton);
             this.Controls.Add(this.conflict);
@@ -379,6 +424,9 @@
             this.Controls.Add(this.logButton);
             this.Controls.Add(this.saveButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(540, 578);
+            this.MinimumSize = new System.Drawing.Size(540, 578);
             this.Name = "Setting";
             this.Text = "USBCopyer 设置";
             this.groupBox1.ResumeLayout(false);
@@ -400,7 +448,6 @@
         private System.Windows.Forms.ComboBox conflict;
         private System.Windows.Forms.Button fileButton;
         private System.Windows.Forms.CheckBox autorm;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox hidemsg;
@@ -420,6 +467,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label version;
         private System.Windows.Forms.CheckBox copynoext;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkLabel5;
     }
 }
 
