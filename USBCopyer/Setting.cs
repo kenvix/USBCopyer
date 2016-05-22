@@ -23,6 +23,8 @@ namespace USBCopyer
             black.Text = Properties.Settings.Default.black;
             white.Text = Properties.Settings.Default.white;
             copynoext.Checked = Properties.Settings.Default.copynoext;
+            blackdisk.Text = Properties.Settings.Default.blackdisk;
+            blackid.Text = Properties.Settings.Default.blackid;
         }
 
         private void logButton_Click(object sender, EventArgs e)
@@ -66,6 +68,8 @@ namespace USBCopyer
                 Properties.Settings.Default.black = black.Text;
                 Properties.Settings.Default.white = white.Text;
                 Properties.Settings.Default.copynoext = copynoext.Checked;
+                Properties.Settings.Default.blackdisk = blackdisk.Text;
+                Properties.Settings.Default.blackid = blackid.Text;
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
                 {
                     if (!Directory.Exists(Properties.Settings.Default.dir))
@@ -113,6 +117,11 @@ namespace USBCopyer
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             host.openPage();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("当你插入磁盘时，程序会通知你 \"存储设备已插入\"，磁盘卷标后面的 8 位英文字母或数字即为磁盘序列号。如 F: - A636F053 则表示磁盘序列号为 A636F053\r\n\r\n使用磁盘序列号可以明确指定不复制某个磁盘，而分区号只能指定不复制某个分区。你可以使用磁盘序列号黑名单来实现从自动一个U盘复制文件到另一个U盘", "获取磁盘序列号");
         }
     }
 }

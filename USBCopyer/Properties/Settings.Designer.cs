@@ -130,5 +130,29 @@ namespace USBCopyer.Properties {
                 this["copynoext"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string blackdisk {
+            get {
+                return ((string)(this["blackdisk"]));
+            }
+            set {
+                this["blackdisk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string blackid {
+            get {
+                return ((string)(this["blackid"]));
+            }
+            set {
+                this["blackid"] = value;
+            }
+        }
     }
 }

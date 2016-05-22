@@ -16,6 +16,8 @@ namespace USBCopyer
         public string dir     = Application.StartupPath + @"\USBCopyerData\";
         public string[] white;
         public string[] black;
+        public string[] blackdisk;
+        public string[] blackid;
         public FileStream logf;
         public StreamWriter logw;
         public Host()
@@ -44,11 +46,28 @@ namespace USBCopyer
             if (!string.IsNullOrEmpty(Properties.Settings.Default.black))
             {
                 black = Properties.Settings.Default.black.Split(',');
-            } else
+            }
+            else
             {
                 black = new string[0];
             }
-            if(!string.IsNullOrEmpty(Properties.Settings.Default.white))
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.blackdisk))
+            {
+                blackdisk = Properties.Settings.Default.blackdisk.Split(',');
+            }
+            else
+            {
+                blackdisk = new string[0];
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.blackid))
+            {
+                blackid = Properties.Settings.Default.blackid.Split(',');
+            }
+            else
+            {
+                blackid = new string[0];
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.white))
             {
                 white = Properties.Settings.Default.white.Split(',');
             } else
@@ -75,13 +94,19 @@ namespace USBCopyer
         public void error(string msg, string title = "错误")
         {
             log(title + "：" + msg.Replace("\r\n", " "),2);
-            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if(nicon.Visible)
+            {
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public void success(string msg, string title = "操作完成")
         {
             log(title + "：" + msg.Replace("\r\n", " "));
-            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (nicon.Visible)
+            {
+                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -123,71 +148,51 @@ namespace USBCopyer
             if (m.Msg == 0x0219 && EnableToolStripMenuItem.Checked)
             {
                 string disk = string.Empty;
-                switch (m.WParam.ToInt32())
-                {
-                    case 0x8000:
+                if(m.WParam.ToInt32() == 0x8000) {
+                    DEV_BROADCAST_HDR dbhdr = (DEV_BROADCAST_HDR)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_HDR));
+                    if (dbhdr.dbch_devicetype == 0x00000002)
                     {
-                            DEV_BROADCAST_HDR dbhdr = (DEV_BROADCAST_HDR)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_HDR));
-
-                            if (dbhdr.dbch_devicetype == 0x00000002)
+                        DEV_BROADCAST_VOLUME dbv = (DEV_BROADCAST_VOLUME)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_VOLUME));
+                        if (dbv.dbcv_flags == 0)
+                        {
+                            char[] volums = GetVolumes(dbv.dbcv_unitmask);
+                            disk += volums[0].ToString() + ":";
+                            ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
+                            string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
+                            msg(disk + " - " + diskser, "存储设备已插入");
+                            if (blackid.Contains(diskser))
                             {
-                                DEV_BROADCAST_VOLUME dbv = (DEV_BROADCAST_VOLUME)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_VOLUME));
-                                if (dbv.dbcv_flags == 0)
-                                {
-                                    char[] volums = GetVolumes(dbv.dbcv_unitmask);
-                                    disk += volums[0].ToString() + ":";
-                                    ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
-                                    string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
-                                    msg(disk + " - " + diskser, "存储设备已插入");
-                                    Thread th = new Thread(() =>
-                                    {
-                                        if(Properties.Settings.Default.sleep > 0)
-                                        {
-                                            log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
-                                            Thread.Sleep(Properties.Settings.Default.sleep * 1000);
-                                            if(!Directory.Exists(disk + "\\"))
-                                            {
-                                                log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser);
-                                                return;
-                                            }
-                                        }
-                                        if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
-                                        {
-                                            log("清空输出目录：" + dir + diskser);
-                                            Directory.Delete(dir + diskser, true);
-                                        }
-                                        CopyDirectory(disk + "\\", dir + diskser);
-                                        log("设备数据复制完成：" + disk + " - " + diskser);
-                                    });
-                                    th.Start();
-                                }
+                                log("黑名单磁盘序列号号：" + diskser + " 取消复制！");
+                                return;
                             }
-                            break;
+                            if (blackdisk.Contains(disk.Substring(0, 1)))
+                            {
+                                log("黑名单分区号：" + disk + " 取消复制！");
+                                return;
+                            }
+                            Thread th = new Thread(() =>
+                            {
+                                if(Properties.Settings.Default.sleep > 0)
+                                {
+                                    log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
+                                    Thread.Sleep(Properties.Settings.Default.sleep * 1000);
+                                    if(!Directory.Exists(disk + "\\"))
+                                    {
+                                        log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser,1);
+                                        return;
+                                    }
+                                }
+                                if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
+                                {
+                                    log("清空输出目录：" + dir + diskser);
+                                    Directory.Delete(dir + diskser, true);
+                                }
+                                CopyDirectory(disk + "\\", dir + diskser);
+                                log("设备数据复制完成：" + disk + " - " + diskser);
+                            });
+                            th.Start();
+                        }
                     }
-                    case 0x8004:
-                    {
-                            DEV_BROADCAST_HDR dbhdr = (DEV_BROADCAST_HDR)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_HDR));
-                            if (dbhdr.dbch_devicetype == 0x00000002)
-                            {
-                                DEV_BROADCAST_VOLUME dbv = (DEV_BROADCAST_VOLUME)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_VOLUME));
-                                if (dbv.dbcv_flags == 0)
-                                {
-                                    try
-                                    {
-                                        char[] volums = GetVolumes(dbv.dbcv_unitmask);
-                                        disk = disk.Replace(volums[0] + ",", "");
-                                        ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
-                                        string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
-                                        msg(disk + " - " + diskser, "存储设备已拔出");
-                                    }
-                                    catch(Exception ex)
-                                    {
-                                        log("获取拔出的设备失败，设备可能被强制拔出：" + ex.ToString());
-                                    }
-                                }
-                            }
-                            break;
-                     }
                 }
             }
             base.DefWndProc(ref m);
@@ -290,7 +295,7 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            log("复制文件：" + destName + "：失败：" + ex.ToString());
+                            log("复制文件：" + destName + "：失败：" + ex.ToString(),2);
                         }
                     }
                     else //如果是文件夹，新建文件夹，递归
@@ -302,7 +307,7 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            log("创建目录："+destName+"：失败：" + ex.ToString());
+                            log("创建目录："+destName+"：失败：" + ex.ToString(),2);
                         }
                     }
                 }
