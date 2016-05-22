@@ -1,5 +1,5 @@
 #USBCopyer: 插上U盘自动复制U盘文件
-偷U盘文件的神器              
+偷U盘文件的神器，支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单              
 ![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/usbcopyer.png)
 ##已编译版本下载
 .Net Framework 3.5       
@@ -26,7 +26,9 @@ MTP/PTP不行，如果是挂载到电脑上可以
 #####U盘被拔了怎么办
 诱惑他不要拔啊
 #####电脑关机就还原了，老师上完课都会关电脑的
-用 PCHunter 之类的东西干掉还原程序
+两种方法：       
+1.插上你的U盘，然后启动本程序，加入该U盘到黑名单，然后设置输出目录到你的U盘         
+2.用 PCHunter 之类的东西干掉还原程序
 ##代码仓库
 [Git@OSC](https://git.oschina.net/kenvix/USBCopyer) [GitHub](https://github.com/kenvix/USBCopyer)            
 [我的博客文章](https://zhizhe8.net/?p=86)

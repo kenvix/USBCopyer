@@ -489,7 +489,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 617);
+            this.ClientSize = new System.Drawing.Size(524, 625);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.linkLabel5);
             this.Controls.Add(this.linkLabel4);
@@ -515,7 +515,8 @@
             this.Controls.Add(this.saveButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(540, 578);
+            this.MaximumSize = new System.Drawing.Size(540, 664);
+            this.MinimumSize = new System.Drawing.Size(540, 664);
             this.Name = "Setting";
             this.Text = "USBCopyer 设置";
             this.groupBox1.ResumeLayout(false);
