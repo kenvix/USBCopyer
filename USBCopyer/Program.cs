@@ -5,7 +5,7 @@ namespace USBCopyer
 {
     static class Program
     {
-        public static bool hide = false;
+        public static bool showicon = true;
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
@@ -20,7 +20,7 @@ namespace USBCopyer
                 {
                     case "/hide":
                     case "-hide":
-                        hide = true;
+                        showicon = false;
                         break;
                 }
             }

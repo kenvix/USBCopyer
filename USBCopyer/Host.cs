@@ -74,10 +74,7 @@ namespace USBCopyer
             {
                 white = new string[0];
             }
-            if (Program.hide)
-            {
-                nicon.Visible = false;
-            }
+            nicon.Visible = Program.showicon;
             msg("运行中: " + DateTime.Now.ToString());
         }
 
@@ -431,6 +428,11 @@ namespace USBCopyer
             {
                 error("打开失败：" + ex.ToString());
             }
+        }
+
+        private void nicon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
