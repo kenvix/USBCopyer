@@ -20,6 +20,7 @@ namespace USBCopyer
         public string[] blackid;
         public FileStream logf;
         public StreamWriter logw;
+        //public Dictionary<string,Thread> copyThread = new Dictionary<string,Thread>(); //正在复制文件的线程 分区号=>线程
         public Host()
         {
             InitializeComponent();
@@ -142,7 +143,7 @@ namespace USBCopyer
 
         protected override void DefWndProc(ref Message m)
         {
-            if (m.Msg == 0x0219 && EnableToolStripMenuItem.Checked)
+            if (m.Msg == 0x0219)
             {
                 string disk = string.Empty;
                 if(m.WParam.ToInt32() == 0x8000) {
@@ -157,37 +158,40 @@ namespace USBCopyer
                             ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
                             string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
                             msg(disk + " - " + diskser, "存储设备已插入");
-                            if (blackid.Contains(diskser))
+                            if(EnableToolStripMenuItem.Checked)
                             {
-                                log("黑名单磁盘序列号号：" + diskser + " 取消复制！");
-                                return;
-                            }
-                            if (blackdisk.Contains(disk.Substring(0, 1)))
-                            {
-                                log("黑名单分区号：" + disk + " 取消复制！");
-                                return;
-                            }
-                            Thread th = new Thread(() =>
-                            {
-                                if(Properties.Settings.Default.sleep > 0)
+                                if (blackid.Contains(diskser))
                                 {
-                                    log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
-                                    Thread.Sleep(Properties.Settings.Default.sleep * 1000);
-                                    if(!Directory.Exists(disk + "\\"))
+                                    log("黑名单磁盘序列号：" + diskser + " 取消复制！");
+                                    return;
+                                }
+                                if (blackdisk.Contains(disk.Substring(0, 1)))
+                                {
+                                    log("黑名单分区号：" + disk + " 取消复制！");
+                                    return;
+                                }
+                                Thread th = new Thread(() =>
+                                {
+                                    if(Properties.Settings.Default.sleep > 0)
                                     {
-                                        log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser,1);
-                                        return;
+                                        log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
+                                        Thread.Sleep(Properties.Settings.Default.sleep * 1000);
+                                        if(!Directory.Exists(disk + "\\"))
+                                        {
+                                            log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser,1);
+                                            return;
+                                        }
                                     }
-                                }
-                                if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
-                                {
-                                    log("清空输出目录：" + dir + diskser);
-                                    Directory.Delete(dir + diskser, true);
-                                }
-                                CopyDirectory(disk + "\\", dir + diskser);
-                                log("设备数据复制完成：" + disk + " - " + diskser);
-                            });
-                            th.Start();
+                                    if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
+                                    {
+                                        log("清空输出目录：" + dir + diskser);
+                                        Directory.Delete(dir + diskser, true);
+                                    }
+                                    CopyDirectory(disk + "\\", dir + diskser);
+                                    log("设备数据复制完成：" + disk + " - " + diskser);
+                                });
+                                th.Start();
+                            }
                         }
                     }
                 }
