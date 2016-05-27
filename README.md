@@ -1,5 +1,5 @@
 #USBCopyer: 插上U盘自动复制U盘文件
-偷U盘文件的神器，支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单              
+偷U盘文件的神器，支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单，支持日志，支持弹出U盘时强制停止复制防止占用              
 ![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/usbcopyer.png)
 ##已编译版本下载
 .Net Framework 3.5       
