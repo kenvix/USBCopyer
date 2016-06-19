@@ -54,10 +54,17 @@ namespace USBCopyer
         {
             try
             {
-                if(!IsInteger(sleep.Text))
+                if(string.IsNullOrEmpty(sleep.Text))
                 {
-                    MessageBox.Show("延迟复制时间只能为正整数", "保存设置失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    sleep.Text = "0";
+                }
+                else
+                {
+                    if (!IsInteger(sleep.Text))
+                    {
+                        MessageBox.Show("延迟复制时间只能为正整数", "保存设置失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
                 Properties.Settings.Default.dir = dir.Text;
                 Properties.Settings.Default.conflict = conflict.SelectedIndex;
@@ -99,7 +106,7 @@ namespace USBCopyer
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(MessageBox.Show("你可以在 \"开始菜单\" 的 \"启动\" 文件夹创建本程序的快捷方式，然后程序就可以自动启动了。\r\n如果你想要以隐藏模式启动程序，请右键快捷方式，点击 属性，在 目标 后面加上 /hide，在 USBCopyer.exe 后加上 /hide 即可\r\n\r\n按 确定 打开 \"启动\" 目录，按 取消 返回", "开机启动帮助", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            if(MessageBox.Show("你可以在 \"开始菜单\" 的 \"启动\" 文件夹创建本程序的快捷方式，然后程序就可以自动启动了。\r\n\r\n如果你想要以隐藏模式启动程序，请右键快捷方式，点击 属性，在 目标 后面加上 /hide，在 USBCopyer.exe 后加上 /hide 即可\r\n\r\n如果你启用了UAC并且因开机时无法获取管理员权限而导致程序无法启动，那么用添加计划任务的方法替代创建快捷方式的方法\r\n\r\n按 确定 打开 \"启动\" 目录，按 取消 返回", "开机启动帮助", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
                 try
                 {
