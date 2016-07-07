@@ -82,5 +82,15 @@ namespace USBCopyer.Properties {
                 return ResourceManager.GetString("EventViewer", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon workingIcon {
+            get {
+                object obj = ResourceManager.GetObject("workingIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

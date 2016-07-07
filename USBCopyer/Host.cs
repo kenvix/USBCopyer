@@ -24,6 +24,7 @@ namespace USBCopyer
         public Host()
         {
             InitializeComponent();
+            setIconX(0);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
             {
                 dir = Properties.Settings.Default.dir + "\\";
@@ -74,6 +75,27 @@ namespace USBCopyer
             }
             nicon.Visible = Program.showicon;
             msg("运行中: " + DateTime.Now.ToString());
+        }
+
+        public delegate void setIconInvoke(int v);
+        public void setIcon(int v)
+        {
+            setIconInvoke i = new setIconInvoke(setIconX);
+            Invoke(i, v);
+        }
+
+        private void setIconX(int v)
+        {
+            if (v == 0)
+            {
+                nicon.Text = title + " - 空闲";
+                nicon.Icon = Icon = Program.ico;
+            }
+            else if (v == 1)
+            {
+                nicon.Text = title + " - 正在工作";
+                nicon.Icon = Icon = Properties.Resources.workingIcon;
+            }
         }
 
         public void msg(string str, string t = "")
@@ -195,12 +217,14 @@ namespace USBCopyer
                                                     return;
                                                 }
                                             }
+                                            setIcon(1);
                                             if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskdir))
                                             {
                                                 Program.log("清空输出目录：" + dir + diskdir);
                                                 Directory.Delete(dir + diskdir, true);
                                             }
                                             CopyDirectory(disk + "\\", dir + diskdir);
+                                            setIcon(0);
                                             if (string.IsNullOrEmpty(diskser))
                                             {
                                                 Program.log("设备数据复制完成，但由于获取磁盘序列号失败，文件目录命名为：" + diskdir);
@@ -217,6 +241,7 @@ namespace USBCopyer
                                 }
                                 catch(Exception ex)
                                 {
+                                    setIcon(0);
                                     Program.log("获取插入的存储设备信息失败，复制已取消：" + ex.ToString(),2);
                                 }
                             }
@@ -224,6 +249,7 @@ namespace USBCopyer
                             {
                                 try
                                 {
+                                    setIcon(0);
                                     if (copyThread.ContainsKey(disk))
                                     {
                                         if (copyThread[disk].IsAlive)
@@ -479,6 +505,11 @@ namespace USBCopyer
         private void nicon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void clearLog_Click(object sender, EventArgs e)
+        {
+            Program.logger.Clear();
         }
     }
 }

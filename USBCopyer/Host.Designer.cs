@@ -31,7 +31,6 @@ namespace USBCopyer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Host));
             this.nicon = new System.Windows.Forms.NotifyIcon(this.components);
             this.niconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.nameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +43,7 @@ namespace USBCopyer
             this.FileStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearLog = new System.Windows.Forms.ToolStripMenuItem();
             this.HideHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +56,6 @@ namespace USBCopyer
             this.nicon.BalloonTipText = "已启动";
             this.nicon.BalloonTipTitle = "USBCopyer";
             this.nicon.ContextMenuStrip = this.niconMenu;
-            this.nicon.Icon = ((System.Drawing.Icon)(resources.GetObject("nicon.Icon")));
             this.nicon.Text = "USBCopyer";
             this.nicon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nicon_MouseDoubleClick);
             // 
@@ -73,11 +72,13 @@ namespace USBCopyer
             this.FileStripMenuItem,
             this.LogToolStripMenuItem,
             this.toolStripSeparator4,
+            this.clearLog,
             this.HideHToolStripMenuItem,
             this.toolStripSeparator1,
             this.ExitXToolStripMenuItem});
             this.niconMenu.Name = "niconMenu";
-            this.niconMenu.Size = new System.Drawing.Size(150, 210);
+            this.niconMenu.Size = new System.Drawing.Size(150, 232);
+            this.niconMenu.TabStop = true;
             // 
             // nameMenuItem
             // 
@@ -143,6 +144,13 @@ namespace USBCopyer
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(146, 6);
             // 
+            // clearLog
+            // 
+            this.clearLog.Name = "clearLog";
+            this.clearLog.Size = new System.Drawing.Size(149, 22);
+            this.clearLog.Text = "清除日志 (&C)";
+            this.clearLog.Click += new System.EventHandler(this.clearLog_Click);
+            // 
             // HideHToolStripMenuItem
             // 
             this.HideHToolStripMenuItem.Name = "HideHToolStripMenuItem";
@@ -193,5 +201,6 @@ namespace USBCopyer
         private System.Windows.Forms.ToolStripMenuItem nameMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BlogMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem clearLog;
     }
 }

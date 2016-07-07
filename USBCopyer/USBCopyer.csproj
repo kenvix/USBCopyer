@@ -37,6 +37,13 @@
   <PropertyGroup>
     <StartupObject>USBCopyer.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -98,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ico.ico" />
+    <None Include="ico3.ico" />
+    <None Include="Resources\WorkingIcon.ico" />
     <None Include="Resources\EventViewer.txt" />
     <None Include="Resources\%24this.Icon.ico" />
   </ItemGroup>

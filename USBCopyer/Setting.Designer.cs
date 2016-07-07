@@ -63,13 +63,13 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.blackdisk = new System.Windows.Forms.TextBox();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.blackid = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.blackdisk = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -421,31 +421,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "磁盘黑名单";
             // 
-            // label13
+            // linkLabel6
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 25);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(491, 12);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "不复制某些分区号的数据，用半角逗号 , 分割，只写一个字母即可。如 H 表示不复制 H 盘";
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel6.Location = new System.Drawing.Point(364, 117);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(125, 12);
+            this.linkLabel6.TabIndex = 24;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "如何获取磁盘序列号？";
+            this.linkLabel6.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
-            // label14
+            // label16
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 52);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(89, 12);
-            this.label14.TabIndex = 24;
-            this.label14.Text = "黑名单分区号：";
-            // 
-            // blackdisk
-            // 
-            this.blackdisk.Location = new System.Drawing.Point(105, 49);
-            this.blackdisk.MaxLength = 51;
-            this.blackdisk.Name = "blackdisk";
-            this.blackdisk.Size = new System.Drawing.Size(384, 21);
-            this.blackdisk.TabIndex = 23;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(4, 117);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(311, 12);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "不复制指定磁盘序列号的磁盘的数据，用半角逗号 , 分割";
             // 
             // label15
             // 
@@ -463,27 +459,31 @@
             this.blackid.Size = new System.Drawing.Size(384, 21);
             this.blackid.TabIndex = 25;
             // 
-            // label16
+            // label14
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(4, 117);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(311, 12);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "不复制指定磁盘序列号的磁盘的数据，用半角逗号 , 分割";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(10, 52);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(89, 12);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "黑名单分区号：";
             // 
-            // linkLabel6
+            // label13
             // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel6.Location = new System.Drawing.Point(364, 117);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(125, 12);
-            this.linkLabel6.TabIndex = 24;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "如何获取磁盘序列号？";
-            this.linkLabel6.VisitedLinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(4, 25);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(491, 12);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "不复制某些分区号的数据，用半角逗号 , 分割，只写一个字母即可。如 H 表示不复制 H 盘";
+            // 
+            // blackdisk
+            // 
+            this.blackdisk.Location = new System.Drawing.Point(105, 49);
+            this.blackdisk.MaxLength = 51;
+            this.blackdisk.Name = "blackdisk";
+            this.blackdisk.Size = new System.Drawing.Size(384, 21);
+            this.blackdisk.TabIndex = 23;
             // 
             // Setting
             // 
@@ -513,7 +513,6 @@
             this.Controls.Add(this.dir);
             this.Controls.Add(this.logButton);
             this.Controls.Add(this.saveButton);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(540, 664);
             this.MinimumSize = new System.Drawing.Size(540, 664);

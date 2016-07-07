@@ -8,7 +8,8 @@ namespace USBCopyer
     static class Program
     {
         public static bool showicon = true;
-        public static EventLog logger = new EventLog(); 
+        public static EventLog logger = new EventLog();
+        public static System.Drawing.Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
         /// <summary>
         /// 应用程序的主入口点。

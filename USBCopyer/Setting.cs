@@ -13,6 +13,7 @@ namespace USBCopyer
         public Setting()
         {
             InitializeComponent();
+            Icon = Program.ico;
             version.Text += Application.ProductVersion;
             dir.Text = Properties.Settings.Default.dir;
             conflict.SelectedIndex = Properties.Settings.Default.conflict;
