@@ -154,5 +154,29 @@ namespace USBCopyer.Properties {
                 this["blackid"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autorun {
+            get {
+                return ((bool)(this["autorun"]));
+            }
+            set {
+                this["autorun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autorunhide {
+            get {
+                return ((bool)(this["autorunhide"]));
+            }
+            set {
+                this["autorunhide"] = value;
+            }
+        }
     }
 }

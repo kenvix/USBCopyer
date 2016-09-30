@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace USBCopyer
 {
@@ -26,6 +27,8 @@ namespace USBCopyer
             copynoext.Checked = Properties.Settings.Default.copynoext;
             blackdisk.Text = Properties.Settings.Default.blackdisk;
             blackid.Text = Properties.Settings.Default.blackid;
+            autorun.Checked = Properties.Settings.Default.autorun;
+            autorunhide.Checked = Properties.Settings.Default.autorunhide;
         }
 
         private void logButton_Click(object sender, EventArgs e)
@@ -86,6 +89,39 @@ namespace USBCopyer
                     }
                     host.dir = Properties.Settings.Default.dir + "\\";
                 }
+                if(autorunhide.Checked && !autorun.Checked)
+                {
+                    autorun.Checked = true;
+                }
+                try
+                {
+                    RegistryKey run = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+                    if (Properties.Settings.Default.autorun != autorun.Checked)
+                    {
+                        Properties.Settings.Default.autorun = autorun.Checked;
+                        if (autorun.Checked)
+                        {
+                            run.SetValue("USBCopyer", Application.ExecutablePath);
+                        }
+                        else
+                        {
+                            run.DeleteValue("USBCopyer");
+                        }
+                    }
+                    if (Properties.Settings.Default.autorunhide!= autorunhide.Checked)
+                    {
+                        Properties.Settings.Default.autorunhide = autorunhide.Checked;
+                        if (autorunhide.Checked)
+                        {
+                            run.SetValue("USBCopyer", Application.ExecutablePath + " /hide");
+                        }
+                        else
+                        {
+                            run.SetValue("USBCopyer", Application.ExecutablePath);
+                        }
+                    }
+                }
+                catch (Exception) { }
                 Properties.Settings.Default.Save();
             }
             catch(Exception ex)
@@ -96,7 +132,7 @@ namespace USBCopyer
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("USBCopyer.exe [/hide] \r\n\r\n /hide     以隐藏模式启动，只能通过任务管理器结束进程","命令行帮助");
+            MessageBox.Show("USBCopyer.exe [/hide] [/gui] [/reset] \r\n\r\n /hide     以隐藏模式启动，只能通过任务管理器结束进程\r\n /gui      除非使用 /hide 参数，否则无论如何都不要使用隐藏模式启动\r\n /reset     恢复默认设置并退出，若失败，返回退出码1\r\n\r\n例如，以下命令使USBCopyer以隐藏模式启动：\r\nUSBCopyer.exe /hide", "命令行帮助");
         }
 
         public static bool IsInteger(string s)
@@ -107,14 +143,7 @@ namespace USBCopyer
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if(MessageBox.Show("你可以在 \"开始菜单\" 的 \"启动\" 文件夹创建本程序的快捷方式，然后程序就可以自动启动了。\r\n\r\n如果你想要以隐藏模式启动程序，请右键快捷方式，点击 属性，在 目标 后面加上 /hide，在 USBCopyer.exe 后加上 /hide 即可\r\n\r\n如果你启用了UAC并且因开机时无法获取管理员权限而导致程序无法启动，那么用添加计划任务的方法替代创建快捷方式的方法\r\n\r\n按 确定 打开 \"启动\" 目录，按 取消 返回", "开机启动帮助", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
-            {
-                try
-                {
-                    Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.Startup));
-                }
-                catch (Exception) { }
-            }
+
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -130,6 +159,11 @@ namespace USBCopyer
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("当你插入磁盘时，程序会通知你 \"存储设备已插入\"，磁盘卷标后面的英文字母或数字即为磁盘序列号。如 F: - A636F053 则表示磁盘序列号为 A636F053\r\n你可以在程序日志中找到序列号\r\n\r\n使用磁盘序列号可以明确指定不复制某个磁盘，而分区号只能指定不复制某个分区。你可以使用磁盘序列号黑名单来实现从自动一个U盘复制文件到另一个U盘", "获取磁盘序列号");
+        }
+
+        private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Properties.Settings.Default.Reset();
         }
     }
 }

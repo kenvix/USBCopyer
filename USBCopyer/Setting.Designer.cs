@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
             this.saveButton = new System.Windows.Forms.Button();
             this.logButton = new System.Windows.Forms.Button();
             this.dir = new System.Windows.Forms.TextBox();
@@ -58,27 +57,28 @@
             this.sleep = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.version = new System.Windows.Forms.Label();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.blackid = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.blackdisk = new System.Windows.Forms.TextBox();
+            this.autorun = new System.Windows.Forms.CheckBox();
+            this.autorunhide = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(9, 545);
+            this.saveButton.Location = new System.Drawing.Point(12, 556);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(228, 40);
+            this.saveButton.Size = new System.Drawing.Size(228, 30);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "保存设置 (&S)";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -86,9 +86,9 @@
             // 
             // logButton
             // 
-            this.logButton.Location = new System.Drawing.Point(389, 545);
+            this.logButton.Location = new System.Drawing.Point(392, 556);
             this.logButton.Name = "logButton";
-            this.logButton.Size = new System.Drawing.Size(123, 40);
+            this.logButton.Size = new System.Drawing.Size(123, 30);
             this.logButton.TabIndex = 1;
             this.logButton.Text = "查看日志 (&L)";
             this.logButton.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@
             // 
             // dir
             // 
-            this.dir.Location = new System.Drawing.Point(84, 17);
+            this.dir.Location = new System.Drawing.Point(84, 9);
             this.dir.Name = "dir";
             this.dir.Size = new System.Drawing.Size(350, 21);
             this.dir.TabIndex = 2;
@@ -104,7 +104,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 20);
+            this.label1.Location = new System.Drawing.Point(13, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 3;
@@ -112,7 +112,7 @@
             // 
             // dirDialogButton
             // 
-            this.dirDialogButton.Location = new System.Drawing.Point(440, 15);
+            this.dirDialogButton.Location = new System.Drawing.Point(440, 7);
             this.dirDialogButton.Name = "dirDialogButton";
             this.dirDialogButton.Size = new System.Drawing.Size(75, 23);
             this.dirDialogButton.TabIndex = 4;
@@ -127,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 79);
+            this.label2.Location = new System.Drawing.Point(10, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 12);
             this.label2.TabIndex = 5;
@@ -142,16 +142,16 @@
             "重命名新文件",
             "直接覆盖",
             "跳过"});
-            this.conflict.Location = new System.Drawing.Point(129, 76);
+            this.conflict.Location = new System.Drawing.Point(129, 68);
             this.conflict.Name = "conflict";
             this.conflict.Size = new System.Drawing.Size(384, 20);
             this.conflict.TabIndex = 6;
             // 
             // fileButton
             // 
-            this.fileButton.Location = new System.Drawing.Point(260, 545);
+            this.fileButton.Location = new System.Drawing.Point(263, 556);
             this.fileButton.Name = "fileButton";
-            this.fileButton.Size = new System.Drawing.Size(123, 40);
+            this.fileButton.Size = new System.Drawing.Size(123, 30);
             this.fileButton.TabIndex = 7;
             this.fileButton.Text = "查看文件 (&F)";
             this.fileButton.UseVisualStyleBackColor = true;
@@ -160,7 +160,7 @@
             // autorm
             // 
             this.autorm.AutoSize = true;
-            this.autorm.Location = new System.Drawing.Point(12, 140);
+            this.autorm.Location = new System.Drawing.Point(12, 132);
             this.autorm.Name = "autorm";
             this.autorm.Size = new System.Drawing.Size(228, 16);
             this.autorm.TabIndex = 8;
@@ -171,7 +171,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(85, 599);
+            this.linkLabel1.Location = new System.Drawing.Point(88, 596);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 10;
@@ -183,7 +183,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 48);
+            this.label4.Location = new System.Drawing.Point(13, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(491, 12);
             this.label4.TabIndex = 11;
@@ -192,7 +192,7 @@
             // hidemsg
             // 
             this.hidemsg.AutoSize = true;
-            this.hidemsg.Location = new System.Drawing.Point(414, 140);
+            this.hidemsg.Location = new System.Drawing.Point(414, 132);
             this.hidemsg.Name = "hidemsg";
             this.hidemsg.Size = new System.Drawing.Size(96, 16);
             this.hidemsg.TabIndex = 12;
@@ -203,12 +203,12 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel2.Location = new System.Drawing.Point(444, 599);
+            this.linkLabel2.Location = new System.Drawing.Point(402, 596);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(65, 12);
+            this.linkLabel2.Size = new System.Drawing.Size(113, 12);
             this.linkLabel2.TabIndex = 13;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "命令行参数";
+            this.linkLabel2.Text = "命令行参数帮助 (&H)";
             this.linkLabel2.VisitedLinkColor = System.Drawing.Color.SteelBlue;
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
@@ -224,9 +224,9 @@
             this.groupBox1.Controls.Add(this.black);
             this.groupBox1.Controls.Add(this.mode);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(12, 168);
+            this.groupBox1.Location = new System.Drawing.Point(12, 160);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(498, 214);
+            this.groupBox1.Size = new System.Drawing.Size(498, 200);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "按扩展名选择性复制";
@@ -234,7 +234,7 @@
             // copynoext
             // 
             this.copynoext.AutoSize = true;
-            this.copynoext.Location = new System.Drawing.Point(357, 32);
+            this.copynoext.Location = new System.Drawing.Point(357, 24);
             this.copynoext.Name = "copynoext";
             this.copynoext.Size = new System.Drawing.Size(132, 16);
             this.copynoext.TabIndex = 22;
@@ -244,7 +244,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 182);
+            this.label10.Location = new System.Drawing.Point(10, 170);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(281, 12);
             this.label10.TabIndex = 21;
@@ -253,7 +253,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 157);
+            this.label9.Location = new System.Drawing.Point(10, 145);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(431, 12);
             this.label9.TabIndex = 20;
@@ -262,7 +262,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 133);
+            this.label8.Location = new System.Drawing.Point(10, 121);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(443, 12);
             this.label8.TabIndex = 19;
@@ -271,7 +271,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 103);
+            this.label7.Location = new System.Drawing.Point(10, 91);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(89, 12);
             this.label7.TabIndex = 18;
@@ -279,7 +279,7 @@
             // 
             // white
             // 
-            this.white.Location = new System.Drawing.Point(105, 100);
+            this.white.Location = new System.Drawing.Point(105, 88);
             this.white.Name = "white";
             this.white.Size = new System.Drawing.Size(384, 21);
             this.white.TabIndex = 17;
@@ -287,7 +287,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 68);
+            this.label6.Location = new System.Drawing.Point(10, 56);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 12);
             this.label6.TabIndex = 16;
@@ -295,7 +295,7 @@
             // 
             // black
             // 
-            this.black.Location = new System.Drawing.Point(105, 65);
+            this.black.Location = new System.Drawing.Point(105, 53);
             this.black.Name = "black";
             this.black.Size = new System.Drawing.Size(384, 21);
             this.black.TabIndex = 15;
@@ -308,7 +308,7 @@
             "复制所有文件",
             "黑名单模式",
             "白名单模式"});
-            this.mode.Location = new System.Drawing.Point(105, 30);
+            this.mode.Location = new System.Drawing.Point(105, 22);
             this.mode.Name = "mode";
             this.mode.Size = new System.Drawing.Size(230, 20);
             this.mode.TabIndex = 15;
@@ -316,7 +316,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 33);
+            this.label5.Location = new System.Drawing.Point(10, 25);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 12);
             this.label5.TabIndex = 15;
@@ -325,7 +325,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 112);
+            this.label11.Location = new System.Drawing.Point(10, 104);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(227, 12);
             this.label11.TabIndex = 15;
@@ -333,7 +333,7 @@
             // 
             // sleep
             // 
-            this.sleep.Location = new System.Drawing.Point(243, 108);
+            this.sleep.Location = new System.Drawing.Point(243, 100);
             this.sleep.MaxLength = 9;
             this.sleep.Name = "sleep";
             this.sleep.Size = new System.Drawing.Size(135, 21);
@@ -342,7 +342,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(384, 113);
+            this.label12.Location = new System.Drawing.Point(384, 105);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(53, 12);
             this.label12.TabIndex = 17;
@@ -351,29 +351,29 @@
             // version
             // 
             this.version.AutoSize = true;
-            this.version.Location = new System.Drawing.Point(184, 600);
+            this.version.Location = new System.Drawing.Point(187, 597);
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(53, 12);
             this.version.TabIndex = 18;
             this.version.Text = "Version.";
             // 
-            // linkLabel3
+            // linkLabel9
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel3.Location = new System.Drawing.Point(361, 599);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(77, 12);
-            this.linkLabel3.TabIndex = 19;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "开机启动帮助";
-            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            this.linkLabel9.AutoSize = true;
+            this.linkLabel9.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel9.Location = new System.Drawing.Point(364, 596);
+            this.linkLabel9.Name = "linkLabel9";
+            this.linkLabel9.Size = new System.Drawing.Size(29, 12);
+            this.linkLabel9.TabIndex = 19;
+            this.linkLabel9.TabStop = true;
+            this.linkLabel9.Text = "重设";
+            this.linkLabel9.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 600);
+            this.label3.Location = new System.Drawing.Point(71, 597);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 20;
@@ -383,7 +383,7 @@
             // 
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel4.Location = new System.Drawing.Point(10, 599);
+            this.linkLabel4.Location = new System.Drawing.Point(13, 596);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(59, 12);
             this.linkLabel4.TabIndex = 21;
@@ -396,7 +396,7 @@
             // 
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel5.Location = new System.Drawing.Point(294, 600);
+            this.linkLabel5.Location = new System.Drawing.Point(297, 597);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(53, 12);
             this.linkLabel5.TabIndex = 22;
@@ -407,46 +407,22 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.linkLabel6);
-            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.blackid);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.blackdisk);
-            this.groupBox2.Location = new System.Drawing.Point(12, 389);
+            this.groupBox2.Location = new System.Drawing.Point(12, 369);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(498, 150);
+            this.groupBox2.Size = new System.Drawing.Size(498, 115);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "磁盘黑名单";
             // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel6.Location = new System.Drawing.Point(364, 117);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(125, 12);
-            this.linkLabel6.TabIndex = 24;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "如何获取磁盘序列号？";
-            this.linkLabel6.VisitedLinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(4, 117);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(311, 12);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "不复制指定磁盘序列号的磁盘的数据，用半角逗号 , 分割";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 86);
+            this.label15.Location = new System.Drawing.Point(10, 78);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(89, 12);
             this.label15.TabIndex = 26;
@@ -454,7 +430,7 @@
             // 
             // blackid
             // 
-            this.blackid.Location = new System.Drawing.Point(105, 83);
+            this.blackid.Location = new System.Drawing.Point(105, 75);
             this.blackid.Name = "blackid";
             this.blackid.Size = new System.Drawing.Size(384, 21);
             this.blackid.TabIndex = 25;
@@ -462,7 +438,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(10, 52);
+            this.label14.Location = new System.Drawing.Point(10, 46);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(89, 12);
             this.label14.TabIndex = 24;
@@ -471,7 +447,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 25);
+            this.label13.Location = new System.Drawing.Point(5, 21);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(491, 12);
             this.label13.TabIndex = 23;
@@ -479,22 +455,54 @@
             // 
             // blackdisk
             // 
-            this.blackdisk.Location = new System.Drawing.Point(105, 49);
+            this.blackdisk.Location = new System.Drawing.Point(105, 43);
             this.blackdisk.MaxLength = 51;
             this.blackdisk.Name = "blackdisk";
             this.blackdisk.Size = new System.Drawing.Size(384, 21);
             this.blackdisk.TabIndex = 23;
+            // 
+            // autorun
+            // 
+            this.autorun.AutoSize = true;
+            this.autorun.Location = new System.Drawing.Point(15, 496);
+            this.autorun.Name = "autorun";
+            this.autorun.Size = new System.Drawing.Size(156, 16);
+            this.autorun.TabIndex = 24;
+            this.autorun.Text = "开机自动启动 USBCopyer";
+            this.autorun.UseVisualStyleBackColor = true;
+            // 
+            // autorunhide
+            // 
+            this.autorunhide.AutoSize = true;
+            this.autorunhide.Location = new System.Drawing.Point(257, 496);
+            this.autorunhide.Name = "autorunhide";
+            this.autorunhide.Size = new System.Drawing.Size(108, 16);
+            this.autorunhide.TabIndex = 25;
+            this.autorunhide.Text = "以隐藏模式启动";
+            this.autorunhide.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(361, 497);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(149, 12);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "（隐藏模式将看不到图标）";
             // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 625);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.autorunhide);
+            this.Controls.Add(this.autorun);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.linkLabel5);
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.linkLabel3);
+            this.Controls.Add(this.linkLabel9);
             this.Controls.Add(this.version);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.sleep);
@@ -558,18 +566,19 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label version;
         private System.Windows.Forms.CheckBox copynoext;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel linkLabel9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox blackid;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox blackdisk;
-        private System.Windows.Forms.LinkLabel linkLabel6;
+        private System.Windows.Forms.CheckBox autorun;
+        private System.Windows.Forms.CheckBox autorunhide;
+        private System.Windows.Forms.Label label16;
     }
 }
 

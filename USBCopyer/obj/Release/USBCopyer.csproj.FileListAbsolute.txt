@@ -18,3 +18,13 @@ C:\Work Station\OneDrive\WebProject\OneDrive\C# Projects\USBCopyer\USBCopyer\obj
 C:\Work Station\OneDrive\WebProject\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Setting.resources
 C:\Work Station\OneDrive\WebProject\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Properties.Resources.resources
 C:\Work Station\OneDrive\WebProject\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csproj.GenerateResource.Cache
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.exe.config
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.exe
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.pdb
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.exe
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\bin\Release\USBCopyer.pdb
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csprojResolveAssemblyReference.cache
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Host.resources
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Setting.resources
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.Properties.Resources.resources
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Release\USBCopyer.csproj.GenerateResource.Cache

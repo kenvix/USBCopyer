@@ -30,6 +30,25 @@ namespace USBCopyer
                         case "-hide":
                             showicon = false;
                             break;
+
+                        case "/gui":
+                        case "-gui":
+                            showicon = true;
+                            break;
+
+                        case "/reset":
+                        case "-reset":
+                            try
+                            {
+                                Properties.Settings.Default.Reset();
+                                Properties.Settings.Default.Save();
+                                Environment.Exit(0);
+                            }
+                            catch (Exception)
+                            {
+                                Environment.Exit(1);
+                            }
+                            break;
                     }
                 }
                 //设置应用程序处理异常方式：ThreadException处理
