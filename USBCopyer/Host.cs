@@ -511,5 +511,10 @@ namespace USBCopyer
         {
             Program.logger.Clear();
         }
+
+        private void diskUUIDList_Click(object sender, EventArgs e)
+        {
+            (new diskUUID()).Show();
+        }
     }
 }

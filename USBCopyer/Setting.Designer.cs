@@ -70,6 +70,7 @@
             this.autorun = new System.Windows.Forms.CheckBox();
             this.autorunhide = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -407,6 +408,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.linkLabel3);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.blackid);
             this.groupBox2.Controls.Add(this.label14);
@@ -414,7 +416,7 @@
             this.groupBox2.Controls.Add(this.blackdisk);
             this.groupBox2.Location = new System.Drawing.Point(12, 369);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(498, 115);
+            this.groupBox2.Size = new System.Drawing.Size(498, 126);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "磁盘黑名单";
@@ -464,7 +466,7 @@
             // autorun
             // 
             this.autorun.AutoSize = true;
-            this.autorun.Location = new System.Drawing.Point(15, 496);
+            this.autorun.Location = new System.Drawing.Point(15, 511);
             this.autorun.Name = "autorun";
             this.autorun.Size = new System.Drawing.Size(156, 16);
             this.autorun.TabIndex = 24;
@@ -474,7 +476,7 @@
             // autorunhide
             // 
             this.autorunhide.AutoSize = true;
-            this.autorunhide.Location = new System.Drawing.Point(257, 496);
+            this.autorunhide.Location = new System.Drawing.Point(257, 511);
             this.autorunhide.Name = "autorunhide";
             this.autorunhide.Size = new System.Drawing.Size(108, 16);
             this.autorunhide.TabIndex = 25;
@@ -484,11 +486,24 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(361, 497);
+            this.label16.Location = new System.Drawing.Point(361, 512);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(149, 12);
             this.label16.TabIndex = 23;
             this.label16.Text = "（隐藏模式将看不到图标）";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.Location = new System.Drawing.Point(322, 103);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(167, 12);
+            this.linkLabel3.TabIndex = 26;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "查看磁盘信息 获取序列号 (&V)";
+            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_1);
             // 
             // Setting
             // 
@@ -579,6 +594,7 @@
         private System.Windows.Forms.CheckBox autorun;
         private System.Windows.Forms.CheckBox autorunhide;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.LinkLabel linkLabel3;
     }
 }
 

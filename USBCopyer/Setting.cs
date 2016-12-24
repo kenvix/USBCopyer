@@ -165,5 +165,10 @@ namespace USBCopyer
         {
             Properties.Settings.Default.Reset();
         }
+
+        private void linkLabel3_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            (new diskUUID()).Show();
+        }
     }
 }
