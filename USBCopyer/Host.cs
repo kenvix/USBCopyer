@@ -128,6 +128,7 @@ namespace USBCopyer
 
         private void ExitXToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            nicon.Dispose();
             Environment.Exit(0);
         }
 
