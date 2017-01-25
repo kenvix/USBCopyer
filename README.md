@@ -17,11 +17,11 @@
   点击 "隐藏图标" 将彻底隐藏程序，只能靠任务管理器停止
   点击 "设置" 可以设置程序
 ###一键安装
-1.[下载](https://github.com/MoeYi/USBCopyer/releases/download/233/USBCopyer.zip)
-2.解压
-3.点击USBCopyer-Installer.bat
-###命令行
-USBCopyer.exe [/hide]           
+1.[下载](https://github.com/MoeYi/USBCopyer/releases/download/233/USBCopyer.zip)    
+2.解压    
+3.点击USBCopyer-Installer.bat    
+###运行参数
+USBCopyer.exe [/hide]          
    /hide     以隐藏模式启动，只能通过任务管理器结束进程
 ###常见问题
 #####学校老师很精明，上课前都要自己重启一次电脑，怎么办
