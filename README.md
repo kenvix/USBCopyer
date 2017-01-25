@@ -2,7 +2,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/xv5b8wf0h7cuy897?svg=true)](https://ci.appveyor.com/project/kenvix/usbcopyer)              
 偷U盘文件的神器，支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单，支持日志，支持弹出U盘时强制停止复制防止占用              
 本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）              
-![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/usbcopyer.png)
+![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/usbcopyer.jpg)
 ##已编译版本下载
 .Net Framework 3.5       
 [点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/USBCopyer/bin/Release/USBCopyer.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/USBCopyer/bin/Release/USBCopyer.exe?raw=true)           
