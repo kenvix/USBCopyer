@@ -473,7 +473,7 @@ namespace USBCopyer
         {
             try
             {
-                Process.Start("explorer.exe", "\"http://zhizhe8.net/\"");
+                Process.Start("explorer.exe", "\"http://kenvix.com/\"");
             }
             catch (Exception ex)
             {
@@ -495,7 +495,7 @@ namespace USBCopyer
         {
             try
             {
-                Process.Start("explorer.exe", "\"http://zhizhe8.net/?p=86\"");
+                Process.Start("explorer.exe", "\"http://kenvix.com/?p=86\"");
             }
             catch (Exception ex)
             {
