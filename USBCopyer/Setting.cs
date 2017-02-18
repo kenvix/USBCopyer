@@ -170,5 +170,17 @@ namespace USBCopyer
         {
             (new diskUUID()).Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer.exe", "\"https://git.oschina.net/kenvix/USBCopyer\"");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("打开失败：" + ex.ToString());
+            }
+        }
     }
 }

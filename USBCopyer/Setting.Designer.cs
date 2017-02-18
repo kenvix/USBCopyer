@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Setting));
             this.saveButton = new System.Windows.Forms.Button();
             this.logButton = new System.Windows.Forms.Button();
             this.dir = new System.Windows.Forms.TextBox();
@@ -62,6 +63,7 @@
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.label15 = new System.Windows.Forms.Label();
             this.blackid = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -70,14 +72,15 @@
             this.autorun = new System.Windows.Forms.CheckBox();
             this.autorunhide = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 556);
+            this.saveButton.Location = new System.Drawing.Point(12, 537);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(228, 30);
             this.saveButton.TabIndex = 0;
@@ -87,7 +90,7 @@
             // 
             // logButton
             // 
-            this.logButton.Location = new System.Drawing.Point(392, 556);
+            this.logButton.Location = new System.Drawing.Point(392, 537);
             this.logButton.Name = "logButton";
             this.logButton.Size = new System.Drawing.Size(123, 30);
             this.logButton.TabIndex = 1;
@@ -150,7 +153,7 @@
             // 
             // fileButton
             // 
-            this.fileButton.Location = new System.Drawing.Point(263, 556);
+            this.fileButton.Location = new System.Drawing.Point(263, 537);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(123, 30);
             this.fileButton.TabIndex = 7;
@@ -172,7 +175,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(88, 596);
+            this.linkLabel1.Location = new System.Drawing.Point(88, 602);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 10;
@@ -204,7 +207,7 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel2.Location = new System.Drawing.Point(402, 596);
+            this.linkLabel2.Location = new System.Drawing.Point(119, 577);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(113, 12);
             this.linkLabel2.TabIndex = 13;
@@ -352,7 +355,7 @@
             // version
             // 
             this.version.AutoSize = true;
-            this.version.Location = new System.Drawing.Point(187, 597);
+            this.version.Location = new System.Drawing.Point(187, 603);
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(53, 12);
             this.version.TabIndex = 18;
@@ -362,7 +365,7 @@
             // 
             this.linkLabel9.AutoSize = true;
             this.linkLabel9.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel9.Location = new System.Drawing.Point(364, 596);
+            this.linkLabel9.Location = new System.Drawing.Point(81, 577);
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.Size = new System.Drawing.Size(29, 12);
             this.linkLabel9.TabIndex = 19;
@@ -374,7 +377,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 597);
+            this.label3.Location = new System.Drawing.Point(71, 603);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 20;
@@ -384,7 +387,7 @@
             // 
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel4.Location = new System.Drawing.Point(13, 596);
+            this.linkLabel4.Location = new System.Drawing.Point(13, 602);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(59, 12);
             this.linkLabel4.TabIndex = 21;
@@ -397,7 +400,7 @@
             // 
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel5.Location = new System.Drawing.Point(297, 597);
+            this.linkLabel5.Location = new System.Drawing.Point(14, 578);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(53, 12);
             this.linkLabel5.TabIndex = 22;
@@ -420,6 +423,19 @@
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "磁盘黑名单";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.LinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.Location = new System.Drawing.Point(322, 103);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(167, 12);
+            this.linkLabel3.TabIndex = 26;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "查看磁盘信息 获取序列号 (&V)";
+            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_1);
             // 
             // label15
             // 
@@ -492,24 +508,22 @@
             this.label16.TabIndex = 23;
             this.label16.Text = "（隐藏模式将看不到图标）";
             // 
-            // linkLabel3
+            // pictureBox1
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel3.Location = new System.Drawing.Point(322, 103);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(167, 12);
-            this.linkLabel3.TabIndex = 26;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "查看磁盘信息 获取序列号 (&V)";
-            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked_1);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(407, 571);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(107, 56);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 625);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.autorunhide);
             this.Controls.Add(this.autorun);
@@ -545,6 +559,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,6 +610,7 @@
         private System.Windows.Forms.CheckBox autorunhide;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
