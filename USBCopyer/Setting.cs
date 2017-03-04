@@ -165,7 +165,8 @@ namespace USBCopyer
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Properties.Settings.Default.Reset();
+            DialogResult doReset = MessageBox.Show("将会重置所有设置项，确定吗？", "重设确认", MessageBoxButtons.OKCancel);
+            if(doReset == DialogResult.OK) Properties.Settings.Default.Reset();
         }
 
         private void linkLabel3_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)

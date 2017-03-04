@@ -105,11 +105,15 @@ namespace USBCopyer
             {
                 nicon.Text = title + " - 空闲";
                 nicon.Icon = Icon = Properties.Resources.icon_small;
+                EnableToolStripMenuItem.Enabled = EnableToolStripMenuItem.Checked = true;
+                EnableToolStripMenuItem.Text = "已启用 (&E)";
             }
             else if (v == 1)
             {
                 nicon.Text = title + " - 正在工作";
                 nicon.Icon = Icon = Properties.Resources.working_small;
+                EnableToolStripMenuItem.Text = "正在工作 (&E)";
+                EnableToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -314,7 +318,8 @@ namespace USBCopyer
 
         private void EnableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EnableToolStripMenuItem.Checked = EnableToolStripMenuItem.Checked ? false : true;
+            EnableToolStripMenuItem.Checked = !EnableToolStripMenuItem.Checked;
+            EnableToolStripMenuItem.Text = EnableToolStripMenuItem.Checked ? "已启用 (&E)" : "未启用 (&E)";
         }
 
         [StructLayout(LayoutKind.Sequential)]
