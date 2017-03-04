@@ -1,2 +1,5 @@
 USBCopyer/bin/Debug/USBCopyerData
 USBCopyer/bin/Release/USBCopyerData
+USBCopyer/bin/Debug
+*.pdb
+*.cache
