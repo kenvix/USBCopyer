@@ -73,6 +73,7 @@
             this.autorunhide = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.multirun = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -150,6 +151,7 @@
             this.conflict.Name = "conflict";
             this.conflict.Size = new System.Drawing.Size(384, 20);
             this.conflict.TabIndex = 6;
+            this.conflict.SelectedIndexChanged += new System.EventHandler(this.conflict_SelectedIndexChanged);
             // 
             // fileButton
             // 
@@ -518,11 +520,22 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // multirun
+            // 
+            this.multirun.AutoSize = true;
+            this.multirun.Location = new System.Drawing.Point(254, 132);
+            this.multirun.Name = "multirun";
+            this.multirun.Size = new System.Drawing.Size(132, 16);
+            this.multirun.TabIndex = 27;
+            this.multirun.Text = "允许多重运行(多开)";
+            this.multirun.UseVisualStyleBackColor = true;
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 625);
+            this.Controls.Add(this.multirun);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.autorunhide);
@@ -611,6 +624,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox multirun;
     }
 }
 

@@ -178,5 +178,29 @@ namespace USBCopyer.Properties {
                 this["autorunhide"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool firstrun {
+            get {
+                return ((bool)(this["firstrun"]));
+            }
+            set {
+                this["firstrun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool multirun {
+            get {
+                return ((bool)(this["multirun"]));
+            }
+            set {
+                this["multirun"] = value;
+            }
+        }
     }
 }

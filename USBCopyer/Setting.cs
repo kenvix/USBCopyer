@@ -29,6 +29,7 @@ namespace USBCopyer
             blackid.Text = Properties.Settings.Default.blackid;
             autorun.Checked = Properties.Settings.Default.autorun;
             autorunhide.Checked = Properties.Settings.Default.autorunhide;
+            multirun.Checked = Properties.Settings.Default.multirun;
         }
 
         private void logButton_Click(object sender, EventArgs e)
@@ -81,6 +82,7 @@ namespace USBCopyer
                 Properties.Settings.Default.copynoext = copynoext.Checked;
                 Properties.Settings.Default.blackdisk = blackdisk.Text;
                 Properties.Settings.Default.blackid = blackid.Text;
+                Properties.Settings.Default.multirun = multirun.Checked;
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
                 {
                     if (!Directory.Exists(Properties.Settings.Default.dir))
@@ -181,6 +183,11 @@ namespace USBCopyer
             {
                 MessageBox.Show("打开失败：" + ex.ToString());
             }
+        }
+
+        private void conflict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -74,7 +74,22 @@ namespace USBCopyer
                 white = new string[0];
             }
             nicon.Visible = Program.showicon;
-            msg("运行中: " + DateTime.Now.ToString());
+            if(!Properties.Settings.Default.multirun)
+            {
+                Process[] processcollection = Process.GetProcessesByName(Application.ProductName);
+                if (processcollection.Length >= 2)
+                {
+                    msg("已经有一个 USBCopyer 实例在运行中！本实例即将退出。如果您需要多重运行本程序，请在设置中打开 \"允许多重运行\" 开关", ToolTipIcon.Error);
+                    Thread.Sleep(3000);
+                    Environment.Exit(9);
+                }
+            }
+            if(Properties.Settings.Default.firstrun)
+            {
+                msg("欢迎使用 USBCopyer V" + Application.ProductVersion + "! 右键单击此图标可进行设置");
+                Properties.Settings.Default.firstrun = false;
+                Properties.Settings.Default.Save();
+            }
         }
 
         public delegate void setIconInvoke(int v);
@@ -98,14 +113,19 @@ namespace USBCopyer
             }
         }
 
-        public void msg(string str, string t = "")
+        public void msg(string str, string t = "", ToolTipIcon msgtype = ToolTipIcon.Info)
         {
             string tit = string.IsNullOrEmpty(t) ? title : title + " - " + t;
             if (nicon.Visible && !Properties.Settings.Default.hidemsg)
             {
-                nicon.ShowBalloonTip(1000, tit, str, ToolTipIcon.Info);
+                nicon.ShowBalloonTip(1000, tit, str, msgtype);
             }
             Program.log(tit + "：" + str);
+        }
+
+        public void msg(string str, ToolTipIcon msgtype)
+        {
+            msg(str, "", msgtype);
         }
 
         public void error(string msg, string title = "错误")
@@ -461,6 +481,10 @@ namespace USBCopyer
         {
             try
             {
+                if(!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
                 Process.Start("explorer.exe", "\"" + dir + "\"");
             }
             catch (Exception ex)
