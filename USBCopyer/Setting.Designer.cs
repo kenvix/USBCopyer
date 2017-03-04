@@ -254,7 +254,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(281, 12);
             this.label10.TabIndex = 21;
-            this.label10.Text = "每个扩展名用半角逗号 , 分割，前面不需要加点 . ";
+            this.label10.Text = "每个扩展名用半角逗号(,)分割，前面不需要加点(.)";
             // 
             // label9
             // 
@@ -263,7 +263,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(431, 12);
             this.label9.TabIndex = 20;
-            this.label9.Text = "\"白名单模式\" 表示只复制该扩展名的文件  （先选择工作模式再填写黑白名单）";
+            this.label9.Text = "“白名单模式”表示只复制该扩展名的文件  （先选择工作模式再填写黑白名单）";
             // 
             // label8
             // 
@@ -272,7 +272,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(443, 12);
             this.label8.TabIndex = 19;
-            this.label8.Text = "你可以选择只复制特定扩展名的文件，\"黑名单模式\" 表示不复制这个扩展名的文件";
+            this.label8.Text = "你可以选择只复制特定扩展名的文件，“黑名单模式”表示不复制这个扩展名的文件";
             // 
             // label7
             // 
@@ -324,9 +324,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 15;
-            this.label5.Text = "工作模式：";
+            this.label5.Text = "模式：";
             // 
             // label11
             // 
@@ -471,7 +471,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(491, 12);
             this.label13.TabIndex = 23;
-            this.label13.Text = "不复制某些分区号的数据，用半角逗号 , 分割，只写一个字母即可。如 H 表示不复制 H 盘";
+            this.label13.Text = "不复制某些分区号的数据，用半角逗号(,)分割，只写一个字母即可。如 H 表示不复制 H 盘";
             // 
             // blackdisk
             // 
@@ -512,6 +512,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.ErrorImage = global::USBCopyer.Properties.Resources.GPL_Logo;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = global::USBCopyer.Properties.Resources.GPL_Logo;
