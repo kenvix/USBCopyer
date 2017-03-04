@@ -104,12 +104,12 @@ namespace USBCopyer
             if (v == 0)
             {
                 nicon.Text = title + " - 空闲";
-                nicon.Icon = Icon = Program.ico;
+                nicon.Icon = Icon = Properties.Resources.icon_small;
             }
             else if (v == 1)
             {
                 nicon.Text = title + " - 正在工作";
-                nicon.Icon = Icon = Properties.Resources.workingIcon;
+                nicon.Icon = Icon = Properties.Resources.working_small;
             }
         }
 

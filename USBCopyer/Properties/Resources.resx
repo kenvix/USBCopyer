@@ -121,7 +121,13 @@
   <data name="EventViewer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EventViewer.txt;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
-  <data name="workingIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\ico3.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="GPL_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GPL-Logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_small.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="working_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\working_small.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

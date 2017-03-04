@@ -33,7 +33,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ico.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>USBCopyer.Program</StartupObject>
@@ -97,7 +97,7 @@
       <DependentUpon>Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -119,6 +119,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="Resources\icon_small.ico" />
+    <None Include="Resources\working_small.ico" />
+    <None Include="Resources\_C__Users_wmzhi_Desktop_OneDrive_C_ Projects_USBCopyer_USBCopyer_Resources_working_small.ico_.ico" />
+    <None Include="Resources\GPL-Logo.png" />
+    <None Include="GPL-Logo.png" />
     <Content Include="ico.ico" />
     <None Include="ico3.ico" />
     <None Include="Resources\WorkingIcon.ico" />
