@@ -103,14 +103,14 @@ namespace USBCopyer
         {
             if (v == 0)
             {
-                nicon.Text = title + " - 空闲";
+                nicon.Text = title + " V" + Application.ProductVersion + "\r\n状态: 空闲";
                 nicon.Icon = Icon = Properties.Resources.icon_small;
                 EnableToolStripMenuItem.Enabled = EnableToolStripMenuItem.Checked = true;
                 EnableToolStripMenuItem.Text = "已启用 (&E)";
             }
             else if (v == 1)
             {
-                nicon.Text = title + " - 正在工作";
+                nicon.Text = title + "\r\n状态: 正在工作，共 " + copyThread.Count + " 个存储设备";
                 nicon.Icon = Icon = Properties.Resources.working_small;
                 EnableToolStripMenuItem.Text = "正在工作 (&E)";
                 EnableToolStripMenuItem.Enabled = false;

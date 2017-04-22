@@ -27,7 +27,6 @@ namespace USBCopyer
             copynoext.Checked = Properties.Settings.Default.copynoext;
             blackdisk.Text = Properties.Settings.Default.blackdisk;
             blackid.Text = Properties.Settings.Default.blackid;
-            autorun.Checked = Properties.Settings.Default.autorun;
             autorunhide.Checked = Properties.Settings.Default.autorunhide;
             multirun.Checked = Properties.Settings.Default.multirun;
         }
@@ -83,6 +82,7 @@ namespace USBCopyer
                 Properties.Settings.Default.blackdisk = blackdisk.Text;
                 Properties.Settings.Default.blackid = blackid.Text;
                 Properties.Settings.Default.multirun = multirun.Checked;
+                Properties.Settings.Default.autorunhide = autorunhide.Checked;
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
                 {
                     if (!Directory.Exists(Properties.Settings.Default.dir))
@@ -91,39 +91,6 @@ namespace USBCopyer
                     }
                     host.dir = Properties.Settings.Default.dir + "\\";
                 }
-                if(autorunhide.Checked && !autorun.Checked)
-                {
-                    autorun.Checked = true;
-                }
-                try
-                {
-                    RegistryKey run = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
-                    if (Properties.Settings.Default.autorun != autorun.Checked)
-                    {
-                        Properties.Settings.Default.autorun = autorun.Checked;
-                        if (autorun.Checked)
-                        {
-                            run.SetValue("USBCopyer", Application.ExecutablePath);
-                        }
-                        else
-                        {
-                            run.DeleteValue("USBCopyer");
-                        }
-                    }
-                    if (Properties.Settings.Default.autorunhide!= autorunhide.Checked)
-                    {
-                        Properties.Settings.Default.autorunhide = autorunhide.Checked;
-                        if (autorunhide.Checked)
-                        {
-                            run.SetValue("USBCopyer", Application.ExecutablePath + " /hide");
-                        }
-                        else
-                        {
-                            run.SetValue("USBCopyer", Application.ExecutablePath);
-                        }
-                    }
-                }
-                catch (Exception) { }
                 Properties.Settings.Default.Save();
             }
             catch(Exception ex)
@@ -189,6 +156,37 @@ namespace USBCopyer
         private void conflict_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void autorunButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.autorunhide = autorunhide.Checked;
+                Properties.Settings.Default.Save();
+                RegistryKey run = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+                if (run.GetValue("USBCopyer") == null || !run.GetValue("USBCopyer").ToString().Contains(Application.ExecutablePath))
+                {
+                    if (autorunhide.Checked)
+                    {
+                        run.SetValue("USBCopyer", Application.ExecutablePath + " /autorun /hide");
+                    }
+                    else
+                    {
+                        run.SetValue("USBCopyer", Application.ExecutablePath + " /autorun");
+                    }
+                    MessageBox.Show("设置开机启动成功\r\n\r\n注意：任务管理器或其他杀毒软件可能会阻止 USBCopyer 的开机自启动", "设置开机启动成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    run.DeleteValue("USBCopyer");
+                    MessageBox.Show("取消开机启动成功", "取消开机启动成功", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("设置开机启动失败，此操作可能已被杀毒软件拦截\r\n\r\n" + ex.ToString(), "设置开机启动失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

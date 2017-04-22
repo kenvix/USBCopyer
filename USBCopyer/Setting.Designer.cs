@@ -69,11 +69,11 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.blackdisk = new System.Windows.Forms.TextBox();
-            this.autorun = new System.Windows.Forms.CheckBox();
             this.autorunhide = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.multirun = new System.Windows.Forms.CheckBox();
+            this.autorunButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,7 +81,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 537);
+            this.saveButton.Location = new System.Drawing.Point(12, 504);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(228, 30);
             this.saveButton.TabIndex = 0;
@@ -91,7 +91,7 @@
             // 
             // logButton
             // 
-            this.logButton.Location = new System.Drawing.Point(392, 537);
+            this.logButton.Location = new System.Drawing.Point(392, 504);
             this.logButton.Name = "logButton";
             this.logButton.Size = new System.Drawing.Size(123, 30);
             this.logButton.TabIndex = 1;
@@ -155,7 +155,7 @@
             // 
             // fileButton
             // 
-            this.fileButton.Location = new System.Drawing.Point(263, 537);
+            this.fileButton.Location = new System.Drawing.Point(263, 504);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(123, 30);
             this.fileButton.TabIndex = 7;
@@ -261,7 +261,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(10, 145);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(431, 12);
+            this.label9.Size = new System.Drawing.Size(437, 12);
             this.label9.TabIndex = 20;
             this.label9.Text = "“白名单模式”表示只复制该扩展名的文件  （先选择工作模式再填写黑白名单）";
             // 
@@ -270,7 +270,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(10, 121);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(443, 12);
+            this.label8.Size = new System.Drawing.Size(449, 12);
             this.label8.TabIndex = 19;
             this.label8.Text = "你可以选择只复制特定扩展名的文件，“黑名单模式”表示不复制这个扩展名的文件";
             // 
@@ -481,20 +481,10 @@
             this.blackdisk.Size = new System.Drawing.Size(384, 21);
             this.blackdisk.TabIndex = 23;
             // 
-            // autorun
-            // 
-            this.autorun.AutoSize = true;
-            this.autorun.Location = new System.Drawing.Point(15, 511);
-            this.autorun.Name = "autorun";
-            this.autorun.Size = new System.Drawing.Size(156, 16);
-            this.autorun.TabIndex = 24;
-            this.autorun.Text = "开机自动启动 USBCopyer";
-            this.autorun.UseVisualStyleBackColor = true;
-            // 
             // autorunhide
             // 
             this.autorunhide.AutoSize = true;
-            this.autorunhide.Location = new System.Drawing.Point(257, 511);
+            this.autorunhide.Location = new System.Drawing.Point(257, 546);
             this.autorunhide.Name = "autorunhide";
             this.autorunhide.Size = new System.Drawing.Size(108, 16);
             this.autorunhide.TabIndex = 25;
@@ -504,7 +494,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(361, 512);
+            this.label16.Location = new System.Drawing.Point(361, 547);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(149, 12);
             this.label16.TabIndex = 23;
@@ -533,16 +523,26 @@
             this.multirun.Text = "允许多重运行(多开)";
             this.multirun.UseVisualStyleBackColor = true;
             // 
+            // autorunButton
+            // 
+            this.autorunButton.Location = new System.Drawing.Point(12, 542);
+            this.autorunButton.Name = "autorunButton";
+            this.autorunButton.Size = new System.Drawing.Size(228, 23);
+            this.autorunButton.TabIndex = 28;
+            this.autorunButton.Text = "设置/取消 开机自动启动 (&A)";
+            this.autorunButton.UseVisualStyleBackColor = true;
+            this.autorunButton.Click += new System.EventHandler(this.autorunButton_Click);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 625);
+            this.Controls.Add(this.autorunButton);
             this.Controls.Add(this.multirun);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.autorunhide);
-            this.Controls.Add(this.autorun);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.linkLabel5);
             this.Controls.Add(this.linkLabel4);
@@ -622,12 +622,12 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox blackdisk;
-        private System.Windows.Forms.CheckBox autorun;
         private System.Windows.Forms.CheckBox autorunhide;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox multirun;
+        private System.Windows.Forms.Button autorunButton;
     }
 }
 
