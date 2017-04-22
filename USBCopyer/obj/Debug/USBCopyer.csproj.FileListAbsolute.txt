@@ -29,3 +29,4 @@ C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Debug\USBCop
 C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Debug\USBCopyer.Properties.Resources.resources
 C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Debug\USBCopyer.csproj.GenerateResource.Cache
 C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Debug\USBCopyer.diskUUID.resources
+C:\Users\wmzhi\Desktop\OneDrive\C# Projects\USBCopyer\USBCopyer\obj\Debug\USBCopyer.donateForm.resources

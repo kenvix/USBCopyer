@@ -74,6 +74,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.multirun = new System.Windows.Forms.CheckBox();
             this.autorunButton = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.filesize = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.filesizetype = new System.Windows.Forms.ComboBox();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,7 +86,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 504);
+            this.saveButton.Location = new System.Drawing.Point(12, 532);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(228, 30);
             this.saveButton.TabIndex = 0;
@@ -91,7 +96,7 @@
             // 
             // logButton
             // 
-            this.logButton.Location = new System.Drawing.Point(392, 504);
+            this.logButton.Location = new System.Drawing.Point(392, 532);
             this.logButton.Name = "logButton";
             this.logButton.Size = new System.Drawing.Size(123, 30);
             this.logButton.TabIndex = 1;
@@ -155,7 +160,7 @@
             // 
             // fileButton
             // 
-            this.fileButton.Location = new System.Drawing.Point(263, 504);
+            this.fileButton.Location = new System.Drawing.Point(263, 532);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(123, 30);
             this.fileButton.TabIndex = 7;
@@ -166,7 +171,7 @@
             // autorm
             // 
             this.autorm.AutoSize = true;
-            this.autorm.Location = new System.Drawing.Point(12, 132);
+            this.autorm.Location = new System.Drawing.Point(12, 160);
             this.autorm.Name = "autorm";
             this.autorm.Size = new System.Drawing.Size(228, 16);
             this.autorm.TabIndex = 8;
@@ -177,7 +182,7 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(88, 602);
+            this.linkLabel1.Location = new System.Drawing.Point(88, 630);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(77, 12);
             this.linkLabel1.TabIndex = 10;
@@ -198,7 +203,7 @@
             // hidemsg
             // 
             this.hidemsg.AutoSize = true;
-            this.hidemsg.Location = new System.Drawing.Point(414, 132);
+            this.hidemsg.Location = new System.Drawing.Point(414, 160);
             this.hidemsg.Name = "hidemsg";
             this.hidemsg.Size = new System.Drawing.Size(96, 16);
             this.hidemsg.TabIndex = 12;
@@ -209,7 +214,7 @@
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel2.Location = new System.Drawing.Point(119, 577);
+            this.linkLabel2.Location = new System.Drawing.Point(119, 605);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(113, 12);
             this.linkLabel2.TabIndex = 13;
@@ -230,7 +235,7 @@
             this.groupBox1.Controls.Add(this.black);
             this.groupBox1.Controls.Add(this.mode);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(12, 160);
+            this.groupBox1.Location = new System.Drawing.Point(12, 187);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(498, 200);
             this.groupBox1.TabIndex = 14;
@@ -357,7 +362,7 @@
             // version
             // 
             this.version.AutoSize = true;
-            this.version.Location = new System.Drawing.Point(187, 603);
+            this.version.Location = new System.Drawing.Point(187, 631);
             this.version.Name = "version";
             this.version.Size = new System.Drawing.Size(53, 12);
             this.version.TabIndex = 18;
@@ -367,7 +372,7 @@
             // 
             this.linkLabel9.AutoSize = true;
             this.linkLabel9.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel9.Location = new System.Drawing.Point(81, 577);
+            this.linkLabel9.Location = new System.Drawing.Point(81, 605);
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.Size = new System.Drawing.Size(29, 12);
             this.linkLabel9.TabIndex = 19;
@@ -379,7 +384,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 603);
+            this.label3.Location = new System.Drawing.Point(71, 631);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 20;
@@ -389,7 +394,7 @@
             // 
             this.linkLabel4.AutoSize = true;
             this.linkLabel4.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel4.Location = new System.Drawing.Point(13, 602);
+            this.linkLabel4.Location = new System.Drawing.Point(13, 630);
             this.linkLabel4.Name = "linkLabel4";
             this.linkLabel4.Size = new System.Drawing.Size(59, 12);
             this.linkLabel4.TabIndex = 21;
@@ -402,7 +407,7 @@
             // 
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.LinkColor = System.Drawing.Color.SteelBlue;
-            this.linkLabel5.Location = new System.Drawing.Point(14, 578);
+            this.linkLabel5.Location = new System.Drawing.Point(14, 606);
             this.linkLabel5.Name = "linkLabel5";
             this.linkLabel5.Size = new System.Drawing.Size(53, 12);
             this.linkLabel5.TabIndex = 22;
@@ -419,7 +424,7 @@
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.blackdisk);
-            this.groupBox2.Location = new System.Drawing.Point(12, 369);
+            this.groupBox2.Location = new System.Drawing.Point(12, 395);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(498, 126);
             this.groupBox2.TabIndex = 23;
@@ -484,7 +489,7 @@
             // autorunhide
             // 
             this.autorunhide.AutoSize = true;
-            this.autorunhide.Location = new System.Drawing.Point(257, 546);
+            this.autorunhide.Location = new System.Drawing.Point(257, 574);
             this.autorunhide.Name = "autorunhide";
             this.autorunhide.Size = new System.Drawing.Size(108, 16);
             this.autorunhide.TabIndex = 25;
@@ -494,7 +499,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(361, 547);
+            this.label16.Location = new System.Drawing.Point(361, 575);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(149, 12);
             this.label16.TabIndex = 23;
@@ -506,17 +511,17 @@
             this.pictureBox1.ErrorImage = global::USBCopyer.Properties.Resources.GPL_Logo;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = global::USBCopyer.Properties.Resources.GPL_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(407, 571);
+            this.pictureBox1.Location = new System.Drawing.Point(407, 599);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(107, 56);
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // multirun
             // 
             this.multirun.AutoSize = true;
-            this.multirun.Location = new System.Drawing.Point(254, 132);
+            this.multirun.Location = new System.Drawing.Point(254, 160);
             this.multirun.Name = "multirun";
             this.multirun.Size = new System.Drawing.Size(132, 16);
             this.multirun.TabIndex = 27;
@@ -525,7 +530,7 @@
             // 
             // autorunButton
             // 
-            this.autorunButton.Location = new System.Drawing.Point(12, 542);
+            this.autorunButton.Location = new System.Drawing.Point(12, 570);
             this.autorunButton.Name = "autorunButton";
             this.autorunButton.Size = new System.Drawing.Size(228, 23);
             this.autorunButton.TabIndex = 28;
@@ -533,11 +538,69 @@
             this.autorunButton.UseVisualStyleBackColor = true;
             this.autorunButton.Click += new System.EventHandler(this.autorunButton_Click);
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(10, 132);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(149, 12);
+            this.label17.TabIndex = 29;
+            this.label17.Text = "大小限制：只复制文件大小";
+            // 
+            // filesize
+            // 
+            this.filesize.Location = new System.Drawing.Point(257, 129);
+            this.filesize.MaxLength = 9;
+            this.filesize.Name = "filesize";
+            this.filesize.Size = new System.Drawing.Size(121, 21);
+            this.filesize.TabIndex = 30;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(384, 134);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 12);
+            this.label18.TabIndex = 31;
+            this.label18.Text = "MB 的文件";
+            // 
+            // filesizetype
+            // 
+            this.filesizetype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.filesizetype.FormattingEnabled = true;
+            this.filesizetype.Items.AddRange(new object[] {
+            "不限制",
+            "大于",
+            "小于"});
+            this.filesizetype.Location = new System.Drawing.Point(162, 129);
+            this.filesizetype.Name = "filesizetype";
+            this.filesizetype.Size = new System.Drawing.Size(89, 20);
+            this.filesizetype.TabIndex = 23;
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Font = new System.Drawing.Font("宋体", 10F);
+            this.linkLabel6.LinkColor = System.Drawing.Color.DarkViolet;
+            this.linkLabel6.Location = new System.Drawing.Point(251, 603);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(133, 14);
+            this.linkLabel6.TabIndex = 32;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "捐赠 USBCopyer (&D)";
+            this.linkLabel6.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked_1);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 625);
+            this.ClientSize = new System.Drawing.Size(524, 655);
+            this.Controls.Add(this.linkLabel6);
+            this.Controls.Add(this.filesizetype);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.filesize);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.autorunButton);
             this.Controls.Add(this.multirun);
             this.Controls.Add(this.pictureBox1);
@@ -567,10 +630,11 @@
             this.Controls.Add(this.logButton);
             this.Controls.Add(this.saveButton);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(540, 664);
-            this.MinimumSize = new System.Drawing.Size(540, 664);
+            this.MaximumSize = new System.Drawing.Size(540, 694);
+            this.MinimumSize = new System.Drawing.Size(540, 694);
             this.Name = "Setting";
             this.Text = "USBCopyer 设置";
+            this.Load += new System.EventHandler(this.Setting_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -628,6 +692,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox multirun;
         private System.Windows.Forms.Button autorunButton;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox filesize;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox filesizetype;
+        private System.Windows.Forms.LinkLabel linkLabel6;
     }
 }
 

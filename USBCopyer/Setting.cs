@@ -22,6 +22,8 @@ namespace USBCopyer
             hidemsg.Checked = Properties.Settings.Default.hidemsg;
             sleep.Text = Properties.Settings.Default.sleep.ToString();
             mode.SelectedIndex = Properties.Settings.Default.mode;
+            filesizetype.SelectedIndex = Properties.Settings.Default.filesizetype;
+            filesize.Text = Properties.Settings.Default.filesize.ToString();
             black.Text = Properties.Settings.Default.black;
             white.Text = Properties.Settings.Default.white;
             copynoext.Checked = Properties.Settings.Default.copynoext;
@@ -29,6 +31,7 @@ namespace USBCopyer
             blackid.Text = Properties.Settings.Default.blackid;
             autorunhide.Checked = Properties.Settings.Default.autorunhide;
             multirun.Checked = Properties.Settings.Default.multirun;
+            
         }
 
         private void logButton_Click(object sender, EventArgs e)
@@ -58,9 +61,13 @@ namespace USBCopyer
         {
             try
             {
-                if(string.IsNullOrEmpty(sleep.Text))
+                if (string.IsNullOrEmpty(sleep.Text))
                 {
                     sleep.Text = "0";
+                }
+                if (string.IsNullOrEmpty(filesize.Text))
+                {
+                    filesize.Text = "0";
                 }
                 else
                 {
@@ -83,6 +90,8 @@ namespace USBCopyer
                 Properties.Settings.Default.blackid = blackid.Text;
                 Properties.Settings.Default.multirun = multirun.Checked;
                 Properties.Settings.Default.autorunhide = autorunhide.Checked;
+                Properties.Settings.Default.filesizetype = filesizetype.SelectedIndex;
+                Properties.Settings.Default.filesize = int.Parse(filesize.Text);
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
                 {
                     if (!Directory.Exists(Properties.Settings.Default.dir))
@@ -141,18 +150,6 @@ namespace USBCopyer
             (new diskUUID()).Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Process.Start("explorer.exe", "\"https://git.oschina.net/kenvix/USBCopyer\"");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("打开失败：" + ex.ToString());
-            }
-        }
-
         private void conflict_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -187,6 +184,21 @@ namespace USBCopyer
             {
                 MessageBox.Show("设置开机启动失败，此操作可能已被杀毒软件拦截\r\n\r\n" + ex.ToString(), "设置开机启动失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Setting_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel6_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            (new donateForm()).Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            (new donateForm()).Show();
         }
     }
 }

