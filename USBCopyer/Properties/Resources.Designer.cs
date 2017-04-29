@@ -71,6 +71,16 @@ namespace USBCopyer.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        public static byte[] Disks {
+            get {
+                object obj = ResourceManager.GetObject("Disks", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 &lt;ViewerConfig&gt;
         ///	&lt;QueryConfig&gt;
         ///		&lt;QueryParams&gt;

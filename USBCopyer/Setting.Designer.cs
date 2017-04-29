@@ -160,7 +160,7 @@
             // 
             // fileButton
             // 
-            this.fileButton.Location = new System.Drawing.Point(263, 532);
+            this.fileButton.Location = new System.Drawing.Point(254, 532);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(123, 30);
             this.fileButton.TabIndex = 7;

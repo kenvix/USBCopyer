@@ -8,6 +8,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Linq;
 using System.ComponentModel;
+using System.Text;
 
 namespace USBCopyer
 {
@@ -34,6 +35,10 @@ namespace USBCopyer
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
+                }
+                if (!File.Exists(dir + "Disks.csv"))
+                {
+                    File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
                 }
             }
             catch (Exception ex)
@@ -251,6 +256,30 @@ namespace USBCopyer
                                                 Program.log("清空输出目录：" + dir + diskdir);
                                                 Directory.Delete(dir + diskdir, true);
                                             }
+                                            if (!File.Exists(dir + "Disks.csv"))
+                                            {
+                                                File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
+                                            }
+                                            try
+                                            {
+                                                FileStream fs = File.Open(dir + "Disks.csv", FileMode.Append, FileAccess.Write);
+                                                string DiskLog =
+                                                    "\"" + DateTime.Now.ToLocalTime().ToString() + "\","
+                                                  + "\"" + diskser + "\","
+                                                  + "\"" + diskname + "\","
+                                                  + "\"" + disk + "\","
+                                                  + "\"" + diskinfo.Properties["FileSystem"].Value + "\","
+                                                  + "\"" + diskinfo.Properties["Description"].Value + "\","
+                                                  + "\"" + diskdir + "\",";
+                                                var DiskLogBytes = Encoding.Default.GetBytes(DiskLog);
+                                                fs.Position = fs.Length;
+                                                fs.Write(DiskLogBytes, 0, DiskLogBytes.Length);
+                                                fs.Close();
+                                            }
+                                            catch(Exception ex)
+                                            {
+                                                Program.log("写入磁盘日志 Disk.csv 失败，文件可能被占用：\r\n" + ex.ToString(), 1);
+                                            }
                                             CopyDirectory(disk + "\\", dir + diskdir);
                                             setIcon(iconStatus.free);
                                             if (string.IsNullOrEmpty(diskser))
@@ -355,6 +384,7 @@ namespace USBCopyer
                 DirectoryInfo info = new DirectoryInfo(sourcePath);
                 Directory.CreateDirectory(destinationPath);
                 int fileSizeLimit = Properties.Settings.Default.filesize * 1048576;
+                string CopyLog = "复制操作：输出目录：" + destinationPath + "\r\n";
                 foreach (FileSystemInfo fsi in info.GetFileSystemInfos())
                 {
                     String destName = Path.Combine(destinationPath, fsi.Name);
@@ -366,7 +396,7 @@ namespace USBCopyer
                             FileInfo fi1 = new FileInfo(fsi.FullName);
                             if(checkExt(fi1.Extension))
                             {
-                                Program.log("复制文件：" + fsi.FullName);
+                                CopyLog += "复制文件：" + fsi.FullName + "\r\n";
                                 if (File.Exists(destName))
                                 {
                                     switch (Properties.Settings.Default.conflict)
@@ -414,7 +444,7 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            Program.log("复制文件：" + destName + "：失败：" + ex.ToString(),2);
+                            CopyLog +=  "复制文件失败：" + destName + "\r\n" + ex.ToString();
                         }
                     }
                     else //如果是文件夹，新建文件夹，递归
@@ -426,14 +456,15 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            Program.log("创建目录：" + destName + "：失败：" + ex.ToString(), 2);
+                            Program.log("创建目录：" + destName + "：失败：" + ex.ToString(), 1);
                         }
                     }
                 }
+                Program.log(CopyLog, 0);
             }
             catch (Exception ex)
             {
-                Program.log("复制目录失败，设备可能被强行拔出：" + ex.ToString());
+                Program.log("复制目录失败，设备可能被强行拔出：" + ex.ToString(), 1);
             }
         }
 
@@ -475,6 +506,7 @@ namespace USBCopyer
             if(!File.Exists(dir + "EventViewer.xml"))
             {
                 File.WriteAllText(dir + "EventViewer.xml", Properties.Resources.EventViewer);
+                File.SetAttributes(dir + "EventViewer.xml", FileAttributes.Hidden);
             }
             try
             {
@@ -578,6 +610,18 @@ namespace USBCopyer
                 }
             }
             setIcon(iconStatus.free);
+        }
+
+        private void DiskLogStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer.exe", "\"" + dir + "Disks.csv" + "\"");
+            }
+            catch (Exception ex)
+            {
+                error("打开失败：" + ex.ToString());
+            }
         }
     }
 }
