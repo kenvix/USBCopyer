@@ -1,0 +1,71 @@
+[b][size=6]USBCopyer: 插上U盘自动复制U盘文件[/size][/b]
+
+[size=3][b]用于在插上目标U盘后自动复制该U盘的文件。"偷U盘文件的神器"[/b]，[/size]
+[size=3]支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单，支持日志，支持弹出U盘时强制停止复制防止占用，支持文件大小限制[/size]
+[size=3]本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）
+[b]现已提供三个版本（标准版/兼容版/低权限版）可供下载，见“已编译版本下载”节[/b][/size]
+[color=#000017]
+[/color][attachimg]866669[/attachimg]
+[color=#0017]
+[/color]
+[color=#0017]构建状态：[/color][url=https://ci.appveyor.com/project/kenvix/usbcopyer][img]https://ci.appveyor.com/api/projects/status/xv5b8wf0h7cuy897?svg=true[/img][/url]
+
+[b][size=5][color=#008000]已编译版本下载[/color][/size][/b]
+[size=3][color=#ff0000][b]【推荐】[/b][/color][color=#0000ff].Net Framework 4.0 版本（标准版）[/color][/size][color=#0000ff]    [/color]    
+[b]适用操作系统：[/b]Windows 8 / Windows 10
+点击从Git@OSC下载：[url=https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.exe]https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.exe[/url]
+点击从GitHub下载：[url=https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.exe?raw=true]https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.exe?raw=true[/url]
+
+[size=3][color=#0000ff].Net Framework 3.5 版本（兼容版）    [/color][/size] 
+[b]适用操作系统：[/b]Windows 7 / Windows Vista / Windows XP
+[b]WinXP请注意：[/b]XP可能需要安装手动.NET Framework 3.5，[url=https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe][没有安装请点此][/url]
+点击从Git@OSC下载：[url=https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Net3.5.exe]https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Net3.5.exe[/url]
+点击从GitHub下载：[url=https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Net3.5.exe?raw=true]https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Net3.5.exe?raw=true[/url]
+
+[color=#0000ff]低权限 .Net Framework 4.0 版本（低权限版）    [/color] 
+[b]适用操作系统：[/b]Windows 8 / Windows 10
+[b]适用情况：[/b]不便于关闭UAC的操作系统，这类系统使用在标准版USBCopyer时，会提示请求管理员权限。低权限版通过降低自身的访问权限来规避此问题。
+[b]注意：[/b]要设置开机启动，你必须以管理员权限来运行低权限版。低权限版可能无法复制有权限设置的文件的U盘
+点击从Git@OSC下载：[url=https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Low-Permissions.exe]https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Low-Permissions.exe[/url]
+点击从GitHub下载：[url=https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Low-Permissions.exe?raw=true]https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Low-Permissions.exe?raw=true[/url]
+
+[b][size=5][color=#008000]适用场景[/color][/size][/b]
+1.获取授课教师的课件
+2.获取插到某台公用电脑上的U盘的数据
+3.（并非本程序的设计用途）备份U盘
+
+[b][size=5][color=#008000]如何使用[/color][/size][/b]
+1.下载
+2.双击 USBCopyer.exe
+3.程序将在托盘区运行，右击图标可以调整其参数
+点击 "隐藏图标" 将彻底隐藏程序，只能使用任务管理器停止，或按Win+R输入taskkill /f /im USBCopyer.exe
+点击 "设置" 可以设置程序
+
+[b][size=5][color=#008000]命令行[/color][/size][/b]
+USBCopyer.exe [/hide]
+/hide 以隐藏模式启动，只能通过任务管理器结束进程
+
+[b][size=5][color=#008000]常见问题[/color][/size][/b]
+[b][color=#0000ff]USBCopyer的复制行为造成U盘的文件操作卡顿[/color][/b]
+请设置一个延迟。通常推荐在使用者开始放映幻灯片时开始复制
+[b][color=#0000ff]使用者在使用该电脑前重启了此电脑[/color][/b]
+将本程序设为开机启动即可。设置方法如下：
+1. 直接在本程序的“设置”中设置
+2. 若上面的方法无效，则可：
+创建一个快捷方式，然后加上参数，拖到 "开始菜单" 的 "启动" 文件夹即可
+[b][color=#0000ff]可否复制手机的文件？[/color][/b]
+若为MTP/PTP则无法实现，但如果是以Mass Storage(大容量存储)模式挂载到电脑上的设备则可以复制
+[b][color=#0000ff]U盘在操作完成前被拔出[/color][/b]
+无解
+[b][color=#0000ff]目标电脑带有还原机制[/color][/b]
+两种方法：
+1.插上你的U盘，然后启动本程序，加入该U盘到黑名单，然后设置输出目录到你的U盘
+2.用 PCHunter 之类的程序干掉还原程序
+
+[b][size=5][color=#008000]代码仓库[/color][/size][/b]
+[color=rgb(24, 91, 174)][backcolor=transparent][url=https://git.oschina.net/kenvix/USBCopyer]Git@OSC[/url]：[/backcolor][/color][url=https://git.oschina.net/kenvix/USBCopyer]https://git.oschina.net/kenvix/USBCopyer[/url]
+[color=rgb(24, 91, 174)][backcolor=transparent][url=https://github.com/kenvix/USBCopyer]GitHub[/url]：[/backcolor][/color][url=https://github.com/kenvix/USBCopyer]https://github.com/kenvix/USBCopyer[/url]
+
+[b][size=5][color=#800080]捐赠[/color][/size][/b]
+[color=#0000ff][b]USBCopyer 是一个开源的，非盈利的项目。如果你喜欢这个项目，请捐赠它：[/b][/color]
+捐赠方法：右击图标->设置->点击右下角的Logo
