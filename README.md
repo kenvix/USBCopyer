@@ -2,14 +2,26 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/xv5b8wf0h7cuy897?svg=true)](https://ci.appveyor.com/project/kenvix/usbcopyer)   
 
 **用于在插上目标U盘后自动复制该U盘的文件。"偷U盘文件的神器"**，支持设置冲突解决方案，支持延迟复制，支持扩展名黑白名单，支持磁盘分区号/序列号黑名单，支持日志，支持弹出U盘时强制停止复制防止占用              
-本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）              
+本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）             
+现已提供三个版本（标准版/兼容版/低权限版）可供下载，见“已编译版本下载”节
 ![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/git-resources/screenshot.jpg)
 
 ## 已编译版本下载
 
-.Net Framework 3.5       
-[点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/USBCopyer/bin/Release/USBCopyer.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/USBCopyer/bin/Release/USBCopyer.exe?raw=true)           
-需要安装.Net Framework 3.5，[没有安装请点此](https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe)
+#### 【推荐】.Net Framework 4.0 版本（标准版）        
+**适用操作系统**：Windows 8 / Windows 10
+[点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.exe?raw=true)  
+
+#### .Net Framework 3.5 版本（兼容版）     
+**适用操作系统**：Windows 7 / Windows Vista / Windows XP
+**WinXP请注意**：XP可能需要安装手动.NET Framework 3.5，[没有安装请点此](https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe)
+[点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Net3.5.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Net3.5.exe?raw=true)   
+
+#### 低权限 .Net Framework 4.0 版本（低权限版）     
+**适用操作系统**：Windows 8 / Windows 10
+**适用情况**：不便于关闭UAC的操作系统，这类系统使用在标准版USBCopyer时，会提示请求管理员权限。低权限版通过降低自身的访问权限来规避此问题。
+**注意**：要设置开机启动，你必须以管理员权限来运行低权限版。低权限版可能无法复制有权限设置的文件的U盘
+[点击从Git@OSC下载](https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Low-Permissions.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Low-Permissions.exe?raw=true)           
 
 ### 适用场景
 

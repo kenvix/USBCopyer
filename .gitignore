@@ -3,3 +3,5 @@ USBCopyer/bin/Release/USBCopyerData
 USBCopyer/bin/Debug
 *.pdb
 *.cache
+USBCopyer/bin
+USBCopyer/obj
