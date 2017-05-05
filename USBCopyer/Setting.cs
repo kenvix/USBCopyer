@@ -159,6 +159,7 @@ namespace USBCopyer
         {
             try
             {
+                if (!Program.checkAdminPermission()) return;
                 Properties.Settings.Default.autorunhide = autorunhide.Checked;
                 Properties.Settings.Default.Save();
                 RegistryKey run = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");

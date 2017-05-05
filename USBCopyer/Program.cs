@@ -97,5 +97,63 @@ namespace USBCopyer
             Console.Write(str);
             logger.WriteEntry(str, etype);
         }
+
+        /// <summary>
+        /// 判断自身是否为管理员权限
+        /// </summary>
+        /// <returns>是否为管理员权限</returns>
+        public static bool isAdminPermission()
+        {
+            //获得当前登录的Windows用户标示
+            System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+            System.Security.Principal.WindowsPrincipal principal = new System.Security.Principal.WindowsPrincipal(identity);
+            //判断当前登录用户是否为管理员
+            if (principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator))
+            {
+                //如果是管理员
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 检查自身是否为管理员权限，并尝试索取
+        /// </summary>
+        /// <returns></returns>
+        public static bool checkAdminPermission()
+        {
+            if(!isAdminPermission())
+            {
+                if(MessageBox.Show("该操作需要管理员权限才能完成，是否立即以管理员权限重启 " + Application.ProductName + " ?", "需要管理员权限", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    //创建启动对象
+                    System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+                    startInfo.UseShellExecute = true;
+                    startInfo.WorkingDirectory = Environment.CurrentDirectory;
+                    startInfo.FileName = Application.ExecutablePath;
+                    //设置启动动作,确保以管理员身份运行
+                    startInfo.Verb = "runas";
+                    try
+                    {
+                        System.Diagnostics.Process.Start(startInfo);
+                        Environment.Exit(140);
+                        return true;
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show("操作失败。要继续操作，请先退出，然后以管理员权限运行本程序。\r\n" + ex.Message, "需要管理员权限", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return false;
+                }
+                return false;
+            } 
+            else
+            {
+                return true;
+            }
+        }
     }
 }
