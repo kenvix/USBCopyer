@@ -42,14 +42,15 @@ namespace USBCopyer
             this.SettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.FileStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiskLogStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.diskUUIDList = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.clearLog = new System.Windows.Forms.ToolStripMenuItem();
             this.HideHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DiskLogStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.restartUSBCopyerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.niconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,9 +82,10 @@ namespace USBCopyer
             this.clearLog,
             this.HideHToolStripMenuItem,
             this.toolStripSeparator1,
+            this.restartUSBCopyerToolStripMenuItem,
             this.ExitXToolStripMenuItem});
             this.niconMenu.Name = "niconMenu";
-            this.niconMenu.Size = new System.Drawing.Size(217, 320);
+            this.niconMenu.Size = new System.Drawing.Size(217, 342);
             this.niconMenu.TabStop = true;
             // 
             // nameMenuItem
@@ -145,6 +147,13 @@ namespace USBCopyer
             this.FileStripMenuItem.Text = "查看文件 (&F)";
             this.FileStripMenuItem.Click += new System.EventHandler(this.FileStripMenuItem_Click);
             // 
+            // DiskLogStripMenuItem
+            // 
+            this.DiskLogStripMenuItem.Name = "DiskLogStripMenuItem";
+            this.DiskLogStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.DiskLogStripMenuItem.Text = "查看复制过的磁盘信息 (&V)";
+            this.DiskLogStripMenuItem.Click += new System.EventHandler(this.DiskLogStripMenuItem_Click);
+            // 
             // LogToolStripMenuItem
             // 
             this.LogToolStripMenuItem.Name = "LogToolStripMenuItem";
@@ -152,17 +161,17 @@ namespace USBCopyer
             this.LogToolStripMenuItem.Text = "查看日志 (&L)";
             this.LogToolStripMenuItem.Click += new System.EventHandler(this.LogToolStripMenuItem_Click);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(213, 6);
-            // 
             // diskUUIDList
             // 
             this.diskUUIDList.Name = "diskUUIDList";
             this.diskUUIDList.Size = new System.Drawing.Size(216, 22);
             this.diskUUIDList.Text = "查看当前磁盘信息 (&U)";
             this.diskUUIDList.Click += new System.EventHandler(this.diskUUIDList_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(213, 6);
             // 
             // clearLog
             // 
@@ -190,12 +199,12 @@ namespace USBCopyer
             this.ExitXToolStripMenuItem.Text = "退出 (&X)";
             this.ExitXToolStripMenuItem.Click += new System.EventHandler(this.ExitXToolStripMenuItem_Click);
             // 
-            // DiskLogStripMenuItem
+            // restartUSBCopyerToolStripMenuItem
             // 
-            this.DiskLogStripMenuItem.Name = "DiskLogStripMenuItem";
-            this.DiskLogStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.DiskLogStripMenuItem.Text = "查看复制过的磁盘信息 (&V)";
-            this.DiskLogStripMenuItem.Click += new System.EventHandler(this.DiskLogStripMenuItem_Click);
+            this.restartUSBCopyerToolStripMenuItem.Name = "restartUSBCopyerToolStripMenuItem";
+            this.restartUSBCopyerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.restartUSBCopyerToolStripMenuItem.Text = "快速重启 (&R)";
+            this.restartUSBCopyerToolStripMenuItem.Click += new System.EventHandler(this.restartUSBCopyerToolStripMenuItem_Click);
             // 
             // Host
             // 
@@ -232,5 +241,6 @@ namespace USBCopyer
         private System.Windows.Forms.ToolStripMenuItem diskUUIDList;
         private System.Windows.Forms.ToolStripMenuItem KillCopyThreadStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DiskLogStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem restartUSBCopyerToolStripMenuItem;
     }
 }

@@ -263,8 +263,8 @@ namespace USBCopyer
                                             try
                                             {
                                                 FileStream fs = File.Open(dir + "Disks.csv", FileMode.Append, FileAccess.Write);
-                                                string DiskLog =
-                                                    "\"" + DateTime.Now.ToLocalTime().ToString() + "\","
+                                                string DiskLog = "\r\n"
+                                                  + "\"" + DateTime.Now.ToLocalTime().ToString() + "\","
                                                   + "\"" + diskser + "\","
                                                   + "\"" + diskname + "\","
                                                   + "\"" + disk + "\","
@@ -621,6 +621,18 @@ namespace USBCopyer
             catch (Exception ex)
             {
                 error("打开失败：" + ex.ToString());
+            }
+        }
+
+        private void restartUSBCopyerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("cmd.exe", "/c title Restarting USBCopyer && echo Killing USBCopyer && taskkill /f /pid "+Process.GetCurrentProcess().Id + " && echo Starting USBCopyer && start \"\" \""+Application.ExecutablePath+"\"");
+            }
+            catch (Exception ex)
+            {
+                msg("快速重启失败:\r\n" + ex.Message, ToolTipIcon.Error);
             }
         }
     }
