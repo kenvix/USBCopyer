@@ -2,53 +2,77 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="USBCopyer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="dir" Type="System.String" Scope="User">
+    <Setting Name="dir" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="conflict" Type="System.Int32" Scope="User">
+    <Setting Name="conflict" Provider="Kenvix.AppConfigProvider" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="autorm" Type="System.Boolean" Scope="User">
+    <Setting Name="autorm" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="hidemsg" Type="System.Boolean" Scope="User">
+    <Setting Name="hidemsg" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="sleep" Type="System.Int32" Scope="User">
+    <Setting Name="sleep" Provider="Kenvix.AppConfigProvider" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="mode" Type="System.Int32" Scope="User">
+    <Setting Name="mode" Provider="Kenvix.AppConfigProvider" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="black" Type="System.String" Scope="User">
+    <Setting Name="black" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="white" Type="System.String" Scope="User">
+    <Setting Name="white" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="copynoext" Type="System.Boolean" Scope="User">
+    <Setting Name="copynoext" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="blackdisk" Type="System.String" Scope="User">
+    <Setting Name="blackdisk" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="blackid" Type="System.String" Scope="User">
+    <Setting Name="blackid" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="autorunhide" Type="System.Boolean" Scope="User">
+    <Setting Name="autorunhide" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="firstrun" Type="System.Boolean" Scope="User">
+    <Setting Name="firstrun" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="multirun" Type="System.Boolean" Scope="User">
+    <Setting Name="multirun" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="filesizetype" Type="System.Int32" Scope="User">
+    <Setting Name="filesizetype" Provider="Kenvix.AppConfigProvider" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="filesize" Type="System.Int32" Scope="User">
+    <Setting Name="filesize" Provider="Kenvix.AppConfigProvider" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="DisableVisualStyle" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EnableAllCompletedCallback" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableDiskDetectedCallback" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SkipVirtualDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SkipDVD" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SkipUDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseBlackDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WaitCallback" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

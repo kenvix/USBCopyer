@@ -31,7 +31,15 @@ namespace USBCopyer
             blackid.Text = Properties.Settings.Default.blackid;
             autorunhide.Checked = Properties.Settings.Default.autorunhide;
             multirun.Checked = Properties.Settings.Default.multirun;
-            
+
+            SkipDVD.Checked = Properties.Settings.Default.SkipDVD;
+            SkipUDisk.Checked = Properties.Settings.Default.SkipUDisk;
+            SkipVirtualDisk.Checked = Properties.Settings.Default.SkipVirtualDisk;
+            EnableAllCompletedCallback.Checked = Properties.Settings.Default.EnableAllCompletedCallback;
+            EnableDiskDetectedCallback.Checked = Properties.Settings.Default.EnableDiskDetectedCallback;
+            WaitCallback.Checked = Properties.Settings.Default.WaitCallback;
+            if (Properties.Settings.Default.UseBlackDisk) DiskModeBlack.Checked = true;
+            else DiskModeWhite.Checked = true;
         }
 
         private void logButton_Click(object sender, EventArgs e)
@@ -98,8 +106,17 @@ namespace USBCopyer
                     {
                         Directory.CreateDirectory(Properties.Settings.Default.dir);
                     }
-                    host.dir = Properties.Settings.Default.dir + "\\";
+                   Host.dir = Properties.Settings.Default.dir + "\\";
                 }
+
+                Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
+                Properties.Settings.Default.SkipUDisk = SkipUDisk.Checked;
+                Properties.Settings.Default.SkipVirtualDisk = SkipVirtualDisk.Checked;
+                Properties.Settings.Default.EnableAllCompletedCallback = EnableAllCompletedCallback.Checked;
+                Properties.Settings.Default.EnableDiskDetectedCallback = EnableDiskDetectedCallback.Checked;
+                Properties.Settings.Default.WaitCallback = WaitCallback.Checked;
+                if (DiskModeBlack.Checked) Properties.Settings.Default.UseBlackDisk = true;
+                else if (DiskModeWhite.Checked) Properties.Settings.Default.UseBlackDisk = false;
                 Properties.Settings.Default.Save();
             }
             catch(Exception ex)
@@ -200,6 +217,51 @@ namespace USBCopyer
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             (new donateForm()).Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filesizetype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sleep_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filesize_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("当你要把USBCopyer用作自动备份特定U盘的工具，请使用白名单模式\r\n白名单模式下，只有预先设置好的U盘才会被USBCopyer复制\r\n\r\n当你要把USBCopyer用作偷U盘文件的工具，请使用黑名单模式\r\n黑名单模式下，USBCopyer会复制除预先设置好的U盘以外的全部U盘","黑白名单模式帮助",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            (new donateForm()).Show();
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("选项“分区号(盘符)”解释\r\n在此处填写你想要应用黑/白名单模式的盘符\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示不复制 H 盘\r\neg: 你可以将DVD驱动器的盘符（假设为G:\\）加入黑名单来防止复制DVD驱动器，只需填入 G 即可\r\n\r\n选项“序列号”解释\r\n在此处填写磁盘序列号，每一个磁盘都有唯一的序列号，使用此功能来精确复制特定磁盘\r\n使用USBCopyer右键菜单的 “查看磁盘信息” 功能获取磁盘序列号", "帮助", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
