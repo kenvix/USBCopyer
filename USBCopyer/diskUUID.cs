@@ -42,6 +42,16 @@ namespace USBCopyer
             getDisk();
         }
 
+        /*
+        DriveType
+            Unknown (0)
+            No Root Directory (1)
+            Removable Disk (2)
+            Local Disk (3)
+            Network Drive (4)
+            Compact Disc (5)
+            RAM Disk (6)
+        */
         private void diskList_SelectedIndexChanged(object sender, EventArgs e)
         {
             thisDiskName.Text = "";
@@ -55,7 +65,7 @@ namespace USBCopyer
                 thisDiskID.Text = disk;
                 thisDiskName.Text = diskinfo.Properties["VolumeName"].Value.ToString();
                 thisDiskFileSystem.Text = diskinfo.Properties["FileSystem"].Value.ToString();
-                thisDiskDescription.Text = diskinfo.Properties["Description"].Value.ToString();
+                thisDiskDescription.Text = "[" + diskinfo.Properties["DriveType"].Value.ToString() + "] " + diskinfo.Properties["Description"].Value.ToString();
                 thisDiskSer.Text = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
             }
             catch (Exception) { }

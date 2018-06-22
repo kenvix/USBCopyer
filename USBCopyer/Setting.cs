@@ -34,7 +34,9 @@ namespace USBCopyer
 
             SkipDVD.Checked = Properties.Settings.Default.SkipDVD;
             SkipUDisk.Checked = Properties.Settings.Default.SkipUDisk;
-            SkipVirtualDisk.Checked = Properties.Settings.Default.SkipVirtualDisk;
+            SkipNetworkDisk.Checked = Properties.Settings.Default.SkipNetworkDisk;
+            SkipOtherDisk.Checked = Properties.Settings.Default.SkipOtherDisk;
+            SkipLocalDisk.Checked = Properties.Settings.Default.SkipLocalDisk;
             EnableAllCompletedCallback.Checked = Properties.Settings.Default.EnableAllCompletedCallback;
             EnableDiskDetectedCallback.Checked = Properties.Settings.Default.EnableDiskDetectedCallback;
             WaitCallback.Checked = Properties.Settings.Default.WaitCallback;
@@ -111,7 +113,9 @@ namespace USBCopyer
 
                 Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
                 Properties.Settings.Default.SkipUDisk = SkipUDisk.Checked;
-                Properties.Settings.Default.SkipVirtualDisk = SkipVirtualDisk.Checked;
+                Properties.Settings.Default.SkipNetworkDisk = SkipNetworkDisk.Checked;
+                Properties.Settings.Default.SkipOtherDisk = SkipOtherDisk.Checked;
+                Properties.Settings.Default.SkipLocalDisk = SkipLocalDisk.Checked;
                 Properties.Settings.Default.EnableAllCompletedCallback = EnableAllCompletedCallback.Checked;
                 Properties.Settings.Default.EnableDiskDetectedCallback = EnableDiskDetectedCallback.Checked;
                 Properties.Settings.Default.WaitCallback = WaitCallback.Checked;

@@ -197,6 +197,42 @@ namespace USBCopyer
                                     string diskdir;
                                     object diskserdata  = diskinfo.Properties["VolumeSerialNumber"].Value;
                                     object disknamedata = diskinfo.Properties["VolumeName"].Value;
+                                    try
+                                    {
+                                        //Network Drive (4)
+                                        if (Properties.Settings.Default.SkipNetworkDisk && (int)diskinfo.Properties["DriveType"].Value == 4)
+                                        {
+                                            Program.log("检测到磁盘种类为网络驱动器：" + disk + " 根据设置取消复制！");
+                                            return;
+                                        }
+                                        //Compact Disc (5)
+                                        else if (Properties.Settings.Default.SkipDVD && (int)diskinfo.Properties["DriveType"].Value == 5)
+                                        {
+                                            Program.log("检测到磁盘种类为光盘驱动器或虚拟光驱：" + disk + " 根据设置取消复制！");
+                                            return;
+                                        }
+                                        //Removable Disk (2)
+                                        else if (Properties.Settings.Default.SkipUDisk && (int)diskinfo.Properties["DriveType"].Value == 2)
+                                        {
+                                            Program.log("检测到磁盘种类为可移动磁盘：" + disk + " 根据设置取消复制！");
+                                            return;
+                                        }
+                                        //Local Disk (3)
+                                        else if (Properties.Settings.Default.SkipLocalDisk && (int)diskinfo.Properties["DriveType"].Value == 3)
+                                        {
+                                            Program.log("检测到磁盘种类为硬盘驱动器：" + disk + " 根据设置取消复制！");
+                                            return;
+                                        }
+                                        //Unknown (0)
+                                        //RAM Disk (6)
+                                        //No Root Directory(1)
+                                        else if (Properties.Settings.Default.SkipOtherDisk && ((int)diskinfo.Properties["DriveType"].Value == 6 || (int)diskinfo.Properties["DriveType"].Value == 1 || (int)diskinfo.Properties["DriveType"].Value == 0))
+                                        {
+                                            Program.log("检测到磁盘种类为其他驱动器：" + disk + " 根据设置取消复制！");
+                                            return;
+                                        }
+                                    }
+                                    catch (Exception) { }
                                     if(disknamedata != null)
                                     {
                                         diskname = disknamedata.ToString();

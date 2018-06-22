@@ -88,7 +88,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SkipUDisk = new System.Windows.Forms.CheckBox();
             this.SkipDVD = new System.Windows.Forms.CheckBox();
-            this.SkipVirtualDisk = new System.Windows.Forms.CheckBox();
+            this.SkipNetworkDisk = new System.Windows.Forms.CheckBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label19 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -100,6 +100,8 @@
             this.WaitCallback = new System.Windows.Forms.CheckBox();
             this.EnableDiskDetectedCallback = new System.Windows.Forms.CheckBox();
             this.EnableAllCompletedCallback = new System.Windows.Forms.CheckBox();
+            this.SkipLocalDisk = new System.Windows.Forms.CheckBox();
+            this.SkipOtherDisk = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -205,12 +207,12 @@
             // autorm
             // 
             this.autorm.AutoSize = true;
-            this.autorm.Location = new System.Drawing.Point(699, 25);
+            this.autorm.Location = new System.Drawing.Point(614, 24);
             this.autorm.Margin = new System.Windows.Forms.Padding(4);
             this.autorm.Name = "autorm";
-            this.autorm.Size = new System.Drawing.Size(284, 19);
+            this.autorm.Size = new System.Drawing.Size(374, 19);
             this.autorm.TabIndex = 8;
-            this.autorm.Text = "如果之前已经复制过，则先清空再复制";
+            this.autorm.Text = "如果之前已经复制过，则先清空旧的复制结果再复制";
             this.autorm.UseVisualStyleBackColor = true;
             // 
             // linkLabel1
@@ -744,9 +746,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SkipOtherDisk);
+            this.groupBox3.Controls.Add(this.SkipLocalDisk);
             this.groupBox3.Controls.Add(this.SkipUDisk);
             this.groupBox3.Controls.Add(this.SkipDVD);
-            this.groupBox3.Controls.Add(this.SkipVirtualDisk);
+            this.groupBox3.Controls.Add(this.SkipNetworkDisk);
             this.groupBox3.Controls.Add(this.autorm);
             this.groupBox3.Location = new System.Drawing.Point(16, 80);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
@@ -760,7 +764,7 @@
             // SkipUDisk
             // 
             this.SkipUDisk.AutoSize = true;
-            this.SkipUDisk.Location = new System.Drawing.Point(699, 109);
+            this.SkipUDisk.Location = new System.Drawing.Point(614, 106);
             this.SkipUDisk.Margin = new System.Windows.Forms.Padding(4);
             this.SkipUDisk.Name = "SkipUDisk";
             this.SkipUDisk.Size = new System.Drawing.Size(211, 19);
@@ -771,24 +775,24 @@
             // SkipDVD
             // 
             this.SkipDVD.AutoSize = true;
-            this.SkipDVD.Location = new System.Drawing.Point(699, 81);
+            this.SkipDVD.Location = new System.Drawing.Point(614, 79);
             this.SkipDVD.Margin = new System.Windows.Forms.Padding(4);
             this.SkipDVD.Name = "SkipDVD";
-            this.SkipDVD.Size = new System.Drawing.Size(172, 19);
+            this.SkipDVD.Size = new System.Drawing.Size(202, 19);
             this.SkipDVD.TabIndex = 10;
-            this.SkipDVD.Text = "不要复制 光盘驱动器";
+            this.SkipDVD.Text = "不要复制 光盘和虚拟光驱";
             this.SkipDVD.UseVisualStyleBackColor = true;
             // 
-            // SkipVirtualDisk
+            // SkipNetworkDisk
             // 
-            this.SkipVirtualDisk.AutoSize = true;
-            this.SkipVirtualDisk.Location = new System.Drawing.Point(699, 54);
-            this.SkipVirtualDisk.Margin = new System.Windows.Forms.Padding(4);
-            this.SkipVirtualDisk.Name = "SkipVirtualDisk";
-            this.SkipVirtualDisk.Size = new System.Drawing.Size(157, 19);
-            this.SkipVirtualDisk.TabIndex = 9;
-            this.SkipVirtualDisk.Text = "不要复制 虚拟光驱";
-            this.SkipVirtualDisk.UseVisualStyleBackColor = true;
+            this.SkipNetworkDisk.AutoSize = true;
+            this.SkipNetworkDisk.Location = new System.Drawing.Point(614, 52);
+            this.SkipNetworkDisk.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipNetworkDisk.Name = "SkipNetworkDisk";
+            this.SkipNetworkDisk.Size = new System.Drawing.Size(172, 19);
+            this.SkipNetworkDisk.TabIndex = 9;
+            this.SkipNetworkDisk.Text = "不要复制 网络驱动器";
+            this.SkipNetworkDisk.UseVisualStyleBackColor = true;
             // 
             // label19
             // 
@@ -887,6 +891,28 @@
             this.EnableAllCompletedCallback.TabIndex = 12;
             this.EnableAllCompletedCallback.Text = "回调1：启用 全部复制完成回调\r\nAllCompletedCallback";
             this.EnableAllCompletedCallback.UseVisualStyleBackColor = true;
+            // 
+            // SkipLocalDisk
+            // 
+            this.SkipLocalDisk.AutoSize = true;
+            this.SkipLocalDisk.Location = new System.Drawing.Point(830, 52);
+            this.SkipLocalDisk.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipLocalDisk.Name = "SkipLocalDisk";
+            this.SkipLocalDisk.Size = new System.Drawing.Size(172, 19);
+            this.SkipLocalDisk.TabIndex = 12;
+            this.SkipLocalDisk.Text = "不要复制 硬盘驱动器";
+            this.SkipLocalDisk.UseVisualStyleBackColor = true;
+            // 
+            // SkipOtherDisk
+            // 
+            this.SkipOtherDisk.AutoSize = true;
+            this.SkipOtherDisk.Location = new System.Drawing.Point(830, 79);
+            this.SkipOtherDisk.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipOtherDisk.Name = "SkipOtherDisk";
+            this.SkipOtherDisk.Size = new System.Drawing.Size(179, 19);
+            this.SkipOtherDisk.TabIndex = 13;
+            this.SkipOtherDisk.Text = "不要复制其他特殊磁盘";
+            this.SkipOtherDisk.UseVisualStyleBackColor = true;
             // 
             // Setting
             // 
@@ -1007,7 +1033,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox SkipUDisk;
         private System.Windows.Forms.CheckBox SkipDVD;
-        private System.Windows.Forms.CheckBox SkipVirtualDisk;
+        private System.Windows.Forms.CheckBox SkipNetworkDisk;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.RadioButton DiskModeWhite;
@@ -1022,6 +1048,8 @@
         private System.Windows.Forms.CheckBox WaitCallback;
         private System.Windows.Forms.CheckBox EnableDiskDetectedCallback;
         private System.Windows.Forms.CheckBox EnableAllCompletedCallback;
+        private System.Windows.Forms.CheckBox SkipOtherDisk;
+        private System.Windows.Forms.CheckBox SkipLocalDisk;
     }
 }
 

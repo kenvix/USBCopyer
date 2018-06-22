@@ -273,20 +273,20 @@ namespace USBCopyer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SkipVirtualDisk {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SkipNetworkDisk {
             get {
-                return ((bool)(this["SkipVirtualDisk"]));
+                return ((bool)(this["SkipNetworkDisk"]));
             }
             set {
-                this["SkipVirtualDisk"] = value;
+                this["SkipNetworkDisk"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool SkipDVD {
             get {
                 return ((bool)(this["SkipDVD"]));
@@ -332,6 +332,32 @@ namespace USBCopyer.Properties {
             }
             set {
                 this["WaitCallback"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SkipLocalDisk {
+            get {
+                return ((bool)(this["SkipLocalDisk"]));
+            }
+            set {
+                this["SkipLocalDisk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SkipOtherDisk {
+            get {
+                return ((bool)(this["SkipOtherDisk"]));
+            }
+            set {
+                this["SkipOtherDisk"] = value;
             }
         }
     }

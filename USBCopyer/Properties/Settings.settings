@@ -59,11 +59,11 @@
     <Setting Name="EnableDiskDetectedCallback" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="SkipVirtualDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="SkipNetworkDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SkipDVD" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SkipUDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -73,6 +73,12 @@
     </Setting>
     <Setting Name="WaitCallback" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SkipLocalDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SkipOtherDisk" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
