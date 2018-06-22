@@ -49,8 +49,8 @@ namespace USBCopyer
             this.clearLog = new System.Windows.Forms.ToolStripMenuItem();
             this.HideHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ExitXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartUSBCopyerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.niconMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,7 @@ namespace USBCopyer
             // 
             // niconMenu
             // 
+            this.niconMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.niconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nameMenuItem,
             this.BlogMenuItem,
@@ -85,136 +86,138 @@ namespace USBCopyer
             this.restartUSBCopyerToolStripMenuItem,
             this.ExitXToolStripMenuItem});
             this.niconMenu.Name = "niconMenu";
-            this.niconMenu.Size = new System.Drawing.Size(217, 342);
+            this.niconMenu.Size = new System.Drawing.Size(253, 372);
             this.niconMenu.TabStop = true;
             // 
             // nameMenuItem
             // 
             this.nameMenuItem.Name = "nameMenuItem";
-            this.nameMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.nameMenuItem.Size = new System.Drawing.Size(252, 26);
             this.nameMenuItem.Text = "USBCopyer";
             this.nameMenuItem.Click += new System.EventHandler(this.nameMenuItem_Click);
             // 
             // BlogMenuItem
             // 
             this.BlogMenuItem.Name = "BlogMenuItem";
-            this.BlogMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.BlogMenuItem.Size = new System.Drawing.Size(252, 26);
             this.BlogMenuItem.Text = "作者：Kenvix";
             this.BlogMenuItem.Click += new System.EventHandler(this.BlogMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(249, 6);
             // 
             // EnableToolStripMenuItem
             // 
             this.EnableToolStripMenuItem.Checked = true;
             this.EnableToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.EnableToolStripMenuItem.Name = "EnableToolStripMenuItem";
-            this.EnableToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.EnableToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.EnableToolStripMenuItem.Text = "已启用 (&E)";
             this.EnableToolStripMenuItem.Click += new System.EventHandler(this.EnableToolStripMenuItem_Click);
             // 
             // KillCopyThreadStripMenuItem
             // 
             this.KillCopyThreadStripMenuItem.Name = "KillCopyThreadStripMenuItem";
-            this.KillCopyThreadStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.KillCopyThreadStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.KillCopyThreadStripMenuItem.Text = "立即停止复制操作 (&K)";
             this.KillCopyThreadStripMenuItem.Click += new System.EventHandler(this.KillCopyThreadStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(249, 6);
             // 
             // SettingToolStripMenuItem
             // 
             this.SettingToolStripMenuItem.Name = "SettingToolStripMenuItem";
-            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.SettingToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.SettingToolStripMenuItem.Text = "设置 (&S)";
             this.SettingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(249, 6);
             // 
             // FileStripMenuItem
             // 
             this.FileStripMenuItem.Name = "FileStripMenuItem";
-            this.FileStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.FileStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.FileStripMenuItem.Text = "查看文件 (&F)";
             this.FileStripMenuItem.Click += new System.EventHandler(this.FileStripMenuItem_Click);
             // 
             // DiskLogStripMenuItem
             // 
             this.DiskLogStripMenuItem.Name = "DiskLogStripMenuItem";
-            this.DiskLogStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.DiskLogStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.DiskLogStripMenuItem.Text = "查看复制过的磁盘信息 (&V)";
             this.DiskLogStripMenuItem.Click += new System.EventHandler(this.DiskLogStripMenuItem_Click);
             // 
             // LogToolStripMenuItem
             // 
             this.LogToolStripMenuItem.Name = "LogToolStripMenuItem";
-            this.LogToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.LogToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.LogToolStripMenuItem.Text = "查看日志 (&L)";
             this.LogToolStripMenuItem.Click += new System.EventHandler(this.LogToolStripMenuItem_Click);
             // 
             // diskUUIDList
             // 
             this.diskUUIDList.Name = "diskUUIDList";
-            this.diskUUIDList.Size = new System.Drawing.Size(216, 22);
+            this.diskUUIDList.Size = new System.Drawing.Size(252, 26);
             this.diskUUIDList.Text = "查看当前磁盘信息 (&U)";
             this.diskUUIDList.Click += new System.EventHandler(this.diskUUIDList_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(249, 6);
             // 
             // clearLog
             // 
             this.clearLog.Name = "clearLog";
-            this.clearLog.Size = new System.Drawing.Size(216, 22);
+            this.clearLog.Size = new System.Drawing.Size(252, 26);
             this.clearLog.Text = "清除日志 (&C)";
             this.clearLog.Click += new System.EventHandler(this.clearLog_Click);
             // 
             // HideHToolStripMenuItem
             // 
             this.HideHToolStripMenuItem.Name = "HideHToolStripMenuItem";
-            this.HideHToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.HideHToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.HideHToolStripMenuItem.Text = "隐藏图标 (&H)";
             this.HideHToolStripMenuItem.Click += new System.EventHandler(this.HideHToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
-            // 
-            // ExitXToolStripMenuItem
-            // 
-            this.ExitXToolStripMenuItem.Name = "ExitXToolStripMenuItem";
-            this.ExitXToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
-            this.ExitXToolStripMenuItem.Text = "退出 (&X)";
-            this.ExitXToolStripMenuItem.Click += new System.EventHandler(this.ExitXToolStripMenuItem_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(249, 6);
             // 
             // restartUSBCopyerToolStripMenuItem
             // 
             this.restartUSBCopyerToolStripMenuItem.Name = "restartUSBCopyerToolStripMenuItem";
-            this.restartUSBCopyerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.restartUSBCopyerToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.restartUSBCopyerToolStripMenuItem.Text = "快速重启 (&R)";
             this.restartUSBCopyerToolStripMenuItem.Click += new System.EventHandler(this.restartUSBCopyerToolStripMenuItem_Click);
             // 
+            // ExitXToolStripMenuItem
+            // 
+            this.ExitXToolStripMenuItem.Name = "ExitXToolStripMenuItem";
+            this.ExitXToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
+            this.ExitXToolStripMenuItem.Text = "退出 (&X)";
+            this.ExitXToolStripMenuItem.Click += new System.EventHandler(this.ExitXToolStripMenuItem_Click);
+            // 
             // Host
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 353);
+            this.ClientSize = new System.Drawing.Size(709, 441);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Host";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.Host_Load);
             this.niconMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 

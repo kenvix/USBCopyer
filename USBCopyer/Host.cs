@@ -25,8 +25,8 @@ namespace USBCopyer
 
         public Host()
         {
-            Hide();
             InitializeComponent();
+            Hide();
             setIconX(iconStatus.free);
             if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
             {
@@ -97,6 +97,11 @@ namespace USBCopyer
                 Properties.Settings.Default.firstrun = false;
                 Properties.Settings.Default.Save();
             }
+        }
+
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(value);
         }
 
         public delegate void setIconInvoke(iconStatus v);
@@ -809,6 +814,12 @@ namespace USBCopyer
             {
                 msg("快速重启失败:\r\n" + ex.Message, ToolTipIcon.Error);
             }
+        }
+
+        private void Host_Load(object sender, EventArgs e)
+        {
+            Hide();
+            SetVisibleCore(false);
         }
     }
 }
