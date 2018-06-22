@@ -273,7 +273,14 @@ namespace USBCopyer
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            try
+            {
+                Process.Start("explorer.exe", "\"https://kenvix.com/post/usbcopyer-callback/\"");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("打开失败：" + ex.ToString());
+            }
         }
     }
 }

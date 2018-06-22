@@ -458,15 +458,12 @@ namespace USBCopyer
         {
             var p = new Process();
             var si = new ProcessStartInfo();
-            var path = Environment.SystemDirectory;
-            path = Path.Combine(path, @"cmd.exe");
-            si.FileName = path;
-            if (!cmd.StartsWith(@"/")) cmd = @"/c " + cmd;
-            si.Arguments = cmd;
+            si.FileName = cmd;
             si.UseShellExecute = false;
             si.CreateNoWindow = true;
             si.RedirectStandardOutput = true;
             si.RedirectStandardError = true;
+            si.WorkingDirectory = confdir;
             p.StartInfo = si;
 
             p.Start();
