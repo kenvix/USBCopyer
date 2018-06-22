@@ -112,7 +112,7 @@
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(709, 630);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(304, 38);
             this.saveButton.TabIndex = 0;
@@ -123,7 +123,7 @@
             // logButton
             // 
             this.logButton.Location = new System.Drawing.Point(881, 675);
-            this.logButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.logButton.Margin = new System.Windows.Forms.Padding(4);
             this.logButton.Name = "logButton";
             this.logButton.Size = new System.Drawing.Size(132, 38);
             this.logButton.TabIndex = 1;
@@ -134,7 +134,7 @@
             // dir
             // 
             this.dir.Location = new System.Drawing.Point(112, 11);
-            this.dir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dir.Margin = new System.Windows.Forms.Padding(4);
             this.dir.Name = "dir";
             this.dir.Size = new System.Drawing.Size(465, 25);
             this.dir.TabIndex = 2;
@@ -152,7 +152,7 @@
             // dirDialogButton
             // 
             this.dirDialogButton.Location = new System.Drawing.Point(587, 9);
-            this.dirDialogButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dirDialogButton.Margin = new System.Windows.Forms.Padding(4);
             this.dirDialogButton.Name = "dirDialogButton";
             this.dirDialogButton.Size = new System.Drawing.Size(100, 29);
             this.dirDialogButton.TabIndex = 4;
@@ -185,7 +185,7 @@
             "直接覆盖",
             "跳过"});
             this.conflict.Location = new System.Drawing.Point(188, 102);
-            this.conflict.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.conflict.Margin = new System.Windows.Forms.Padding(4);
             this.conflict.Name = "conflict";
             this.conflict.Size = new System.Drawing.Size(417, 23);
             this.conflict.TabIndex = 6;
@@ -194,7 +194,7 @@
             // fileButton
             // 
             this.fileButton.Location = new System.Drawing.Point(709, 675);
-            this.fileButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fileButton.Margin = new System.Windows.Forms.Padding(4);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(164, 38);
             this.fileButton.TabIndex = 7;
@@ -206,7 +206,7 @@
             // 
             this.autorm.AutoSize = true;
             this.autorm.Location = new System.Drawing.Point(699, 25);
-            this.autorm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autorm.Margin = new System.Windows.Forms.Padding(4);
             this.autorm.Name = "autorm";
             this.autorm.Size = new System.Drawing.Size(284, 19);
             this.autorm.TabIndex = 8;
@@ -241,7 +241,7 @@
             // 
             this.hidemsg.AutoSize = true;
             this.hidemsg.Location = new System.Drawing.Point(715, 14);
-            this.hidemsg.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.hidemsg.Margin = new System.Windows.Forms.Padding(4);
             this.hidemsg.Name = "hidemsg";
             this.hidemsg.Size = new System.Drawing.Size(119, 19);
             this.hidemsg.TabIndex = 12;
@@ -275,9 +275,9 @@
             this.groupBox1.Controls.Add(this.mode);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(16, 234);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(664, 250);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
@@ -287,7 +287,7 @@
             // 
             this.copynoext.AutoSize = true;
             this.copynoext.Location = new System.Drawing.Point(476, 30);
-            this.copynoext.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copynoext.Margin = new System.Windows.Forms.Padding(4);
             this.copynoext.Name = "copynoext";
             this.copynoext.Size = new System.Drawing.Size(164, 19);
             this.copynoext.TabIndex = 22;
@@ -337,7 +337,7 @@
             // white
             // 
             this.white.Location = new System.Drawing.Point(140, 110);
-            this.white.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.white.Margin = new System.Windows.Forms.Padding(4);
             this.white.Name = "white";
             this.white.Size = new System.Drawing.Size(511, 25);
             this.white.TabIndex = 17;
@@ -355,7 +355,7 @@
             // black
             // 
             this.black.Location = new System.Drawing.Point(140, 66);
-            this.black.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.black.Margin = new System.Windows.Forms.Padding(4);
             this.black.Name = "black";
             this.black.Size = new System.Drawing.Size(511, 25);
             this.black.TabIndex = 15;
@@ -369,7 +369,7 @@
             "黑名单模式",
             "白名单模式"});
             this.mode.Location = new System.Drawing.Point(140, 28);
-            this.mode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mode.Margin = new System.Windows.Forms.Padding(4);
             this.mode.Name = "mode";
             this.mode.Size = new System.Drawing.Size(305, 23);
             this.mode.TabIndex = 15;
@@ -398,7 +398,7 @@
             // sleep
             // 
             this.sleep.Location = new System.Drawing.Point(340, 142);
-            this.sleep.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sleep.Margin = new System.Windows.Forms.Padding(4);
             this.sleep.MaxLength = 9;
             this.sleep.Name = "sleep";
             this.sleep.Size = new System.Drawing.Size(179, 25);
@@ -491,9 +491,9 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.blackdisk);
             this.groupBox2.Location = new System.Drawing.Point(16, 494);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(664, 249);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
@@ -517,7 +517,7 @@
             // 
             this.DiskModeWhite.AutoSize = true;
             this.DiskModeWhite.Location = new System.Drawing.Point(259, 98);
-            this.DiskModeWhite.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DiskModeWhite.Margin = new System.Windows.Forms.Padding(4);
             this.DiskModeWhite.Name = "DiskModeWhite";
             this.DiskModeWhite.Size = new System.Drawing.Size(103, 19);
             this.DiskModeWhite.TabIndex = 29;
@@ -529,7 +529,7 @@
             // 
             this.DiskModeBlack.AutoSize = true;
             this.DiskModeBlack.Location = new System.Drawing.Point(140, 98);
-            this.DiskModeBlack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DiskModeBlack.Margin = new System.Windows.Forms.Padding(4);
             this.DiskModeBlack.Name = "DiskModeBlack";
             this.DiskModeBlack.Size = new System.Drawing.Size(103, 19);
             this.DiskModeBlack.TabIndex = 28;
@@ -588,7 +588,7 @@
             // blackid
             // 
             this.blackid.Location = new System.Drawing.Point(140, 171);
-            this.blackid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.blackid.Margin = new System.Windows.Forms.Padding(4);
             this.blackid.Name = "blackid";
             this.blackid.Size = new System.Drawing.Size(511, 25);
             this.blackid.TabIndex = 25;
@@ -609,14 +609,15 @@
             this.label13.Location = new System.Drawing.Point(13, 34);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(534, 45);
+            this.label13.Size = new System.Drawing.Size(613, 45);
             this.label13.TabIndex = 23;
-            this.label13.Text = "不复制(黑名单模式)或只复制(白名单模式)某些分区号的数据某些分区号的数据\r\n\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示 H 盘";
+            this.label13.Text = "不复制(黑名单模式)或只复制(白名单模式)某些分区号的数据某些分区号的数据\r\n\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示 H 盘。分区号和序列号的关" +
+    "系为 \"或\"";
             // 
             // blackdisk
             // 
             this.blackdisk.Location = new System.Drawing.Point(140, 131);
-            this.blackdisk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.blackdisk.Margin = new System.Windows.Forms.Padding(4);
             this.blackdisk.MaxLength = 51;
             this.blackdisk.Name = "blackdisk";
             this.blackdisk.Size = new System.Drawing.Size(511, 25);
@@ -626,7 +627,7 @@
             // 
             this.autorunhide.AutoSize = true;
             this.autorunhide.Location = new System.Drawing.Point(20, 69);
-            this.autorunhide.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autorunhide.Margin = new System.Windows.Forms.Padding(4);
             this.autorunhide.Name = "autorunhide";
             this.autorunhide.Size = new System.Drawing.Size(134, 19);
             this.autorunhide.TabIndex = 25;
@@ -650,7 +651,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = global::USBCopyer.Properties.Resources.GPL_Logo;
             this.pictureBox1.Location = new System.Drawing.Point(893, 725);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(133, 49);
             this.pictureBox1.TabIndex = 26;
@@ -661,7 +662,7 @@
             // 
             this.multirun.AutoSize = true;
             this.multirun.Location = new System.Drawing.Point(715, 41);
-            this.multirun.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.multirun.Margin = new System.Windows.Forms.Padding(4);
             this.multirun.Name = "multirun";
             this.multirun.Size = new System.Drawing.Size(165, 19);
             this.multirun.TabIndex = 27;
@@ -671,7 +672,7 @@
             // autorunButton
             // 
             this.autorunButton.Location = new System.Drawing.Point(20, 28);
-            this.autorunButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.autorunButton.Margin = new System.Windows.Forms.Padding(4);
             this.autorunButton.Name = "autorunButton";
             this.autorunButton.Size = new System.Drawing.Size(304, 29);
             this.autorunButton.TabIndex = 28;
@@ -693,7 +694,7 @@
             // filesize
             // 
             this.filesize.Location = new System.Drawing.Point(359, 179);
-            this.filesize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filesize.Margin = new System.Windows.Forms.Padding(4);
             this.filesize.MaxLength = 9;
             this.filesize.Name = "filesize";
             this.filesize.Size = new System.Drawing.Size(160, 25);
@@ -719,7 +720,7 @@
             "大于",
             "小于"});
             this.filesizetype.Location = new System.Drawing.Point(232, 179);
-            this.filesizetype.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filesizetype.Margin = new System.Windows.Forms.Padding(4);
             this.filesizetype.Name = "filesizetype";
             this.filesizetype.Size = new System.Drawing.Size(117, 23);
             this.filesizetype.TabIndex = 23;
@@ -748,9 +749,9 @@
             this.groupBox3.Controls.Add(this.SkipVirtualDisk);
             this.groupBox3.Controls.Add(this.autorm);
             this.groupBox3.Location = new System.Drawing.Point(16, 80);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(1011, 146);
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
@@ -760,7 +761,7 @@
             // 
             this.SkipUDisk.AutoSize = true;
             this.SkipUDisk.Location = new System.Drawing.Point(699, 109);
-            this.SkipUDisk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SkipUDisk.Margin = new System.Windows.Forms.Padding(4);
             this.SkipUDisk.Name = "SkipUDisk";
             this.SkipUDisk.Size = new System.Drawing.Size(211, 19);
             this.SkipUDisk.TabIndex = 11;
@@ -771,7 +772,7 @@
             // 
             this.SkipDVD.AutoSize = true;
             this.SkipDVD.Location = new System.Drawing.Point(699, 81);
-            this.SkipDVD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SkipDVD.Margin = new System.Windows.Forms.Padding(4);
             this.SkipDVD.Name = "SkipDVD";
             this.SkipDVD.Size = new System.Drawing.Size(172, 19);
             this.SkipDVD.TabIndex = 10;
@@ -782,7 +783,7 @@
             // 
             this.SkipVirtualDisk.AutoSize = true;
             this.SkipVirtualDisk.Location = new System.Drawing.Point(699, 54);
-            this.SkipVirtualDisk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.SkipVirtualDisk.Margin = new System.Windows.Forms.Padding(4);
             this.SkipVirtualDisk.Name = "SkipVirtualDisk";
             this.SkipVirtualDisk.Size = new System.Drawing.Size(157, 19);
             this.SkipVirtualDisk.TabIndex = 9;
@@ -804,9 +805,9 @@
             this.groupBox4.Controls.Add(this.autorunhide);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Location = new System.Drawing.Point(693, 238);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(333, 192);
             this.groupBox4.TabIndex = 34;
             this.groupBox4.TabStop = false;
@@ -833,9 +834,9 @@
             this.groupBox5.Controls.Add(this.EnableDiskDetectedCallback);
             this.groupBox5.Controls.Add(this.EnableAllCompletedCallback);
             this.groupBox5.Location = new System.Drawing.Point(693, 446);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(325, 176);
             this.groupBox5.TabIndex = 36;
             this.groupBox5.TabStop = false;
@@ -858,7 +859,7 @@
             // 
             this.WaitCallback.AutoSize = true;
             this.WaitCallback.Location = new System.Drawing.Point(15, 114);
-            this.WaitCallback.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WaitCallback.Margin = new System.Windows.Forms.Padding(4);
             this.WaitCallback.Name = "WaitCallback";
             this.WaitCallback.Size = new System.Drawing.Size(301, 19);
             this.WaitCallback.TabIndex = 14;
@@ -869,7 +870,7 @@
             // 
             this.EnableDiskDetectedCallback.AutoSize = true;
             this.EnableDiskDetectedCallback.Location = new System.Drawing.Point(15, 71);
-            this.EnableDiskDetectedCallback.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EnableDiskDetectedCallback.Margin = new System.Windows.Forms.Padding(4);
             this.EnableDiskDetectedCallback.Name = "EnableDiskDetectedCallback";
             this.EnableDiskDetectedCallback.Size = new System.Drawing.Size(225, 34);
             this.EnableDiskDetectedCallback.TabIndex = 13;
@@ -880,7 +881,7 @@
             // 
             this.EnableAllCompletedCallback.AutoSize = true;
             this.EnableAllCompletedCallback.Location = new System.Drawing.Point(16, 29);
-            this.EnableAllCompletedCallback.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EnableAllCompletedCallback.Margin = new System.Windows.Forms.Padding(4);
             this.EnableAllCompletedCallback.Name = "EnableAllCompletedCallback";
             this.EnableAllCompletedCallback.Size = new System.Drawing.Size(240, 34);
             this.EnableAllCompletedCallback.TabIndex = 12;
@@ -926,7 +927,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(661, 743);
             this.Name = "Setting";

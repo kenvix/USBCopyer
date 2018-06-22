@@ -222,15 +222,27 @@ namespace USBCopyer
                                     }
                                     if (EnableToolStripMenuItem.Checked)
                                     {
-                                        if (!string.IsNullOrEmpty(diskser) && blackid.Contains(diskser))
+                                        //使用黑名单磁盘模式
+                                        if(Properties.Settings.Default.UseBlackDisk)
                                         {
-                                            Program.log("黑名单磁盘序列号：" + diskser + " 取消复制！");
-                                            return;
+                                            if (!string.IsNullOrEmpty(diskser) && blackid.Contains(diskser))
+                                            {
+                                                Program.log("黑名单磁盘序列号：" + diskser + " 取消复制！");
+                                                return;
+                                            }
+                                            if (!string.IsNullOrEmpty(disk) && blackdisk.Contains(disk.Substring(0, 1)))
+                                            {
+                                                Program.log("黑名单分区号：" + disk + " 取消复制！");
+                                                return;
+                                            }
                                         }
-                                        if (blackdisk.Contains(disk.Substring(0, 1)))
+                                        else //使用白名单磁盘模式
                                         {
-                                            Program.log("黑名单分区号：" + disk + " 取消复制！");
-                                            return;
+                                            if ((string.IsNullOrEmpty(diskser) || !blackid.Contains(diskser)) && (string.IsNullOrEmpty(disk) || !blackdisk.Contains(disk.Substring(0, 1))))
+                                            {
+                                                Program.log("磁盘序列号：" + diskser + " 及分区号 " + disk + " 均不在白名单，取消复制！");
+                                                return;
+                                            }
                                         }
                                         copyThread[disk] = new Thread(() =>
                                         {
