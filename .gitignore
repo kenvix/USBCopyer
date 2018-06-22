@@ -5,3 +5,5 @@ USBCopyer/bin/Debug
 *.cache
 USBCopyer/bin
 USBCopyer/obj
+Release/USBCopyerData
+.vs

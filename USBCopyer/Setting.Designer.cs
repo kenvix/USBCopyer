@@ -102,6 +102,7 @@
             this.EnableAllCompletedCallback = new System.Windows.Forms.CheckBox();
             this.SkipLocalDisk = new System.Windows.Forms.CheckBox();
             this.SkipOtherDisk = new System.Windows.Forms.CheckBox();
+            this.SkipEmptyFolder = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -746,6 +747,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.SkipEmptyFolder);
             this.groupBox3.Controls.Add(this.SkipOtherDisk);
             this.groupBox3.Controls.Add(this.SkipLocalDisk);
             this.groupBox3.Controls.Add(this.SkipUDisk);
@@ -858,6 +860,7 @@
             this.linkLabel11.TabStop = true;
             this.linkLabel11.Text = "这是什么？有什么用处？如何使用？";
             this.linkLabel11.VisitedLinkColor = System.Drawing.Color.SteelBlue;
+            this.linkLabel11.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel11_LinkClicked);
             // 
             // WaitCallback
             // 
@@ -913,6 +916,17 @@
             this.SkipOtherDisk.TabIndex = 13;
             this.SkipOtherDisk.Text = "不要复制其他特殊磁盘";
             this.SkipOtherDisk.UseVisualStyleBackColor = true;
+            // 
+            // SkipEmptyFolder
+            // 
+            this.SkipEmptyFolder.AutoSize = true;
+            this.SkipEmptyFolder.Location = new System.Drawing.Point(830, 106);
+            this.SkipEmptyFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipEmptyFolder.Name = "SkipEmptyFolder";
+            this.SkipEmptyFolder.Size = new System.Drawing.Size(157, 19);
+            this.SkipEmptyFolder.TabIndex = 14;
+            this.SkipEmptyFolder.Text = "不要复制 空文件夹";
+            this.SkipEmptyFolder.UseVisualStyleBackColor = true;
             // 
             // Setting
             // 
@@ -1050,6 +1064,7 @@
         private System.Windows.Forms.CheckBox EnableAllCompletedCallback;
         private System.Windows.Forms.CheckBox SkipOtherDisk;
         private System.Windows.Forms.CheckBox SkipLocalDisk;
+        private System.Windows.Forms.CheckBox SkipEmptyFolder;
     }
 }
 

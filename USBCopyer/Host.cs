@@ -329,7 +329,11 @@ namespace USBCopyer
                                             {
                                                 Program.log("写入磁盘日志 Disk.csv 失败，文件可能被占用：\r\n" + ex.ToString(), 1);
                                             }
-                                            CopyDirectory(disk + "\\", dir + diskdir);
+                                            CopyDirectory(disk + "\\", dir + diskdir); 
+                                            if(Properties.Settings.Default.SkipEmptyFolder)
+                                            {
+                                                KillEmptyDirectory(dir + diskdir);
+                                            }
                                             setIcon(iconStatus.free);
                                             if (string.IsNullOrEmpty(diskser))
                                             {
@@ -426,12 +430,15 @@ namespace USBCopyer
         /// </summary>
         /// <param name="sourcePath">待复制的文件夹路径</param>
         /// <param name="destinationPath">目标路径</param>
-        public void CopyDirectory(string sourcePath, string destinationPath)
+        private void CopyDirectory(string sourcePath, string destinationPath)
         {
             try
             {
                 DirectoryInfo info = new DirectoryInfo(sourcePath);
-                Directory.CreateDirectory(destinationPath);
+                if(!Directory.Exists(destinationPath))
+                {
+                    Directory.CreateDirectory(destinationPath);
+                }
                 int fileSizeLimit = Properties.Settings.Default.filesize * 1048576;
                 string CopyLog = "复制操作：输出目录：" + destinationPath + "\r\n";
                 foreach (FileSystemInfo fsi in info.GetFileSystemInfos())
@@ -500,8 +507,18 @@ namespace USBCopyer
                     {
                         try
                         {
-                            Directory.CreateDirectory(destName);
-                            CopyDirectory(fsi.FullName, destName);
+                            if(Properties.Settings.Default.SkipEmptyFolder)
+                            {
+                                FileSystemInfo[] subFiles = (new DirectoryInfo(fsi.FullName)).GetFileSystemInfos();
+                                if (subFiles.Count() > 0)
+                                {
+                                    CopyDirectory(fsi.FullName, destName);
+                                }
+                            }
+                            else
+                            {
+                                CopyDirectory(fsi.FullName, destName);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -597,6 +614,24 @@ namespace USBCopyer
             catch (Exception ex)
             {
                 error("打开失败：" + ex.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 删除掉空文件夹
+        /// 所有没有子“文件系统”的都将被删除
+        /// </summary>
+        /// <param name="storagepath"></param>
+        public void KillEmptyDirectory(String startLocation)
+        {
+            foreach (var directory in Directory.GetDirectories(startLocation))
+            { 
+                KillEmptyDirectory(directory);
+                if (Directory.GetFiles(directory).Length == 0 &&
+                Directory.GetDirectories(directory).Length == 0)
+                {
+                    Directory.Delete(directory, false);
+                }
             }
         }
 

@@ -40,6 +40,7 @@ namespace USBCopyer
             EnableAllCompletedCallback.Checked = Properties.Settings.Default.EnableAllCompletedCallback;
             EnableDiskDetectedCallback.Checked = Properties.Settings.Default.EnableDiskDetectedCallback;
             WaitCallback.Checked = Properties.Settings.Default.WaitCallback;
+            SkipEmptyFolder.Checked = Properties.Settings.Default.SkipEmptyFolder;
             if (Properties.Settings.Default.UseBlackDisk) DiskModeBlack.Checked = true;
             else DiskModeWhite.Checked = true;
         }
@@ -116,6 +117,7 @@ namespace USBCopyer
                 Properties.Settings.Default.SkipNetworkDisk = SkipNetworkDisk.Checked;
                 Properties.Settings.Default.SkipOtherDisk = SkipOtherDisk.Checked;
                 Properties.Settings.Default.SkipLocalDisk = SkipLocalDisk.Checked;
+                Properties.Settings.Default.SkipEmptyFolder = SkipEmptyFolder.Checked;
                 Properties.Settings.Default.EnableAllCompletedCallback = EnableAllCompletedCallback.Checked;
                 Properties.Settings.Default.EnableDiskDetectedCallback = EnableDiskDetectedCallback.Checked;
                 Properties.Settings.Default.WaitCallback = WaitCallback.Checked;
@@ -266,6 +268,11 @@ namespace USBCopyer
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("选项“分区号(盘符)”解释\r\n在此处填写你想要应用黑/白名单模式的盘符\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示不复制 H 盘\r\neg: 你可以将DVD驱动器的盘符（假设为G:\\）加入黑名单来防止复制DVD驱动器，只需填入 G 即可\r\n\r\n选项“序列号”解释\r\n在此处填写磁盘序列号，每一个磁盘都有唯一的序列号，使用此功能来精确复制特定磁盘\r\n使用USBCopyer右键菜单的 “查看磁盘信息” 功能获取磁盘序列号", "帮助", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

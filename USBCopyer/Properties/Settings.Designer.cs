@@ -360,5 +360,18 @@ namespace USBCopyer.Properties {
                 this["SkipOtherDisk"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SkipEmptyFolder {
+            get {
+                return ((bool)(this["SkipEmptyFolder"]));
+            }
+            set {
+                this["SkipEmptyFolder"] = value;
+            }
+        }
     }
 }
