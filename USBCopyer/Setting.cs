@@ -16,6 +16,7 @@ namespace USBCopyer
             InitializeComponent();
             Icon = Program.ico;
             version.Text += Application.ProductVersion;
+            Text += Program.isAdminPermission() ? " (管理员)" : " (低权限模式)";
             dir.Text = Properties.Settings.Default.dir;
             conflict.SelectedIndex = Properties.Settings.Default.conflict;
             autorm.Checked = Properties.Settings.Default.autorm;
@@ -182,7 +183,7 @@ namespace USBCopyer
         {
             try
             {
-                if (!Program.checkAdminPermission()) return;
+                if (!Program.checkAdminPermission("/setting")) return;
                 Properties.Settings.Default.autorunhide = autorunhide.Checked;
                 Properties.Settings.Default.Save();
                 RegistryKey run = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
@@ -196,7 +197,7 @@ namespace USBCopyer
                     {
                         run.SetValue("USBCopyer", Application.ExecutablePath + " /autorun");
                     }
-                    MessageBox.Show("设置开机启动成功\r\n\r\n注意：任务管理器或其他杀毒软件可能会阻止 USBCopyer 的开机自启动", "设置开机启动成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("设置开机启动成功\r\n\r\n注意：任务管理器或杀毒软件可能会阻止 USBCopyer 的开机自启动", "设置开机启动成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

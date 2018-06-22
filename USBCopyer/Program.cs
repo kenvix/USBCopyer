@@ -22,6 +22,7 @@ namespace USBCopyer
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                if (!System.IO.Directory.Exists(Host.confdir)) System.IO.Directory.CreateDirectory(Host.confdir);
                 foreach (string arg in args)
                 {
                     switch (arg)
@@ -30,10 +31,20 @@ namespace USBCopyer
                         case "-hide":
                             showicon = false;
                             break;
-
+                        
                         case "/gui":
                         case "-gui":
                             showicon = true;
+                            break;
+
+                        case "/setting":
+                        case "-setting":
+                            Thread th = new Thread(() =>
+                            {
+                                Application.Run(new Setting());
+                            });
+                            th.SetApartmentState(ApartmentState.STA);
+                            th.Start();
                             break;
 
                         case "/reset":
@@ -123,7 +134,7 @@ namespace USBCopyer
         /// 检查自身是否为管理员权限，并尝试索取
         /// </summary>
         /// <returns></returns>
-        public static bool checkAdminPermission()
+        public static bool checkAdminPermission(string command = "")
         {
             if(!isAdminPermission())
             {
@@ -134,6 +145,7 @@ namespace USBCopyer
                     startInfo.UseShellExecute = true;
                     startInfo.WorkingDirectory = Environment.CurrentDirectory;
                     startInfo.FileName = Application.ExecutablePath;
+                    startInfo.Arguments = command;
                     //设置启动动作,确保以管理员身份运行
                     startInfo.Verb = "runas";
                     try

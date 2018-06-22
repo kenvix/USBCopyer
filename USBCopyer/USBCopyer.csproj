@@ -156,7 +156,6 @@
     <None Include="app.config" />
     <None Include="bin\Debug\USBCopyerData\Disks.csv" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\low-permissions.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

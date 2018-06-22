@@ -47,6 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.thisDiskID2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // diskList
@@ -54,7 +55,7 @@
             this.diskList.FormattingEnabled = true;
             this.diskList.ItemHeight = 15;
             this.diskList.Location = new System.Drawing.Point(16, 15);
-            this.diskList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.diskList.Margin = new System.Windows.Forms.Padding(4);
             this.diskList.Name = "diskList";
             this.diskList.Size = new System.Drawing.Size(107, 319);
             this.diskList.TabIndex = 1;
@@ -63,7 +64,7 @@
             // thisDiskID
             // 
             this.thisDiskID.Location = new System.Drawing.Point(263, 15);
-            this.thisDiskID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thisDiskID.Margin = new System.Windows.Forms.Padding(4);
             this.thisDiskID.Name = "thisDiskID";
             this.thisDiskID.ReadOnly = true;
             this.thisDiskID.Size = new System.Drawing.Size(213, 25);
@@ -72,7 +73,7 @@
             // thisDiskDescription
             // 
             this.thisDiskDescription.Location = new System.Drawing.Point(263, 116);
-            this.thisDiskDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thisDiskDescription.Margin = new System.Windows.Forms.Padding(4);
             this.thisDiskDescription.Name = "thisDiskDescription";
             this.thisDiskDescription.ReadOnly = true;
             this.thisDiskDescription.Size = new System.Drawing.Size(436, 25);
@@ -81,7 +82,7 @@
             // thisDiskFileSystem
             // 
             this.thisDiskFileSystem.Location = new System.Drawing.Point(263, 150);
-            this.thisDiskFileSystem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thisDiskFileSystem.Margin = new System.Windows.Forms.Padding(4);
             this.thisDiskFileSystem.Name = "thisDiskFileSystem";
             this.thisDiskFileSystem.ReadOnly = true;
             this.thisDiskFileSystem.Size = new System.Drawing.Size(436, 25);
@@ -90,7 +91,7 @@
             // thisDiskName
             // 
             this.thisDiskName.Location = new System.Drawing.Point(263, 82);
-            this.thisDiskName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thisDiskName.Margin = new System.Windows.Forms.Padding(4);
             this.thisDiskName.Name = "thisDiskName";
             this.thisDiskName.ReadOnly = true;
             this.thisDiskName.Size = new System.Drawing.Size(436, 25);
@@ -99,7 +100,7 @@
             // thisDiskSer
             // 
             this.thisDiskSer.Location = new System.Drawing.Point(263, 49);
-            this.thisDiskSer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thisDiskSer.Margin = new System.Windows.Forms.Padding(4);
             this.thisDiskSer.Name = "thisDiskSer";
             this.thisDiskSer.ReadOnly = true;
             this.thisDiskSer.Size = new System.Drawing.Size(436, 25);
@@ -138,7 +139,7 @@
             // reloadButton
             // 
             this.reloadButton.Location = new System.Drawing.Point(135, 289);
-            this.reloadButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reloadButton.Margin = new System.Windows.Forms.Padding(4);
             this.reloadButton.Name = "reloadButton";
             this.reloadButton.Size = new System.Drawing.Size(151, 46);
             this.reloadButton.TabIndex = 11;
@@ -242,11 +243,21 @@
             this.label9.TabIndex = 28;
             this.label9.Text = "部分磁盘的卷无法获取序列号";
             // 
+            // thisDiskID2
+            // 
+            this.thisDiskID2.Location = new System.Drawing.Point(486, 16);
+            this.thisDiskID2.Margin = new System.Windows.Forms.Padding(4);
+            this.thisDiskID2.Name = "thisDiskID2";
+            this.thisDiskID2.ReadOnly = true;
+            this.thisDiskID2.Size = new System.Drawing.Size(213, 25);
+            this.thisDiskID2.TabIndex = 29;
+            // 
             // diskUUID
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(723, 346);
+            this.Controls.Add(this.thisDiskID2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -266,7 +277,7 @@
             this.Controls.Add(this.thisDiskDescription);
             this.Controls.Add(this.thisDiskID);
             this.Controls.Add(this.diskList);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "diskUUID";
             this.Text = "查看磁盘信息";
             this.Load += new System.EventHandler(this.diskUUID_Load);
@@ -296,5 +307,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox thisDiskID2;
     }
 }

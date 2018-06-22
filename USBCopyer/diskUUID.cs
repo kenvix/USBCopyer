@@ -63,6 +63,7 @@ namespace USBCopyer
                 string disk = diskList.SelectedItem.ToString();
                 ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\"" + disk + "\"");
                 thisDiskID.Text = disk;
+                thisDiskID2.Text = diskinfo.Properties["Name"].Value.ToString();
                 thisDiskName.Text = diskinfo.Properties["VolumeName"].Value.ToString();
                 thisDiskFileSystem.Text = diskinfo.Properties["FileSystem"].Value.ToString();
                 thisDiskDescription.Text = "[" + diskinfo.Properties["DriveType"].Value.ToString() + "] " + diskinfo.Properties["Description"].Value.ToString();

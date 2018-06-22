@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("USBCopyer")]
 [assembly: AssemblyDescription("USBCopyer File Copy Tool")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Kenvix")]
+[assembly: AssemblyCompany("Kenvix <i@kenvix.com>")]
 [assembly: AssemblyProduct("USBCopyer")]
-[assembly: AssemblyCopyright("Copyright © 2016 Kenvix")]
+[assembly: AssemblyCopyright("Copyright © 2018 Kenvix")]
 [assembly: AssemblyTrademark("By: Kenvix")]
 [assembly: AssemblyCulture("")]
 

@@ -19,7 +19,7 @@ namespace Kenvix
         /// <returns></returns>
         public virtual string GetAppSettingsPath()
         {
-            return USBCopyer.Host.dir; //Use application path
+            return USBCopyer.Host.confdir; //Use application path
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Kenvix
         /// <returns></returns>
         public virtual string GetAppSettingsFilename()
         {
-            return "config.xml";
+            return "Config.xml";
         }
 
 
