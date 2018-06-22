@@ -590,7 +590,7 @@ namespace USBCopyer
         {
             try
             {
-                Process.Start("explorer.exe", "\"https://kenvix.com/?p=86\"");
+                Process.Start("explorer.exe", "\"https://kenvix.com/post/usbcopyer/\"");
             }
             catch (Exception ex)
             {

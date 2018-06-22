@@ -29,5 +29,17 @@ namespace USBCopyer
                     MessageBox.Show("打开失败：" + ex.ToString());
                 }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start("explorer.exe", "\"https://kenvix.com/post/usbcopyer/\"");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("打开失败：" + ex.ToString());
+            }
+        }
     }
 }
