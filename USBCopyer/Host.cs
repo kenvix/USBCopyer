@@ -198,10 +198,36 @@ namespace USBCopyer
                                     string diskdir;
                                     object diskserdata  = diskinfo.Properties["VolumeSerialNumber"].Value;
                                     object disknamedata = diskinfo.Properties["VolumeName"].Value;
-                                    //AllCompletedCallback
+                                    //DiskDetectedCallback
                                     if (Properties.Settings.Default.EnableDiskDetectedCallback && File.Exists(confdir + "DiskDetectedCallback.bat"))
                                     {
-                                        
+                                        int ExitCode = 1;
+                                        Thread th = new Thread(() => {
+                                            try
+                                            {
+                                                string CallbackCode = File.ReadAllText(confdir + "DiskDetectedCallback.bat");
+                                                string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
+                                                CallbackCode = ProcessCallbackCode(CallbackCode);
+                                                CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, diskinfo.Properties, "NONE");
+                                                File.WriteAllText(OutputPath, CallbackCode);
+                                                ExitCode = RunCallback(OutputPath, out string StdOut);
+                                                File.Delete(OutputPath);
+                                                Program.log("DiskDetectedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Program.log("DiskDetectedCallback 回调运行失败\r\n" + ex.ToString(), 1);
+                                            }
+                                        });
+                                        th.Start();
+                                        if (Properties.Settings.Default.WaitCallback)
+                                        {
+                                            th.Join();
+                                            if(ExitCode != 0)
+                                            {
+                                                Program.log("根据 DiskDetectedCallback 回调退出码: " + ExitCode + " 复制操作取消。", 0);
+                                            }
+                                        }
                                     }
                                     try
                                     {
@@ -353,6 +379,7 @@ namespace USBCopyer
                                                         CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, diskinfo.Properties, diskdir);
                                                         File.WriteAllText(OutputPath, CallbackCode);
                                                         int ExitCode = RunCallback(OutputPath, out string StdOut);
+                                                        File.Delete(OutputPath);
                                                         Program.log("AllCompletedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
                                                     }
                                                     catch(Exception ex)
