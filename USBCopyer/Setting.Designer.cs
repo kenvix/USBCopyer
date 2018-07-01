@@ -86,6 +86,9 @@
             this.filesizetype = new System.Windows.Forms.ComboBox();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.SkipEmptyFolder = new System.Windows.Forms.CheckBox();
+            this.SkipOtherDisk = new System.Windows.Forms.CheckBox();
+            this.SkipLocalDisk = new System.Windows.Forms.CheckBox();
             this.SkipUDisk = new System.Windows.Forms.CheckBox();
             this.SkipDVD = new System.Windows.Forms.CheckBox();
             this.SkipNetworkDisk = new System.Windows.Forms.CheckBox();
@@ -100,9 +103,6 @@
             this.WaitCallback = new System.Windows.Forms.CheckBox();
             this.EnableDiskDetectedCallback = new System.Windows.Forms.CheckBox();
             this.EnableAllCompletedCallback = new System.Windows.Forms.CheckBox();
-            this.SkipLocalDisk = new System.Windows.Forms.CheckBox();
-            this.SkipOtherDisk = new System.Windows.Forms.CheckBox();
-            this.SkipEmptyFolder = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -614,8 +614,8 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(613, 45);
             this.label13.TabIndex = 23;
-            this.label13.Text = "不复制(黑名单模式)或只复制(白名单模式)某些分区号的数据某些分区号的数据\r\n\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示 H 盘。分区号和序列号的关" +
-    "系为 \"或\"";
+            this.label13.Text = "不复制(黑名单模式)或只复制(白名单模式)某些分区号或序列号的数据\r\n\r\n用半角逗号(,)分割，只写一个字母即可。如 H 表示 H 盘。分区号和序列号的关系为 \"" +
+    "或\"";
             // 
             // blackdisk
             // 
@@ -763,6 +763,39 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "复制选项";
             // 
+            // SkipEmptyFolder
+            // 
+            this.SkipEmptyFolder.AutoSize = true;
+            this.SkipEmptyFolder.Location = new System.Drawing.Point(830, 106);
+            this.SkipEmptyFolder.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipEmptyFolder.Name = "SkipEmptyFolder";
+            this.SkipEmptyFolder.Size = new System.Drawing.Size(157, 19);
+            this.SkipEmptyFolder.TabIndex = 14;
+            this.SkipEmptyFolder.Text = "不要复制 空文件夹";
+            this.SkipEmptyFolder.UseVisualStyleBackColor = true;
+            // 
+            // SkipOtherDisk
+            // 
+            this.SkipOtherDisk.AutoSize = true;
+            this.SkipOtherDisk.Location = new System.Drawing.Point(830, 79);
+            this.SkipOtherDisk.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipOtherDisk.Name = "SkipOtherDisk";
+            this.SkipOtherDisk.Size = new System.Drawing.Size(179, 19);
+            this.SkipOtherDisk.TabIndex = 13;
+            this.SkipOtherDisk.Text = "不要复制其他特殊磁盘";
+            this.SkipOtherDisk.UseVisualStyleBackColor = true;
+            // 
+            // SkipLocalDisk
+            // 
+            this.SkipLocalDisk.AutoSize = true;
+            this.SkipLocalDisk.Location = new System.Drawing.Point(830, 52);
+            this.SkipLocalDisk.Margin = new System.Windows.Forms.Padding(4);
+            this.SkipLocalDisk.Name = "SkipLocalDisk";
+            this.SkipLocalDisk.Size = new System.Drawing.Size(172, 19);
+            this.SkipLocalDisk.TabIndex = 12;
+            this.SkipLocalDisk.Text = "不要复制 硬盘驱动器";
+            this.SkipLocalDisk.UseVisualStyleBackColor = true;
+            // 
             // SkipUDisk
             // 
             this.SkipUDisk.AutoSize = true;
@@ -894,39 +927,6 @@
             this.EnableAllCompletedCallback.TabIndex = 12;
             this.EnableAllCompletedCallback.Text = "回调1：启用 全部复制完成回调\r\nAllCompletedCallback";
             this.EnableAllCompletedCallback.UseVisualStyleBackColor = true;
-            // 
-            // SkipLocalDisk
-            // 
-            this.SkipLocalDisk.AutoSize = true;
-            this.SkipLocalDisk.Location = new System.Drawing.Point(830, 52);
-            this.SkipLocalDisk.Margin = new System.Windows.Forms.Padding(4);
-            this.SkipLocalDisk.Name = "SkipLocalDisk";
-            this.SkipLocalDisk.Size = new System.Drawing.Size(172, 19);
-            this.SkipLocalDisk.TabIndex = 12;
-            this.SkipLocalDisk.Text = "不要复制 硬盘驱动器";
-            this.SkipLocalDisk.UseVisualStyleBackColor = true;
-            // 
-            // SkipOtherDisk
-            // 
-            this.SkipOtherDisk.AutoSize = true;
-            this.SkipOtherDisk.Location = new System.Drawing.Point(830, 79);
-            this.SkipOtherDisk.Margin = new System.Windows.Forms.Padding(4);
-            this.SkipOtherDisk.Name = "SkipOtherDisk";
-            this.SkipOtherDisk.Size = new System.Drawing.Size(179, 19);
-            this.SkipOtherDisk.TabIndex = 13;
-            this.SkipOtherDisk.Text = "不要复制其他特殊磁盘";
-            this.SkipOtherDisk.UseVisualStyleBackColor = true;
-            // 
-            // SkipEmptyFolder
-            // 
-            this.SkipEmptyFolder.AutoSize = true;
-            this.SkipEmptyFolder.Location = new System.Drawing.Point(830, 106);
-            this.SkipEmptyFolder.Margin = new System.Windows.Forms.Padding(4);
-            this.SkipEmptyFolder.Name = "SkipEmptyFolder";
-            this.SkipEmptyFolder.Size = new System.Drawing.Size(157, 19);
-            this.SkipEmptyFolder.TabIndex = 14;
-            this.SkipEmptyFolder.Text = "不要复制 空文件夹";
-            this.SkipEmptyFolder.UseVisualStyleBackColor = true;
             // 
             // Setting
             // 
