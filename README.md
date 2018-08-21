@@ -15,8 +15,8 @@
 
 本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）          
    
-现已提供三个版本（标准版/兼容版）可供下载，见“已编译版本下载”节
-
+现已提供三个版本（标准版/兼容版）可供下载，见“已编译版本下载”节      
+[捐赠墙(点击查看)](https://github.com/kenvix/USBCopyer/blob/master/Donors.md)
 ## 已编译版本下载
 
 #### 【推荐】.Net Framework 4.0 版本（标准版）        
@@ -25,7 +25,7 @@
 
 #### .Net Framework 3.5 版本（兼容版）     
 **适用操作系统**：Windows 7 / Windows Vista / Windows XP     
-**WinXP请注意**：XP可能需要手动安装 .NET Framework 3.5，[没有安装请点此](https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe)
+**WinXP请注意**：XP可能需要手动安装 .NET Framework 3.5，[没有安装请点此](https://download.microsoft.com/download/7/0/3/703455ee-a747-4cc8-bd3e-98a615c3aedb/dotNetFx35setup.exe)    
 [点击从Git@OSC下载(中国大陆用户推荐)](https://git.oschina.net/kenvix/USBCopyer/raw/master/Release/USBCopyer.Release.Net3.5.exe)         [点击从GitHub下载](https://github.com/kenvix/USBCopyer/blob/master/Release/USBCopyer.Release.Net3.5.exe?raw=true)   
 
 
@@ -88,4 +88,6 @@ USBCopyer 是一个开源的，非盈利的项目。如果你喜欢这个项目�
 1278730467@qq.com (注: 本人已不再使用QQ且该QQ号拒绝所有好友申请. **请勿** 通过QQ联系我)      
 ![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/git-resources/alipay-pay.jpg)
 ##### 微信支付捐赠
-![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/git-resources/weixin-pay.jpg)
+![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/git-resources/weixin-pay.jpg)     
+    
+[捐赠墙(点击查看)](https://github.com/kenvix/USBCopyer/blob/master/Donors.md)
