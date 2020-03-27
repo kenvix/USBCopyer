@@ -11,12 +11,12 @@
 5. 支持限制文件大小，防止复制大文件造成延误
 6. 支持延迟复制，对“偷”课件类的场景提升用户体验十分有用
 
-![Screenshot](https://git.oschina.net/kenvix/USBCopyer/raw/master/git-resources/screenshot-new.jpg)
+![Screenshot](/git-resources/screenshot-new.jpg)
 
 本程序有两个图标，默认图标表示当前处于空闲状态，红色图标表示当前正在复制文件（工作中）          
    
 现已提供三个版本（标准版/兼容版）可供下载，见“已编译版本下载”节      
-[捐赠墙(点击查看)](https://github.com/kenvix/USBCopyer/blob/master/Donors.md)
+[捐赠墙(点击查看)](Donors.md)
 ## 已编译版本下载
 
 #### 【推荐】.Net Framework 4.0 版本（标准版）        
