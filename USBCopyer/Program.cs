@@ -20,9 +20,9 @@ namespace USBCopyer
             logger.Source = Application.ProductName;
             try
             {
-                Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 if (!System.IO.Directory.Exists(Host.confdir)) System.IO.Directory.CreateDirectory(Host.confdir);
+                bool useUglyUI = false; 
                 foreach (string arg in args)
                 {
                     switch (arg)
@@ -60,8 +60,17 @@ namespace USBCopyer
                                 Environment.Exit(1);
                             }
                             break;
+
+                        case "/uglyui":
+                        case "-uglyui":
+                            useUglyUI = true;
+                            break;
                     }
                 }
+                
+                if (!useUglyUI)
+                    Application.EnableVisualStyles();
+
                 //设置应用程序处理异常方式：ThreadException处理
                 Application.SetUnhandledExceptionMode(UnhandledExceptionMode.Automatic);
                 //处理UI线程异常
