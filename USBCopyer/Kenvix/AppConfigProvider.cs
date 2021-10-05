@@ -195,13 +195,13 @@ namespace Kenvix
         private bool IsRoaming(SettingsProperty prop)
         {
             if (SkipRoamingCheck) return true;
-            foreach (DictionaryEntry d in prop.Attributes)
-            {
-                Attribute a = (Attribute)d.Value;
-                if (a is SettingsManageabilityAttribute)
-                    return true;
-            }
-            return false;
+            //foreach (DictionaryEntry d in prop.Attributes)
+            //{
+            //    Attribute a = (Attribute)d.Value;
+            //    if (a is SettingsManageabilityAttribute)
+            //        return true;
+            //}
+            //return false;
         }
     }
 
