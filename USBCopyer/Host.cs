@@ -831,7 +831,26 @@ namespace USBCopyer
         private void Host_Load(object sender, EventArgs e)
         {
             Hide();
+            Hotkey hotkey;//定义快键键(热键)
+            hotkey = new Hotkey(this.Handle);
+            Hotkey.Hotkey1 = hotkey.RegisterHotkey(Keys.H, Hotkey.KeyFlags.Control | Hotkey.KeyFlags.Alt);   //定义快键键
+            hotkey.OnHotkey += new HotkeyEventHandler(OnHotkey);//定义快键键
             SetVisibleCore(false);
+        }
+
+        public void OnHotkey(int HotkeyID) //Ctrl+alt+h 隐藏状态栏图标，再按显示图标。
+        {
+            if (HotkeyID == Hotkey.Hotkey1)
+            {
+                if (nicon.Visible == true)
+                    nicon.Visible = false;
+                else
+                    nicon.Visible = true;
+            }
+            else
+            {
+                nicon.Visible = false;
+            }
         }
     }
 }
