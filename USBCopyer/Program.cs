@@ -7,7 +7,7 @@ namespace USBCopyer
 {
     static class Program
     {
-        public static bool showicon = true;
+        public static bool showicon = !Properties.Settings.Default.autorunhide;//true;
         public static EventLog logger = new EventLog();
         public static System.Drawing.Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
