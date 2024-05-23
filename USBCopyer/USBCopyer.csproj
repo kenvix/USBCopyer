@@ -103,6 +103,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hotkeys.cs" />
     <Compile Include="Kenvix\AppConfigProvider.cs" />
     <Compile Include="diskUUID.cs">
       <SubType>Form</SubType>
