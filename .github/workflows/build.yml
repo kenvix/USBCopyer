@@ -1,0 +1,26 @@
+name: build
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build solution
+      run: |
+        msbuild USBCopyer.sln -t:build -property:Configuration=Release
+        msbuild USBCopyer.sln -t:build -property:Configuration=ReNet3.5
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: release
+        path: USBCopyer/bin/
