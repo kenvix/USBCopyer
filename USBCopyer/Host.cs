@@ -784,7 +784,9 @@ namespace USBCopyer
 
         private void clearLog_Click(object sender, EventArgs e)
         {
-            Program.logger.Clear();
+            if (Program.logger != null) {
+                Program.logger.Clear();
+            }
         }
 
         private void diskUUIDList_Click(object sender, EventArgs e)
