@@ -53,7 +53,7 @@ namespace USBCopyer
 
         private void dirDialogButton_Click(object sender, EventArgs e)
         {
-            if(folderBrowser.ShowDialog() == DialogResult.OK)
+            if (folderBrowser.ShowDialog() == DialogResult.OK)
             {
                 dir.Text = folderBrowser.SelectedPath;
             }
@@ -171,7 +171,7 @@ namespace USBCopyer
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             DialogResult doReset = MessageBox.Show("将会重置所有设置项，确定吗？", "重设确认", MessageBoxButtons.OKCancel);
-            if(doReset == DialogResult.OK) Properties.Settings.Default.Reset();
+            if (doReset == DialogResult.OK) Properties.Settings.Default.Reset();
         }
 
         private void linkLabel3_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
@@ -233,7 +233,7 @@ namespace USBCopyer
 
         private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("当你要把USBCopyer用作自动备份特定U盘的工具，请使用白名单模式\r\n白名单模式下，只有预先设置好的U盘才会被USBCopyer复制\r\n\r\n当你要把USBCopyer用作偷U盘文件的工具，请使用黑名单模式\r\n黑名单模式下，USBCopyer会复制除预先设置好的U盘以外的全部U盘\r\n\r\n另外，分区号和序列号是“或”的关系，只要有一者符合即命中","黑白名单模式帮助",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("当你要把USBCopyer用作自动备份特定U盘的工具，请使用白名单模式\r\n白名单模式下，只有预先设置好的U盘才会被USBCopyer复制\r\n\r\n当你要把USBCopyer用作偷U盘文件的工具，请使用黑名单模式\r\n黑名单模式下，USBCopyer会复制除预先设置好的U盘以外的全部U盘\r\n\r\n另外，分区号和序列号是“或”的关系，只要有一者符合即命中", "黑白名单模式帮助", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -14,14 +14,14 @@ namespace USBCopyer
 {
     public partial class Host : Form
     {
-        public string title   = Application.ProductName;
-        public static string dir     = Application.StartupPath + @"\USBCopyerData\";
+        public string title = Application.ProductName;
+        public static string dir = Application.StartupPath + @"\USBCopyerData\";
         public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";
         public string[] white;
         public string[] black;
         public string[] blackdisk;
         public string[] blackid;
-        public Dictionary<string,Thread> copyThread = new Dictionary<string,Thread>(); //正在复制文件的线程 分区号=>线程
+        public Dictionary<string, Thread> copyThread = new Dictionary<string, Thread>(); //正在复制文件的线程 分区号=>线程
         public static List<char> Volumes = new List<char>();
 
         public Host()
@@ -52,7 +52,14 @@ namespace USBCopyer
             nameMenuItem.Text += " V" + Application.ProductVersion;
             if (!string.IsNullOrEmpty(Properties.Settings.Default.black))
             {
-                black = Properties.Settings.Default.black.ToLower().Split(',');
+                if (Properties.Settings.Default.black.Contains(','))
+                {
+                    black = Properties.Settings.Default.black.ToLower().Split(',');
+                }
+                else
+                {
+                    black = new string[] { Properties.Settings.Default.black.ToLower() };
+                }
             }
             else
             {
@@ -60,7 +67,14 @@ namespace USBCopyer
             }
             if (!string.IsNullOrEmpty(Properties.Settings.Default.blackdisk))
             {
-                blackdisk = Properties.Settings.Default.blackdisk.Split(',');
+                if (Properties.Settings.Default.blackdisk.Contains(','))
+                {
+                    blackdisk = Properties.Settings.Default.blackdisk.Split(',');
+                }
+                else
+                {
+                    blackdisk = new string[] { Properties.Settings.Default.blackdisk };
+                }
             }
             else
             {
@@ -68,7 +82,14 @@ namespace USBCopyer
             }
             if (!string.IsNullOrEmpty(Properties.Settings.Default.blackid))
             {
-                blackid = Properties.Settings.Default.blackid.Split(',');
+                if (Properties.Settings.Default.blackid.Contains(','))
+                {
+                    blackid = Properties.Settings.Default.blackid.Split(',');
+                }
+                else
+                {
+                    blackid = new string[] { Properties.Settings.Default.blackid };
+                }
             }
             else
             {
@@ -76,13 +97,21 @@ namespace USBCopyer
             }
             if (!string.IsNullOrEmpty(Properties.Settings.Default.white))
             {
-                white = Properties.Settings.Default.white.ToLower().Split(',');
-            } else
+                if (Properties.Settings.Default.white.Contains(','))
+                {
+                    white = Properties.Settings.Default.white.ToLower().Split(',');
+                }
+                else
+                {
+                    white = new string[] { Properties.Settings.Default.white.ToLower() };
+                }
+            }
+            else
             {
                 white = new string[0];
             }
             nicon.Visible = Program.showicon;
-            if(!Properties.Settings.Default.multirun)
+            if (!Properties.Settings.Default.multirun)
             {
                 Process[] processcollection = Process.GetProcessesByName(Application.ProductName);
                 if (processcollection.Length >= 2)
@@ -92,7 +121,7 @@ namespace USBCopyer
                     Environment.Exit(9);
                 }
             }
-            if(Properties.Settings.Default.firstrun)
+            if (Properties.Settings.Default.firstrun)
             {
                 msg("欢迎使用 USBCopyer V" + Application.ProductVersion + "! 右键单击此图标可进行设置");
                 Properties.Settings.Default.firstrun = false;
@@ -150,8 +179,8 @@ namespace USBCopyer
 
         public void error(string msg, string title = "错误")
         {
-            Program.log(title + "：" + msg.Replace("\r\n", " "),2);
-            if(nicon.Visible)
+            Program.log(title + "：" + msg.Replace("\r\n", " "), 2);
+            if (nicon.Visible)
             {
                 MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -172,7 +201,7 @@ namespace USBCopyer
             Environment.Exit(0);
         }
 
-        public const int WM_DEVICECHANGE = 0x219;//U盘插入后，OS的底层会自动检测到，然后向应用程序发送“硬件设备状态改变“的消息
+        public const int WM_DEVICECHANGE = 0x219;//U盘插入后，OS的底层会自动检测到，然后向应用程序发送“硬件设备状态改变”的消息
         public const int DBT_DEVICEARRIVAL = 0x8000;  //就是用来表示U盘可用的。一个设备或媒体已被插入一块，现在可用。
         public const int DBT_DEVICEQUERYREMOVE = 0x8001;  //审批要求删除一个设备或媒体作品。任何应用程序也不能否认这一要求，并取消删除。
         public const int DBT_DEVICEQUERYREMOVEFAILED = 0x8002;  //请求删除一个设备或媒体片已被取消。
@@ -185,7 +214,8 @@ namespace USBCopyer
             {
                 int wp = m.WParam.ToInt32();
                 //存储设备插/拔/弹
-                if (wp == DBT_DEVICEARRIVAL || wp == DBT_DEVICEQUERYREMOVE || wp == DBT_DEVICEREMOVECOMPLETE || wp == DBT_DEVICEREMOVEPENDING) {
+                if (wp == DBT_DEVICEARRIVAL || wp == DBT_DEVICEQUERYREMOVE || wp == DBT_DEVICEREMOVECOMPLETE || wp == DBT_DEVICEREMOVEPENDING)
+                {
                     DEV_BROADCAST_HDR dbhdr = (DEV_BROADCAST_HDR)Marshal.PtrToStructure(m.LParam, typeof(DEV_BROADCAST_HDR));
                     if (dbhdr.dbch_devicetype == 2)
                     {
@@ -199,93 +229,104 @@ namespace USBCopyer
                             int end = (int)volums[len - 1];
                             for (int i = start; i <= end; i++)
                             {
-                                string disk =((char)i).ToString() + ":"; 
-                            
-                            
-                            if(wp == DBT_DEVICEARRIVAL) //存储设备插入
-                            {
-                                try
+                                string disk = ((char)i).ToString() + ":";
+
+                                if (wp == DBT_DEVICEARRIVAL) //存储设备插入
                                 {
-                                    ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\""+disk+"\"");
-                                    string diskser = "";
-                                    string diskname = "";
-                                    string diskdir;
-                                    object diskserdata  = diskinfo.Properties["VolumeSerialNumber"].Value;
-                                    object disknamedata = diskinfo.Properties["VolumeName"].Value;
-                                    //DiskDetectedCallback
-                                    if (Properties.Settings.Default.EnableDiskDetectedCallback && File.Exists(confdir + "DiskDetectedCallback.bat"))
-                                    {
-                                        int ExitCode = 1;
-                                        Thread th = new Thread(() => {
-                                            try
-                                            {
-                                                string CallbackCode = File.ReadAllText(confdir + "DiskDetectedCallback.bat");
-                                                string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
-                                                CallbackCode = ProcessCallbackCode(CallbackCode);
-                                                CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, diskinfo.Properties, "NONE");
-                                                File.WriteAllText(OutputPath, CallbackCode);
-                                                ExitCode = RunCallback(OutputPath, out string StdOut);
-                                                File.Delete(OutputPath);
-                                                Program.log("DiskDetectedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Program.log("DiskDetectedCallback 回调运行失败\r\n" + ex.ToString(), 1);
-                                            }
-                                        });
-                                        th.Start();
-                                        if (Properties.Settings.Default.WaitCallback)
-                                        {
-                                            th.Join();
-                                            if(ExitCode != 0)
-                                            {
-                                                Program.log("根据 DiskDetectedCallback 回调退出码: " + ExitCode + " 复制操作取消。", 0);
-                                            }
-                                        }
-                                    }
                                     try
                                     {
-                                        //Network Drive (4)
-                                        if (Properties.Settings.Default.SkipNetworkDisk && (int)diskinfo.Properties["DriveType"].Value == 4)
+                                        StringBuilder volumeName = new StringBuilder(256);
+                                        StringBuilder fileSystemName = new StringBuilder(256);
+                                        GetVolumeInformation(
+                                            disk + Path.DirectorySeparatorChar,
+                                            volumeName,
+                                            volumeName.Capacity,
+                                            out uint serialNumber,
+                                            out uint maxComponentLength,
+                                            out uint fileSystemFlags,
+                                            fileSystemName,
+                                            fileSystemName.Capacity);
+                                        string diskser = serialNumber.ToString("X8");
+                                        string diskname = volumeName.ToString();
+                                        string diskdir;
+
+                                        //DiskDetectedCallback
+                                        if (Properties.Settings.Default.EnableDiskDetectedCallback && File.Exists(confdir + "DiskDetectedCallback.bat"))
                                         {
-                                            Program.log("检测到磁盘种类为网络驱动器：" + disk + " 根据设置取消复制！");
-                                            return;
+                                            int ExitCode = 1;
+                                            Thread th = new Thread(() =>
+                                            {
+                                                try
+                                                {
+                                                    string CallbackCode = File.ReadAllText(confdir + "DiskDetectedCallback.bat");
+                                                    string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
+                                                    CallbackCode = ProcessCallbackCode(CallbackCode);
+                                                    CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, new DiskInfo
+                                                    {
+                                                        VolumeSerialNumber = diskser,
+                                                        VolumeName = diskname,
+                                                        Volume = disk,
+                                                        DriveType = GetDriveType(disk + Path.DirectorySeparatorChar).ToString(),
+                                                        FileSystem = fileSystemName.ToString()
+                                                    }, "NONE");
+                                                    File.WriteAllText(OutputPath, CallbackCode);
+                                                    ExitCode = RunCallback(OutputPath, out string StdOut);
+                                                    File.Delete(OutputPath);
+                                                    Program.log("DiskDetectedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Program.log("DiskDetectedCallback 回调运行失败\r\n" + ex.ToString(), 1);
+                                                }
+                                            });
+                                            th.Start();
+                                            if (Properties.Settings.Default.WaitCallback)
+                                            {
+                                                th.Join();
+                                                if (ExitCode != 0)
+                                                {
+                                                    Program.log("根据 DiskDetectedCallback 回调退出码: " + ExitCode + " 复制操作取消。", 0);
+                                                }
+                                            }
                                         }
-                                        //Compact Disc (5)
-                                        else if (Properties.Settings.Default.SkipDVD && (int)diskinfo.Properties["DriveType"].Value == 5)
+                                        try
                                         {
-                                            Program.log("检测到磁盘种类为光盘驱动器或虚拟光驱：" + disk + " 根据设置取消复制！");
-                                            return;
+                                            uint driveType = GetDriveType(disk + "\\");
+                                            //Network Drive (4)
+                                            if (Properties.Settings.Default.SkipNetworkDisk && driveType == 4)
+                                            {
+                                                Program.log("检测到磁盘种类为网络驱动器：" + disk + " 根据设置取消复制！");
+                                                return;
+                                            }
+                                            //Compact Disc (5)
+                                            else if (Properties.Settings.Default.SkipDVD && driveType == 5)
+                                            {
+                                                Program.log("检测到磁盘种类为光盘驱动器或虚拟光驱：" + disk + " 根据设置取消复制！");
+                                                return;
+                                            }
+                                            //Removable Disk (2)
+                                            else if (Properties.Settings.Default.SkipUDisk && driveType == 2)
+                                            {
+                                                Program.log("检测到磁盘种类为可移动磁盘：" + disk + " 根据设置取消复制！");
+                                                return;
+                                            }
+                                            //Local Disk (3)
+                                            else if (Properties.Settings.Default.SkipLocalDisk && driveType == 3)
+                                            {
+                                                Program.log("检测到磁盘种类为硬盘驱动器：" + disk + " 根据设置取消复制！");
+                                                return;
+                                            }
+                                            //Unknown (0)
+                                            //RAM Disk (6)
+                                            //No Root Directory(1)
+                                            else if (Properties.Settings.Default.SkipOtherDisk && (driveType == 6 || driveType == 1 || driveType == 0))
+                                            {
+                                                Program.log("检测到磁盘种类为其他驱动器：" + disk + " 根据设置取消复制！");
+                                                return;
+                                            }
                                         }
-                                        //Removable Disk (2)
-                                        else if (Properties.Settings.Default.SkipUDisk && (int)diskinfo.Properties["DriveType"].Value == 2)
-                                        {
-                                            Program.log("检测到磁盘种类为可移动磁盘：" + disk + " 根据设置取消复制！");
-                                            return;
-                                        }
-                                        //Local Disk (3)
-                                        else if (Properties.Settings.Default.SkipLocalDisk && (int)diskinfo.Properties["DriveType"].Value == 3)
-                                        {
-                                            Program.log("检测到磁盘种类为硬盘驱动器：" + disk + " 根据设置取消复制！");
-                                            return;
-                                        }
-                                        //Unknown (0)
-                                        //RAM Disk (6)
-                                        //No Root Directory(1)
-                                        else if (Properties.Settings.Default.SkipOtherDisk && ((int)diskinfo.Properties["DriveType"].Value == 6 || (int)diskinfo.Properties["DriveType"].Value == 1 || (int)diskinfo.Properties["DriveType"].Value == 0))
-                                        {
-                                            Program.log("检测到磁盘种类为其他驱动器：" + disk + " 根据设置取消复制！");
-                                            return;
-                                        }
-                                    }
-                                    catch (Exception) { }
-                                    if(disknamedata != null)
-                                    {
-                                        diskname = disknamedata.ToString();
-                                    }
-                                    if (diskserdata == null)
-                                    {
-                                        if(string.IsNullOrEmpty(diskname))
+                                        catch (Exception) { }
+                                        if (string.IsNullOrEmpty(diskname))
                                         {
                                             diskdir = disk.Substring(0, 1);
                                         }
@@ -293,157 +334,156 @@ namespace USBCopyer
                                         {
                                             diskdir = disk.Substring(0, 1) + " - " + diskname;
                                         }
-                                        msg(disk, "存储设备已插入");
-                                        Program.log("获取存储设备序列号失败，文件目录将命名为：" + diskdir);
-                                    }
-                                    else
-                                    {
-                                        diskser = diskserdata.ToString();
-                                        diskdir = diskser;
-                                        msg(disk + " - " + diskser, "存储设备已插入");
-                                    }
-                                    if (EnableToolStripMenuItem.Checked)
-                                    {
-                                        //使用黑名单磁盘模式
-                                        if(Properties.Settings.Default.UseBlackDisk)
+                                        msg(diskdir, "存储设备已插入");
+                                        if (EnableToolStripMenuItem.Checked)
                                         {
-                                            if (!string.IsNullOrEmpty(diskser) && blackid.Contains(diskser))
+                                            //使用黑名单磁盘模式
+                                            if (Properties.Settings.Default.UseBlackDisk)
                                             {
-                                                Program.log("黑名单磁盘序列号：" + diskser + " 取消复制！");
-                                                return;
-                                            }
-                                            if (!string.IsNullOrEmpty(disk) && blackdisk.Contains(disk.Substring(0, 1)))
-                                            {
-                                                Program.log("黑名单分区号：" + disk + " 取消复制！");
-                                                return;
-                                            }
-                                        }
-                                        else //使用白名单磁盘模式
-                                        {
-                                            if ((string.IsNullOrEmpty(diskser) || !blackid.Contains(diskser)) && (string.IsNullOrEmpty(disk) || !blackdisk.Contains(disk.Substring(0, 1))))
-                                            {
-                                                Program.log("磁盘序列号：" + diskser + " 及分区号 " + disk + " 均不在白名单，取消复制！");
-                                                return;
-                                            }
-                                        }
-                                        copyThread[disk] = new Thread(() =>
-                                        {
-                                            if (Properties.Settings.Default.sleep > 0)
-                                            {
-                                                Program.log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
-                                                Thread.Sleep(Properties.Settings.Default.sleep * 1000);
-                                                if (!Directory.Exists(disk + "\\"))
+                                                if (!string.IsNullOrEmpty(diskser) && blackid.Contains(diskser))
                                                 {
-                                                    if(string.IsNullOrEmpty(diskser))
-                                                    {
-                                                        Program.log("在延迟复制期间获取序列号失败的存储设备已拔出，复制取消：" + diskdir, 1);
-                                                    }
-                                                    else
-                                                    {
-                                                        Program.log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser, 1);
-                                                    }
+                                                    Program.log("黑名单磁盘序列号：" + diskser + " 取消复制！");
+                                                    return;
+                                                }
+                                                if (!string.IsNullOrEmpty(disk) && blackdisk.Contains(disk.Substring(0, 1)))
+                                                {
+                                                    Program.log("黑名单分区号：" + disk + " 取消复制！");
                                                     return;
                                                 }
                                             }
-                                            setIcon(iconStatus.working);
-                                            if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskdir))
+                                            else //使用白名单磁盘模式
                                             {
-                                                Program.log("清空输出目录：" + dir + diskdir);
-                                                Directory.Delete(dir + diskdir, true);
-                                            }
-                                            if (!File.Exists(dir + "Disks.csv"))
-                                            {
-                                                File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
-                                            }
-                                            try
-                                            {
-                                                FileStream fs = File.Open(dir + "Disks.csv", FileMode.Append, FileAccess.Write);
-                                                string DiskLog = "\r\n"
-                                                  + "\"" + DateTime.Now.ToLocalTime().ToString() + "\","
-                                                  + "\"" + diskser + "\","
-                                                  + "\"" + diskname + "\","
-                                                  + "\"" + disk + "\","
-                                                  + "\"" + diskinfo.Properties["FileSystem"].Value + "\","
-                                                  + "\"" + diskinfo.Properties["Description"].Value + "\","
-                                                  + "\"" + diskdir + "\",";
-                                                var DiskLogBytes = Encoding.Default.GetBytes(DiskLog);
-                                                fs.Position = fs.Length;
-                                                fs.Write(DiskLogBytes, 0, DiskLogBytes.Length);
-                                                fs.Close();
-                                            }
-                                            catch(Exception ex)
-                                            {
-                                                Program.log("写入磁盘日志 Disk.csv 失败，文件可能被占用：\r\n" + ex.ToString(), 1);
-                                            }
-                                            CopyDirectory(disk + "\\", dir + diskdir); 
-                                            if (Properties.Settings.Default.SkipEmptyFolder)
-                                            {
-                                                KillEmptyDirectory(dir + diskdir);
-                                            }
-                                            //AllCompletedCallback
-                                            if (Properties.Settings.Default.EnableAllCompletedCallback && File.Exists(confdir + "AllCompletedCallback.bat"))
-                                            {
-                                                Thread th = new Thread(() =>
+                                                if ((string.IsNullOrEmpty(diskser) || !blackid.Contains(diskser)) && (string.IsNullOrEmpty(disk) || !blackdisk.Contains(disk.Substring(0, 1))))
                                                 {
-                                                    try
-                                                    {
-                                                        string CallbackCode = File.ReadAllText(confdir + "AllCompletedCallback.bat");
-                                                        string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
-                                                        CallbackCode = ProcessCallbackCode(CallbackCode);
-                                                        CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, diskinfo.Properties, diskdir);
-                                                        File.WriteAllText(OutputPath, CallbackCode);
-                                                        int ExitCode = RunCallback(OutputPath, out string StdOut);
-                                                        File.Delete(OutputPath);
-                                                        Program.log("AllCompletedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
-                                                    }
-                                                    catch(Exception ex)
-                                                    {
-                                                        Program.log("AllCompletedCallback 回调运行失败\r\n" + ex.ToString(), 1);
-                                                    }
-                                                });
-                                                th.Start();
+                                                    Program.log("磁盘序列号：" + diskser + " 及分区号 " + disk + " 均不在白名单，取消复制！");
+                                                    return;
+                                                }
                                             }
-                                            //free
-                                            setIcon(iconStatus.free);
-                                            if (string.IsNullOrEmpty(diskser))
+                                            copyThread[disk] = new Thread(() =>
                                             {
-                                                Program.log("设备数据复制完成，但由于获取磁盘序列号失败，文件目录命名为：" + diskdir);
-                                            }
-                                            else
+                                                if (Properties.Settings.Default.sleep > 0)
+                                                {
+                                                    Program.log("延迟复制：将在 " + Properties.Settings.Default.sleep + "秒后进行复制");
+                                                    Thread.Sleep(Properties.Settings.Default.sleep * 1000);
+                                                    if (!Directory.Exists(disk + "\\"))
+                                                    {
+                                                        if (string.IsNullOrEmpty(diskser))
+                                                        {
+                                                            Program.log("在延迟复制期间获取序列号失败的存储设备已拔出，复制取消：" + diskdir, 1);
+                                                        }
+                                                        else
+                                                        {
+                                                            Program.log("在延迟复制期间存储设备已拔出，复制取消：" + disk + " - " + diskser, 1);
+                                                        }
+                                                        return;
+                                                    }
+                                                }
+                                                setIcon(iconStatus.working);
+                                                if (Properties.Settings.Default.autorm && Directory.Exists(dir + diskdir))
+                                                {
+                                                    Program.log("清空输出目录：" + dir + diskdir);
+                                                    Directory.Delete(dir + diskdir, true);
+                                                }
+                                                if (!File.Exists(dir + "Disks.csv"))
+                                                {
+                                                    File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
+                                                }
+                                                try
+                                                {
+                                                    FileStream fs = File.Open(dir + "Disks.csv", FileMode.Append, FileAccess.Write);
+                                                    string DiskLog = "\r\n"
+                                                      + "\"" + DateTime.Now.ToLocalTime().ToString() + "\","
+                                                      + "\"" + diskser + "\","
+                                                      + "\"" + diskname + "\","
+                                                      + "\"" + disk + "\","
+                                                      + "\"" + fileSystemName.ToString() + "\","
+                                                      + "\"" + serialNumber.ToString() + "\","
+                                                      + "\"" + diskdir + "\",";
+                                                    var DiskLogBytes = Encoding.Default.GetBytes(DiskLog);
+                                                    fs.Position = fs.Length;
+                                                    fs.Write(DiskLogBytes, 0, DiskLogBytes.Length);
+                                                    fs.Close();
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Program.log("写入磁盘日志 Disk.csv 失败，文件可能被占用：\r\n" + ex.ToString(), 1);
+                                                }
+                                                CopyDirectory(disk + "\\", dir + diskdir);
+                                                if (Properties.Settings.Default.SkipEmptyFolder)
+                                                {
+                                                    KillEmptyDirectory(dir + diskdir);
+                                                }
+                                                //AllCompletedCallback
+                                                if (Properties.Settings.Default.EnableAllCompletedCallback && File.Exists(confdir + "AllCompletedCallback.bat"))
+                                                {
+                                                    Thread th = new Thread(() =>
+                                                    {
+                                                        try
+                                                        {
+                                                            string CallbackCode = File.ReadAllText(confdir + "AllCompletedCallback.bat");
+                                                            string OutputPath = confdir + Path.GetRandomFileName() + ".bat";
+                                                            CallbackCode = ProcessCallbackCode(CallbackCode);
+                                                            CallbackCode = ProcessCallbackCodeWithDisk(CallbackCode, new DiskInfo
+                                                            {
+                                                                VolumeSerialNumber = diskser,
+                                                                VolumeName = diskname,
+                                                                Volume = disk,
+                                                                DriveType = GetDriveType(disk + "\\").ToString(),
+                                                                FileSystem = fileSystemName.ToString()
+                                                            }, diskdir);
+                                                            File.WriteAllText(OutputPath, CallbackCode);
+                                                            int ExitCode = RunCallback(OutputPath, out string StdOut);
+                                                            File.Delete(OutputPath);
+                                                            Program.log("AllCompletedCallback 回调运行完成, 回调退出码: " + ExitCode + " 输出: \r\n" + StdOut);
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            Program.log("AllCompletedCallback 回调运行失败\r\n" + ex.ToString(), 1);
+                                                        }
+                                                    });
+                                                    th.Start();
+                                                }
+                                                //free
+                                                setIcon(iconStatus.free);
+                                                if (string.IsNullOrEmpty(diskser))
+                                                {
+                                                    Program.log("设备数据复制完成，但由于获取磁盘序列号失败，文件目录命名为：" + diskdir);
+                                                }
+                                                else
+                                                {
+                                                    Program.log("设备数据复制完成：" + disk + " - " + diskser);
+                                                }
+                                                copyThread.Remove(disk);
+                                            });
+                                            copyThread[disk].IsBackground = true;
+                                            copyThread[disk].Start();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        setIcon(iconStatus.free);
+                                        Program.log("获取插入的存储设备信息失败，复制已取消：" + ex.ToString(), 2);
+                                    }
+                                }
+                                else  //存储设备拔/弹出
+                                {
+                                    try
+                                    {
+                                        setIcon(iconStatus.free);
+                                        if (copyThread.ContainsKey(disk))
+                                        {
+                                            if (copyThread[disk].IsAlive)
                                             {
-                                                Program.log("设备数据复制完成：" + disk + " - " + diskser);
+                                                copyThread[disk].Abort();
+                                                copyThread[disk] = null;
                                             }
                                             copyThread.Remove(disk);
-                                        });
-                                        copyThread[disk].IsBackground = true;
-                                        copyThread[disk].Start();
+                                            Program.log("用户弹出了存储设备，强制停止复制：" + disk, 1);
+                                        }
                                     }
-                                }
-                                catch(Exception ex)
-                                {
-                                    setIcon(iconStatus.free);
-                                    Program.log("获取插入的存储设备信息失败，复制已取消：" + ex.ToString(),2);
+                                    catch (Exception) { }
                                 }
                             }
-                            else  //存储设备拔/弹出
-                            {
-                                try
-                                {
-                                    setIcon(iconStatus.free);
-                                    if (copyThread.ContainsKey(disk))
-                                    {
-                                        if (copyThread[disk].IsAlive)
-                                        {
-                                            copyThread[disk].Abort();
-                                            copyThread[disk] = null;
-                                        }
-                                        copyThread.Remove(disk);
-                                        Program.log("用户弹出了存储设备，强制停止复制：" + disk,1);
-                                    }
-                                }
-                                catch (Exception) {}
-                                }
-                            } 
                         }
                     }
                 }
@@ -459,13 +499,13 @@ namespace USBCopyer
                 .Replace("{$DataDir}", dir);
         }
 
-        private string ProcessCallbackCodeWithDisk(string callbackCode, PropertyDataCollection data,string outputdir)
+        private string ProcessCallbackCodeWithDisk(string callbackCode, DiskInfo diskInfo, string outputdir)
         {
             return callbackCode
-                .Replace("{$VolumeSerialNumber}", data["VolumeSerialNumber"].Value.ToString())
-                .Replace("{$VolumeName}", data["VolumeName"].Value.ToString())
-                .Replace("{$Volume}", data["Name"].Value.ToString())
-                .Replace("{$DriveType}", data["DriveType"].Value.ToString())
+                .Replace("{$VolumeSerialNumber}", diskInfo.VolumeSerialNumber ?? "")
+                .Replace("{$VolumeName}", diskInfo.VolumeName ?? "")
+                .Replace("{$Volume}", diskInfo.Volume ?? "")
+                .Replace("{$DriveType}", diskInfo.DriveType ?? "")
                 .Replace("{$USBDir}", outputdir);
         }
 
@@ -494,13 +534,13 @@ namespace USBCopyer
         /// <returns>返回驱动器号数组</returns>
         public static char[] GetVolumes(UInt32 Mask)
         {
-           // List<char> Volumes = new List<char>();
+            // List<char> Volumes = new List<char>();
 
             for (int i = 0; i <= 26; i++)
             {
                 //uint p = (uint)Math.Pow(2, i);
                 uint p = (uint)Math.Floor(Math.Log(Mask, 2));
-               // if ((p | Mask) == p)
+                // if ((p | Mask) == p)
                 if (i == p)
                 {
                     Volumes.Add((char)('A' + i));
@@ -544,7 +584,7 @@ namespace USBCopyer
             try
             {
                 DirectoryInfo info = new DirectoryInfo(sourcePath);
-                if(!Directory.Exists(destinationPath))
+                if (!Directory.Exists(destinationPath))
                 {
                     Directory.CreateDirectory(destinationPath);
                 }
@@ -559,7 +599,7 @@ namespace USBCopyer
                         try
                         {
                             FileInfo fi1 = new FileInfo(fsi.FullName);
-                            if(checkExt(fi1.Extension))
+                            if (checkExt(fi1.Extension))
                             {
                                 CopyLog += "复制文件：" + fsi.FullName + "\r\n";
                                 if (File.Exists(destName))
@@ -592,13 +632,13 @@ namespace USBCopyer
                                             File.Copy(fsi.FullName, destName);
                                             break;
                                         case 1:
-                                            if(fi1.Length > fileSizeLimit)
+                                            if (fi1.Length > fileSizeLimit)
                                             {
                                                 File.Copy(fsi.FullName, destName);
                                             }
                                             break;
                                         case 2:
-                                            if(fi1.Length < fileSizeLimit)
+                                            if (fi1.Length < fileSizeLimit)
                                             {
                                                 File.Copy(fsi.FullName, destName);
                                             }
@@ -609,14 +649,14 @@ namespace USBCopyer
                         }
                         catch (Exception ex)
                         {
-                            CopyLog +=  "复制文件失败：" + destName + "\r\n" + ex.ToString();
+                            CopyLog += "复制文件失败：" + destName + "\r\n" + ex.ToString();
                         }
                     }
                     else //如果是文件夹，新建文件夹，递归
                     {
                         try
                         {
-                            if(Properties.Settings.Default.SkipEmptyFolder)
+                            if (Properties.Settings.Default.SkipEmptyFolder)
                             {
                                 FileSystemInfo[] subFiles = (new DirectoryInfo(fsi.FullName)).GetFileSystemInfos();
                                 if (subFiles.Count() > 0)
@@ -647,10 +687,10 @@ namespace USBCopyer
         {
             if (string.IsNullOrEmpty(ext) && Properties.Settings.Default.copynoext) return true;
             string extn = ext.ToLower().Substring(1);
-            switch(Properties.Settings.Default.mode)
+            switch (Properties.Settings.Default.mode)
             {
                 case 1: //黑
-                    if(black.Contains(extn))
+                    if (black.Contains(extn))
                     {
                         return false;
                     }
@@ -678,15 +718,15 @@ namespace USBCopyer
 
         public void openLogFile()
         {
-            if(!File.Exists(confdir + "EventViewer.xml"))
+            if (!File.Exists(confdir + "EventViewer.xml"))
             {
                 File.WriteAllText(confdir + "EventViewer.xml", Properties.Resources.EventViewer);
             }
             try
             {
-                Process.Start("eventvwr.exe", "/v:\""+confdir + "EventViewer.xml"+"\"");
+                Process.Start("eventvwr.exe", "/v:\"" + confdir + "EventViewer.xml" + "\"");
             }
-           catch (Exception ex)
+            catch (Exception ex)
             {
                 error("打开日志查看器失败：" + ex.ToString());
             }
@@ -713,7 +753,7 @@ namespace USBCopyer
         {
             try
             {
-                if(!Directory.Exists(dir))
+                if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
                 }
@@ -727,13 +767,13 @@ namespace USBCopyer
 
         /// <summary>
         /// 删除掉空文件夹
-        /// 所有没有子“文件系统”的都将被删除
+        /// 所有没有子"文件系统"的都将被删除
         /// </summary>
         /// <param name="storagepath"></param>
         public void KillEmptyDirectory(String startLocation)
         {
             foreach (var directory in Directory.GetDirectories(startLocation))
-            { 
+            {
                 KillEmptyDirectory(directory);
                 if (Directory.GetFiles(directory).Length == 0 &&
                 Directory.GetDirectories(directory).Length == 0)
@@ -784,7 +824,8 @@ namespace USBCopyer
 
         private void clearLog_Click(object sender, EventArgs e)
         {
-            if (Program.logger != null) {
+            if (Program.logger != null)
+            {
                 Program.logger.Clear();
             }
         }
@@ -796,9 +837,9 @@ namespace USBCopyer
 
         private void KillCopyThreadStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(KeyValuePair<string,Thread>th in copyThread)
+            foreach (KeyValuePair<string, Thread> th in copyThread)
             {
-                if(th.Value.IsAlive)
+                if (th.Value.IsAlive)
                 {
                     th.Value.Abort();
                 }
@@ -822,7 +863,7 @@ namespace USBCopyer
         {
             try
             {
-                Process.Start("cmd.exe", "/c title Restarting USBCopyer && echo Killing USBCopyer && taskkill /f /pid "+Process.GetCurrentProcess().Id + " && echo Starting USBCopyer && start \"\" \""+Application.ExecutablePath+"\"");
+                Process.Start("cmd.exe", "/c title Restarting USBCopyer && echo Killing USBCopyer && taskkill /f /pid " + Process.GetCurrentProcess().Id + " && echo Starting USBCopyer && start \"\" \"" + Application.ExecutablePath + "\"");
             }
             catch (Exception ex)
             {
@@ -854,5 +895,29 @@ namespace USBCopyer
                 nicon.Visible = false;
             }
         }
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern bool GetVolumeInformation(
+        string lpRootPathName,
+        StringBuilder lpVolumeNameBuffer,
+        int nVolumeNameSize,
+        out uint lpVolumeSerialNumber,
+        out uint lpMaximumComponentLength,
+        out uint lpFileSystemFlags,
+        StringBuilder lpFileSystemNameBuffer,
+        int nFileSystemNameSize);
+
+        [DllImport("kernel32.dll")]
+        static extern uint GetDriveType(string lpRootPathName);
+
+        public class DiskInfo
+        {
+            public string VolumeSerialNumber { get; set; }
+            public string VolumeName { get; set; }
+            public string Volume { get; set; }
+            public string DriveType { get; set; }
+            public string FileSystem { get; set; }
+        }
+
     }
 }
