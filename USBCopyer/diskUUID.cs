@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Management;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -22,18 +17,13 @@ namespace USBCopyer
             getDisk();
         }
 
-        private void diskUUID_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         void getDisk()
         {
             string[] logicalDiskList = Directory.GetLogicalDrives();
             diskList.Items.Clear();
             foreach (string logicalDisk in logicalDiskList)
             {
-                diskList.Items.Add(logicalDisk.Substring(0,2));
+                diskList.Items.Add(logicalDisk.Substring(0, 2));
             }
         }
 
@@ -42,16 +32,21 @@ namespace USBCopyer
             getDisk();
         }
 
-        /*
-        DriveType
-            Unknown (0)
-            No Root Directory (1)
-            Removable Disk (2)
-            Local Disk (3)
-            Network Drive (4)
-            Compact Disc (5)
-            RAM Disk (6)
-        */
+        private string GetDriveTypeDescription(uint driveType)
+        {
+            switch (driveType)
+            {
+                case 0: return "未知";
+                case 1: return "未格式化";
+                case 2: return "可移动磁盘";
+                case 3: return "本地磁盘";
+                case 4: return "网络驱动器";
+                case 5: return "光盘驱动器";
+                case 6: return "虚拟磁盘";
+                default: return "无法识别";
+            }
+        }
+
         private void diskList_SelectedIndexChanged(object sender, EventArgs e)
         {
             thisDiskName.Text = "";
@@ -60,16 +55,44 @@ namespace USBCopyer
             thisDiskDescription.Text = "";
             try
             {
-                string disk = diskList.SelectedItem.ToString();
-                ManagementObject diskinfo = new ManagementObject("win32_logicaldisk.deviceid=\"" + disk + "\"");
-                thisDiskID.Text = disk;
-                thisDiskID2.Text = diskinfo.Properties["Name"].Value.ToString();
-                thisDiskName.Text = diskinfo.Properties["VolumeName"].Value.ToString();
-                thisDiskFileSystem.Text = diskinfo.Properties["FileSystem"].Value.ToString();
-                thisDiskDescription.Text = "[" + diskinfo.Properties["DriveType"].Value.ToString() + "] " + diskinfo.Properties["Description"].Value.ToString();
-                thisDiskSer.Text = diskinfo.Properties["VolumeSerialNumber"].Value.ToString();
+                string disk = diskList.SelectedItem.ToString() + Path.DirectorySeparatorChar;
+
+                StringBuilder volumeName = new StringBuilder(256);
+                StringBuilder fileSystemName = new StringBuilder(256);
+                GetVolumeInformation(
+                    disk + Path.DirectorySeparatorChar,
+                    volumeName,
+                    volumeName.Capacity,
+                    out uint serialNumber,
+                    out uint maxComponentLength,
+                    out uint fileSystemFlags,
+                    fileSystemName,
+                    fileSystemName.Capacity);
+
+                thisDiskID.Text = diskList.SelectedItem.ToString();
+                thisDiskID2.Text = disk;
+                thisDiskName.Text = volumeName.ToString();
+                thisDiskFileSystem.Text = fileSystemName.ToString();
+                uint driveType = GetDriveType(disk);
+                string driveTypeStr = GetDriveTypeDescription(driveType);
+                thisDiskDescription.Text = $"[{driveType}] {driveTypeStr}";
+                thisDiskSer.Text = serialNumber.ToString("X8");
             }
             catch (Exception) { }
         }
+
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern bool GetVolumeInformation(
+        string lpRootPathName,
+        StringBuilder lpVolumeNameBuffer,
+        int nVolumeNameSize,
+        out uint lpVolumeSerialNumber,
+        out uint lpMaximumComponentLength,
+        out uint lpFileSystemFlags,
+        StringBuilder lpFileSystemNameBuffer,
+        int nFileSystemNameSize);
+
+        [DllImport("kernel32.dll")]
+        static extern uint GetDriveType(string lpRootPathName);
     }
 }
