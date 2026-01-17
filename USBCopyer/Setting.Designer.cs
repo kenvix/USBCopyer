@@ -45,6 +45,8 @@
             this.hidemsg = new System.Windows.Forms.CheckBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lb_type = new System.Windows.Forms.Label();
+            this.cb_type = new System.Windows.Forms.ComboBox();
             this.copynoext = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -102,9 +104,8 @@
             this.WaitCallback = new System.Windows.Forms.CheckBox();
             this.EnableDiskDetectedCallback = new System.Windows.Forms.CheckBox();
             this.EnableAllCompletedCallback = new System.Windows.Forms.CheckBox();
-            this.cb_type = new System.Windows.Forms.ComboBox();
-            this.lb_type = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -272,6 +273,31 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "按扩展名选择性复制";
+            // 
+            // lb_type
+            // 
+            this.lb_type.AutoSize = true;
+            this.lb_type.Location = new System.Drawing.Point(10, 124);
+            this.lb_type.Name = "lb_type";
+            this.lb_type.Size = new System.Drawing.Size(41, 12);
+            this.lb_type.TabIndex = 24;
+            this.lb_type.Text = "类型：";
+            // 
+            // cb_type
+            // 
+            this.cb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_type.FormattingEnabled = true;
+            this.cb_type.Items.AddRange(new object[] {
+            "空",
+            "文档",
+            "视频",
+            "压缩包",
+            "图片"});
+            this.cb_type.Location = new System.Drawing.Point(105, 124);
+            this.cb_type.Name = "cb_type";
+            this.cb_type.Size = new System.Drawing.Size(230, 20);
+            this.cb_type.TabIndex = 23;
+            this.cb_type.SelectedIndexChanged += new System.EventHandler(this.cb_type_SelectedIndexChanged);
             // 
             // copynoext
             // 
@@ -670,7 +696,7 @@
             this.linkLabel6.LinkColor = System.Drawing.Color.DarkViolet;
             this.linkLabel6.Location = new System.Drawing.Point(529, 580);
             this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(152, 16);
+            this.linkLabel6.Size = new System.Drawing.Size(151, 16);
             this.linkLabel6.TabIndex = 32;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "捐赠 USBCopyer (&D)";
@@ -842,31 +868,6 @@
             this.EnableAllCompletedCallback.Text = "回调1：启用 全部复制完成回调\r\nAllCompletedCallback";
             this.EnableAllCompletedCallback.UseVisualStyleBackColor = true;
             // 
-            // cb_type
-            // 
-            this.cb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_type.FormattingEnabled = true;
-            this.cb_type.Items.AddRange(new object[] {
-            "空",
-            "文档",
-            "视频",
-            "压缩包",
-            "图片"});
-            this.cb_type.Location = new System.Drawing.Point(105, 124);
-            this.cb_type.Name = "cb_type";
-            this.cb_type.Size = new System.Drawing.Size(230, 20);
-            this.cb_type.TabIndex = 23;
-            this.cb_type.SelectedIndexChanged += new System.EventHandler(this.cb_type_SelectedIndexChanged);
-            // 
-            // lb_type
-            // 
-            this.lb_type.AutoSize = true;
-            this.lb_type.Location = new System.Drawing.Point(10, 124);
-            this.lb_type.Name = "lb_type";
-            this.lb_type.Size = new System.Drawing.Size(41, 12);
-            this.lb_type.TabIndex = 24;
-            this.lb_type.Text = "类型：";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(531, 504);
@@ -877,11 +878,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // linkLabel12
+            // 
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Location = new System.Drawing.Point(536, 56);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(137, 12);
+            this.linkLabel12.TabIndex = 38;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "自定义程序配置文件目录";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(786, 631);
+            this.Controls.Add(this.linkLabel12);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.linkLabel8);
@@ -1016,6 +1029,7 @@
         private System.Windows.Forms.Label lb_type;
         private System.Windows.Forms.ComboBox cb_type;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.LinkLabel linkLabel12;
     }
 }
 

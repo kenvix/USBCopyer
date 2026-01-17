@@ -1,19 +1,20 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace USBCopyer
 {
     public partial class Setting : Form
     {
         public Host host;
-
+        public string confdir {  get; set; }
         public Setting()
         {
             InitializeComponent();
+            confdir = Properties.Settings.Default.confdir;
             Icon = Program.ico;
             version.Text += Application.ProductVersion;
             Text += Program.isAdminPermission() ? " (管理员)" : " (低权限模式)";
@@ -89,7 +90,8 @@ namespace USBCopyer
                         return;
                     }
                 }
-                Properties.Settings.Default.dir = dir.Text;
+                Properties.Settings.Default.dir = dir.Text;//与host.cs的逻辑配合。设置复制目录使Properties.Settings.Default.dir不为空
+                Properties.Settings.Default.confdir = confdir;
                 Properties.Settings.Default.conflict = conflict.SelectedIndex;
                 Properties.Settings.Default.autorm = autorm.Checked;
                 Properties.Settings.Default.hidemsg = hidemsg.Checked;
@@ -104,13 +106,22 @@ namespace USBCopyer
                 Properties.Settings.Default.autorunhide = autorunhide.Checked;
                 Properties.Settings.Default.filesizetype = filesizetype.SelectedIndex;
                 Properties.Settings.Default.filesize = int.Parse(filesize.Text);
-                if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))//创建对应目录，为了保存设置但不重启时正常工作
                 {
                     if (!Directory.Exists(Properties.Settings.Default.dir))
                     {
                         Directory.CreateDirectory(Properties.Settings.Default.dir);
                     }
                     Host.dir = Properties.Settings.Default.dir + "\\";
+                }
+
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.confdir))//创建对应目录，为了保存设置但不重启时正常工作
+                {
+                    if (!Directory.Exists(Properties.Settings.Default.confdir))
+                    {
+                        Directory.CreateDirectory(Properties.Settings.Default.confdir);
+                    }
+                    Host.confdir = Properties.Settings.Default.confdir + "\\";
                 }
 
                 Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
@@ -295,6 +306,16 @@ namespace USBCopyer
                 default:
                     Set_type("");
                     break;
+            }
+        }
+
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            EditDir editDir = new EditDir("自定义配置文件存储目录", "留空表示存放到 USBCopyerSystem 文件夹。可使用相对路径", confdir);
+            editDir.ShowDialog();
+            if (editDir.DialogResult == DialogResult.OK)
+            {
+                confdir = EditDir.input;
             }
         }
     }
