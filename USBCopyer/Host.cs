@@ -725,10 +725,11 @@ namespace USBCopyer
             if (!File.Exists(confdir + "EventViewer.xml"))
             {
                 File.WriteAllText(confdir + "EventViewer.xml", Properties.Resources.EventViewer);
+
             }
             try
             {
-                Process.Start("eventvwr.exe", "/v:\"" + confdir + "EventViewer.xml" + "\"");
+                Process.Start("eventvwr.exe", "/v:\"" + Path.GetFullPath(Path.Combine(confdir,"EventViewer.xml"))+ "\"");
             }
             catch (Exception ex)
             {
