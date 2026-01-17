@@ -43,10 +43,11 @@ namespace USBCopyer
                 {
                     Directory.CreateDirectory(dir);
                 }
-                if (!File.Exists(dir + "Disks.csv"))
+                if (!File.Exists(Path.Combine(dir,"Disks.csv")))
                 {
-                    File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
+                    File.WriteAllBytes(Path.Combine(dir, "Disks.csv"), Properties.Resources.Disks);
                 }
+                if (!System.IO.Directory.Exists(confdir)) System.IO.Directory.CreateDirectory(confdir);//原先在program.cs中的不存在则创建配置目录的代码
             }
             catch (Exception ex)
             {
@@ -725,10 +726,11 @@ namespace USBCopyer
             if (!File.Exists(confdir + "EventViewer.xml"))
             {
                 File.WriteAllText(confdir + "EventViewer.xml", Properties.Resources.EventViewer);
+
             }
             try
             {
-                Process.Start("eventvwr.exe", "/v:\"" + confdir + "EventViewer.xml" + "\"");
+                Process.Start("eventvwr.exe", "/v:\"" + Path.GetFullPath(Path.Combine(confdir,"EventViewer.xml"))+ "\"");
             }
             catch (Exception ex)
             {
