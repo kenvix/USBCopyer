@@ -15,8 +15,8 @@ namespace USBCopyer
     public partial class Host : Form
     {
         public string title = Application.ProductName;
-        public static string dir = Application.StartupPath + @"\USBCopyerData\";
-        public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";
+        public static string dir = Application.StartupPath + @"\USBCopyerData\";//复制目录 默认值
+        public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";//配置文件目录 默认值
         public string[] white;
         public string[] black;
         public string[] blackdisk;
@@ -29,9 +29,13 @@ namespace USBCopyer
             InitializeComponent();
             Hide();
             setIconX(iconStatus.free);
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.dir))//如果设置了复制目录（setting.cs中的逻辑）就覆盖public static string dir声明的默认值
             {
                 dir = Properties.Settings.Default.dir + "\\";
+            }
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.confdir))//如果设置了复制目录（setting.cs中的逻辑）就覆盖public static string confdir声明的默认值
+            {
+                confdir = Properties.Settings.Default.confdir + "\\";
             }
             try
             {

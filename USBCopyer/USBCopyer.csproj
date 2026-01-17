@@ -13,6 +13,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -107,6 +107,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditDir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditDir.Designer.cs">
+      <DependentUpon>EditDir.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hotkeys.cs" />
     <Compile Include="Kenvix\AppConfigProvider.cs" />
     <Compile Include="diskUUID.cs">
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Donate.resx">
       <DependentUpon>Donate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditDir.resx">
+      <DependentUpon>EditDir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Host.resx">
       <DependentUpon>Host.cs</DependentUpon>
