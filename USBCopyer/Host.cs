@@ -43,10 +43,11 @@ namespace USBCopyer
                 {
                     Directory.CreateDirectory(dir);
                 }
-                if (!File.Exists(dir + "Disks.csv"))
+                if (!File.Exists(Path.Combine(dir,"Disks.csv")))
                 {
-                    File.WriteAllBytes(dir + "Disks.csv", Properties.Resources.Disks);
+                    File.WriteAllBytes(Path.Combine(dir, "Disks.csv"), Properties.Resources.Disks);
                 }
+                if (!System.IO.Directory.Exists(confdir)) System.IO.Directory.CreateDirectory(confdir);//原先在program.cs中的不存在则创建配置目录的代码
             }
             catch (Exception ex)
             {

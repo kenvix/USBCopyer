@@ -123,7 +123,6 @@ namespace USBCopyer
                     }
                     Host.confdir = Properties.Settings.Default.confdir + "\\";
                 }
-
                 Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
                 Properties.Settings.Default.SkipUDisk = SkipUDisk.Checked;
                 Properties.Settings.Default.SkipNetworkDisk = SkipNetworkDisk.Checked;
