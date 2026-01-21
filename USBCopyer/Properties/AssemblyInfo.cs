@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("USBCopyer")]
+[assembly: AssemblyTitle("")]
 [assembly: AssemblyDescription("USBCopyer File Copy Tool")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kenvix <i@kenvix.com>")]
-[assembly: AssemblyProduct("USBCopyer")]
+[assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("Copyright © 2018 Kenvix")]
 [assembly: AssemblyTrademark("By: Kenvix")]
 [assembly: AssemblyCulture("")]
@@ -37,3 +37,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("5.1.1.0")]
 [assembly: NeutralResourcesLanguage("")]
 
+public class AppInfo
+{
+    public const string ProductName = "USBCopyer";
+}
