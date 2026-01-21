@@ -14,7 +14,7 @@ namespace USBCopyer
 {
     public partial class Host : Form
     {
-        public string title = Application.ProductName;
+        public string title = AppInfo.ProductName;
         public static string dir = Application.StartupPath + @"\USBCopyerData\";//复制目录 默认值
         public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";//配置文件目录 默认值
         public string[] white;
@@ -118,7 +118,7 @@ namespace USBCopyer
             nicon.Visible = Program.showicon;
             if (!Properties.Settings.Default.multirun)
             {
-                Process[] processcollection = Process.GetProcessesByName(Application.ProductName);
+                Process[] processcollection = Process.GetProcessesByName(AppInfo.ProductName);
                 if (processcollection.Length >= 2)
                 {
                     msg("已经有一个 USBCopyer 实例在运行中！本实例即将退出。如果您需要多重运行本程序，请在设置中打开 \"允许多重运行\" 开关", ToolTipIcon.Error);

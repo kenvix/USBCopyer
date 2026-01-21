@@ -148,7 +148,7 @@ namespace USBCopyer
         {
             if(!isAdminPermission())
             {
-                if(MessageBox.Show("该操作需要管理员权限才能完成，是否立即以管理员权限重启 " + Application.ProductName + " ?", "需要管理员权限", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                if(MessageBox.Show("该操作需要管理员权限才能完成，是否立即以管理员权限重启 " + AppInfo.ProductName + " ?", "需要管理员权限", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
                     //创建启动对象
                     System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();

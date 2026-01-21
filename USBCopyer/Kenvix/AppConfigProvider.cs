@@ -41,7 +41,7 @@ namespace Kenvix
         {
             get
             {
-                return Application.ProductName;
+                return AppInfo.ProductName;
             }
             set { }
         }
