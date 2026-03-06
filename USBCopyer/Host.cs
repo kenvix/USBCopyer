@@ -37,6 +37,8 @@ namespace USBCopyer
             {
                 confdir = Properties.Settings.Default.confdir + "\\";
             }
+            dir=Path.GetFullPath(dir);
+            confdir=Path.GetFullPath(confdir);
             try
             {
                 if (!Directory.Exists(dir))
