@@ -314,7 +314,7 @@ namespace USBCopyer
             editDir.ShowDialog();
             if (editDir.DialogResult == DialogResult.OK)
             {
-                confdir = EditDir.input;
+                confdir = editDir.input;
             }
         }
     }

@@ -11,7 +11,7 @@ namespace USBCopyer
 {
     public partial class EditDir : Form
     {
-        public static string input;
+        public string input { get; private set; }
         public EditDir(string title,string text,string inputtext)
         {
             InitializeComponent();
