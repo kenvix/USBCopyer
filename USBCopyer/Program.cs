@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace USBCopyer
         {
             try
             {
+                Directory.SetCurrentDirectory(Application.StartupPath);
                 Application.SetCompatibleTextRenderingDefault(false);
                 //if (!System.IO.Directory.Exists(Host.confdir)) System.IO.Directory.CreateDirectory(Host.confdir);//将不存在则创建配置目录的代码移至Host构造函数中执行
                 bool useUglyUI = false; 

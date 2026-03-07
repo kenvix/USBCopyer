@@ -112,7 +112,7 @@ namespace USBCopyer
                     {
                         Directory.CreateDirectory(Properties.Settings.Default.dir);
                     }
-                    Host.dir = Properties.Settings.Default.dir + "\\";
+                    Host.dir = Path.GetFullPath(Properties.Settings.Default.dir) + "\\";
                 }
 
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.confdir))//创建对应目录，为了保存设置但不重启时正常工作
@@ -121,7 +121,7 @@ namespace USBCopyer
                     {
                         Directory.CreateDirectory(Properties.Settings.Default.confdir);
                     }
-                    Host.confdir = Properties.Settings.Default.confdir + "\\";
+                    Host.confdir = Path.GetFullPath(Properties.Settings.Default.confdir) + "\\";
                 }
                 Properties.Settings.Default.SkipDVD = SkipDVD.Checked;
                 Properties.Settings.Default.SkipUDisk = SkipUDisk.Checked;
@@ -314,7 +314,7 @@ namespace USBCopyer
             editDir.ShowDialog();
             if (editDir.DialogResult == DialogResult.OK)
             {
-                confdir = EditDir.input;
+                confdir = editDir.input;
             }
         }
     }
