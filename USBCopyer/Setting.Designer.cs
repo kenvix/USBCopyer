@@ -106,6 +106,7 @@
             this.EnableAllCompletedCallback = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -889,11 +890,22 @@
             this.linkLabel12.Text = "自定义程序配置文件目录";
             this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(670, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 23);
+            this.button2.TabIndex = 39;
+            this.button2.Text = "设置分类规则";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(786, 631);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.linkLabel12);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox5);
@@ -1030,6 +1042,7 @@
         private System.Windows.Forms.ComboBox cb_type;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.LinkLabel linkLabel12;
+        private System.Windows.Forms.Button button2;
     }
 }
 

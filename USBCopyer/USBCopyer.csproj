@@ -103,6 +103,7 @@
     <OutputPath>bin\x64\Release.Low-Permissions\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -129,6 +130,7 @@
     <Compile Include="EditDir.Designer.cs">
       <DependentUpon>EditDir.cs</DependentUpon>
     </Compile>
+    <Compile Include="FolderRuleHelper.cs" />
     <Compile Include="Hotkeys.cs" />
     <Compile Include="Kenvix\AppConfigProvider.cs" />
     <Compile Include="diskUUID.cs">

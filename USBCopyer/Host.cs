@@ -17,6 +17,7 @@ namespace USBCopyer
         public string title = AppInfo.ProductName;
         public static string dir = Application.StartupPath + @"\USBCopyerData\";//复制目录 默认值
         public static string confdir = Application.StartupPath + @"\USBCopyerData\USBCopyerSystem\";//配置文件目录 默认值
+        public static string FolderRule = "[serial]";
         public string[] white;
         public string[] black;
         public string[] blackdisk;
@@ -37,15 +38,19 @@ namespace USBCopyer
             {
                 confdir = Properties.Settings.Default.confdir + "\\";
             }
-            dir=Path.GetFullPath(dir);
-            confdir=Path.GetFullPath(confdir);
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.FolderRule))//如果设置了规则（setting.cs中的逻辑）就覆盖public static string folderrule声明的默认值
+            {
+                FolderRule = Properties.Settings.Default.FolderRule;
+            }
+            dir = Path.GetFullPath(dir);
+            confdir = Path.GetFullPath(confdir);
             try
             {
                 if (!Directory.Exists(dir))
                 {
                     Directory.CreateDirectory(dir);
                 }
-                if (!File.Exists(Path.Combine(dir,"Disks.csv")))
+                if (!File.Exists(Path.Combine(dir, "Disks.csv")))
                 {
                     File.WriteAllBytes(Path.Combine(dir, "Disks.csv"), Properties.Resources.Disks);
                 }
@@ -256,6 +261,9 @@ namespace USBCopyer
                                         string diskser = serialNumber.ToString("X8");
                                         string diskname = volumeName.ToString();
                                         string diskdir;
+                                        //diskname 卷标
+                                        //diskser 序列号
+                                        //disk.Substring(0, 1) 盘符
 
                                         //DiskDetectedCallback
                                         if (Properties.Settings.Default.EnableDiskDetectedCallback && File.Exists(confdir + "DiskDetectedCallback.bat"))
@@ -333,14 +341,92 @@ namespace USBCopyer
                                             }
                                         }
                                         catch (Exception) { }
-                                        if (string.IsNullOrEmpty(diskname))
+
+
+
+                                        //[name]卷标
+                                        //[serial]磁盘序列号
+                                        //[letter]盘符
+                                        //[type]磁盘描述
+                                        //[fs]文件系统
+
+                                        StringBuilder diskDirSB = new StringBuilder();
+
+                                        FolderRuleHelper folderRuleHelper = new FolderRuleHelper();
+                                        var ruleReturn = folderRuleHelper.FolderRuleDeserialize(FolderRule);
+                                        if (ruleReturn.isSuccess == true)
                                         {
-                                            diskdir = disk.Substring(0, 1);
+                                            List<FolderRuleHelper.FolderRulePart> folderRuleParts = ruleReturn.folderNameParts;
+                                            foreach (FolderRuleHelper.FolderRulePart currentPart in folderRuleParts)
+                                            {
+                                                if (currentPart.type == FolderRuleHelper.FolderRulePart.PartType.String)
+                                                {
+                                                    diskDirSB.Append(currentPart.content);//字符串部分直接添加
+                                                    //MessageBox.Show(currentPart.content);
+                                                }
+                                                else if (currentPart.type == FolderRuleHelper.FolderRulePart.PartType.Interpolation)
+                                                {
+                                                    if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Name)
+                                                    {
+                                                        if (!string.IsNullOrEmpty(diskname))
+                                                        {
+                                                            diskDirSB.Append(diskname);
+                                                        }
+                                                        else
+                                                        {
+                                                            diskDirSB.Append("UDisk");
+                                                        }
+                                                        //MessageBox.Show("卷标");
+                                                    }
+                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Serial)
+                                                    {
+                                                        diskDirSB.Append(diskser);
+                                                        //MessageBox.Show("序列号");
+                                                    }
+                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Letter)
+                                                    {
+                                                        diskDirSB.Append(disk.Substring(0, 1));
+                                                        //MessageBox.Show("盘符");
+                                                    }
+                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Type)
+                                                    {
+                                                        diskDirSB.Append(serialNumber.ToString());
+                                                        //MessageBox.Show("磁盘描述");
+                                                    }
+                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Fs)
+                                                    {
+                                                        diskDirSB.Append(fileSystemName.ToString());
+                                                        //MessageBox.Show("文件系统");
+                                                    }
+                                                    else { }
+                                                }
+                                            }
+                                        diskdir=diskDirSB.ToString();
+
+                                        //测试用勿删
+                                        //MessageBox.Show(diskdir);
                                         }
                                         else
                                         {
-                                            diskdir = disk.Substring(0, 1) + " - " + diskname;
+                                            diskdir=diskser.ToString();
+                                            error("分类规则无效，请检查并修改(Tips:最好不要直接修改配置文件，而是在软件内点击“设置分类规则”修改。因为软件的检查功能会在您输入错误表达式的时候提醒您");
                                         }
+
+
+                                        //原有命名逻辑
+                                        //if (string.IsNullOrEmpty(diskname))
+                                        //{
+                                        //    diskdir = disk.Substring(0, 1);
+                                        //}
+                                        //else
+                                        //{
+                                        //    diskdir = disk.Substring(0, 1) + " - " + diskname;
+                                        //}
+
+                                        
+                                        
+
+
                                         msg(diskdir, "存储设备已插入");
                                         if (EnableToolStripMenuItem.Checked)
                                         {
@@ -732,7 +818,7 @@ namespace USBCopyer
             }
             try
             {
-                Process.Start("eventvwr.exe", "/v:\"" + Path.GetFullPath(Path.Combine(confdir,"EventViewer.xml"))+ "\"");
+                Process.Start("eventvwr.exe", "/v:\"" + Path.GetFullPath(Path.Combine(confdir, "EventViewer.xml")) + "\"");
             }
             catch (Exception ex)
             {

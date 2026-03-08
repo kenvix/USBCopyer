@@ -1,7 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -10,11 +13,13 @@ namespace USBCopyer
     public partial class Setting : Form
     {
         public Host host;
-        public string confdir {  get; set; }
+        public string confdir { get; set; }
+        public string FolderRule { get; set; }
         public Setting()
         {
             InitializeComponent();
             confdir = Properties.Settings.Default.confdir;
+            FolderRule = Properties.Settings.Default.FolderRule;
             Icon = Program.ico;
             version.Text += Application.ProductVersion;
             Text += Program.isAdminPermission() ? " (管理员)" : " (低权限模式)";
@@ -92,6 +97,7 @@ namespace USBCopyer
                 }
                 Properties.Settings.Default.dir = dir.Text;//与host.cs的逻辑配合。设置复制目录使Properties.Settings.Default.dir不为空
                 Properties.Settings.Default.confdir = confdir;
+                Properties.Settings.Default.FolderRule = FolderRule;
                 Properties.Settings.Default.conflict = conflict.SelectedIndex;
                 Properties.Settings.Default.autorm = autorm.Checked;
                 Properties.Settings.Default.hidemsg = hidemsg.Checked;
@@ -315,6 +321,59 @@ namespace USBCopyer
             if (editDir.DialogResult == DialogResult.OK)
             {
                 confdir = editDir.input;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            EditDir editRule = new EditDir("设置分类规则", "", FolderRule);
+            editRule.ShowDialog();
+            //[name]卷标
+            //[serial]磁盘序列号
+            //[letter]盘符
+            //[type]磁盘描述
+            //[fs]文件系统
+
+            if (editRule.DialogResult == DialogResult.OK)
+            {
+                FolderRule = editRule.input;
+
+                FolderRuleHelper folderRuleHelper = new FolderRuleHelper();
+                var ruleReturn = folderRuleHelper.FolderRuleDeserialize(FolderRule);
+                if (ruleReturn.isSuccess == true)
+                {
+                    StringBuilder partsSB = new StringBuilder();
+
+                    List<FolderRuleHelper.FolderRulePart> folderRuleParts = ruleReturn.folderNameParts;
+
+                    foreach (FolderRuleHelper.FolderRulePart currentPart in folderRuleParts)
+                    {
+                        if (currentPart.type == FolderRuleHelper.FolderRulePart.PartType.String)
+                        {
+                            partsSB.Append(currentPart.content);
+                            char[] bannedChar = {'\\','/','<','>',':','*','?','"','|' };
+                            foreach (char c in bannedChar)
+                            {
+
+                            if (partsSB.ToString().Contains(c.ToString()))
+                                {
+                                    FolderRule = Properties.Settings.Default.FolderRule;
+
+                                    MessageBox.Show("表达式文字部分包含违禁符号(/、\\、<、>、:、*、?、\"、|)，请检查");
+
+                                    break; 
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    FolderRule=Properties.Settings.Default.FolderRule; 
+                    MessageBox.Show("表达式无效，请检查");
+                }
+
             }
         }
     }
