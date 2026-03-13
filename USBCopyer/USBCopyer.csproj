@@ -103,7 +103,6 @@
     <OutputPath>bin\x64\Release.Low-Permissions\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -124,36 +123,26 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditDir.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="EditDir.cs" />
     <Compile Include="EditDir.Designer.cs">
       <DependentUpon>EditDir.cs</DependentUpon>
     </Compile>
     <Compile Include="FolderRuleHelper.cs" />
     <Compile Include="Hotkeys.cs" />
     <Compile Include="Kenvix\AppConfigProvider.cs" />
-    <Compile Include="diskUUID.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="diskUUID.cs" />
     <Compile Include="diskUUID.Designer.cs">
       <DependentUpon>diskUUID.cs</DependentUpon>
     </Compile>
-    <Compile Include="Donate.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Donate.cs" />
     <Compile Include="Donate.Designer.cs">
       <DependentUpon>Donate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Host.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Host.cs" />
     <Compile Include="Host.Designer.cs">
       <DependentUpon>Host.cs</DependentUpon>
     </Compile>
-    <Compile Include="Setting.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Setting.cs" />
     <Compile Include="Setting.Designer.cs">
       <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
