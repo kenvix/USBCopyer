@@ -49,7 +49,7 @@ namespace USBCopyer
                                     isNextEscape = false;
                                 }
                             }
-                            dirParts.Add(new FolderRulePart { content = (string)stringPartSB.ToString() });//新增并添加一条路径组成部分到数组
+                            dirParts.Add(new FolderRulePart { type=FolderRulePart.PartType.String, content = (string)stringPartSB.ToString() });//新增并添加一条路径组成部分到数组
                         }
                     }
                     else if (dirRule[charIndex] == '[')
@@ -67,14 +67,14 @@ namespace USBCopyer
 
                             }
 
-                            FolderRulePart.InterpolationType interpolationType;
-                            if(!Enum.TryParse(interpolationPartSB.ToString(), true,out interpolationType))
-                            {
-                                throw new Exception("无匹配");
-                                //interpolationType = FolderRulePart.InterpolationType.Default; 
-                            }
+                            //FolderRulePart.InterpolationType interpolationType;
+                            //if(!Enum.TryParse(interpolationPartSB.ToString(), true,out interpolationType))
+                            //{
+                            //    throw new Exception("无匹配");
+                            //    //interpolationType = FolderRulePart.InterpolationType.Default; 
+                            //}
 
-                            dirParts.Add(new FolderRulePart { content = interpolationType});//新增并添加一条路径组成部分到数组
+                            dirParts.Add(new FolderRulePart {type=FolderRulePart.PartType.Interpolation, content = interpolationPartSB.ToString()});//新增并添加一条路径组成部分到数组
 
                         }
 
@@ -94,22 +94,25 @@ namespace USBCopyer
 
         public class FolderRulePart
         {
-            public dynamic content { get; set; }
+            //public dynamic content { get; set; }
+
+            public string content { get; set; }
 
             public PartType type {
-                get
-                {
-                    if (content.GetType() == typeof(string))
-                    {
-                        return PartType.String;
-                    }
-                    else
-                    if (content.GetType() == typeof(InterpolationType))
-                    {
-                        return PartType.Interpolation;
-                    }
-                    else { return PartType.Default; }
-                }
+                //get
+                //{
+                //    if (content.GetType() == typeof(string))
+                //    {
+                //        return PartType.String;
+                //    }
+                //    else
+                //    if (content.GetType() == typeof(InterpolationType))
+                //    {
+                //        return PartType.Interpolation;
+                //    }
+                //    else { return PartType.Default; }
+                //}
+                get;set;
             }
             public enum PartType
             {
@@ -119,20 +122,20 @@ namespace USBCopyer
             }
 
 
-            public enum InterpolationType
-            {
-                //[name]卷标
-                //[serial]磁盘序列号
-                //[letter]盘符
-                //[type]磁盘描述
-                //[fs]文件系统
-                Name,
-                Serial,
-                Letter,
-                Type,
-                Fs,
-                Default
-            }
+            //public enum InterpolationType
+            //{
+            //    //[name]卷标
+            //    //[serial]磁盘序列号
+            //    //[letter]盘符
+            //    //[type]磁盘描述
+            //    //[fs]文件系统
+            //    Name,
+            //    Serial,
+            //    Letter,
+            //    Type,
+            //    Fs,
+            //    Default
+            //}
 
         }
         public class FolderRuleReturn

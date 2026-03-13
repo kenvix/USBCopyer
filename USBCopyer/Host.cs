@@ -366,7 +366,7 @@ namespace USBCopyer
                                                 }
                                                 else if (currentPart.type == FolderRuleHelper.FolderRulePart.PartType.Interpolation)
                                                 {
-                                                    if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Name)
+                                                    if (currentPart.content == "name")
                                                     {
                                                         if (!string.IsNullOrEmpty(diskname))
                                                         {
@@ -378,27 +378,62 @@ namespace USBCopyer
                                                         }
                                                         //MessageBox.Show("卷标");
                                                     }
-                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Serial)
+                                                    else if (currentPart.content == "serial")
                                                     {
                                                         diskDirSB.Append(diskser);
                                                         //MessageBox.Show("序列号");
                                                     }
-                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Letter)
+                                                    else if (currentPart.content == "letter")
                                                     {
                                                         diskDirSB.Append(disk.Substring(0, 1));
                                                         //MessageBox.Show("盘符");
                                                     }
-                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Type)
+                                                    else if (currentPart.content == "type")
                                                     {
                                                         diskDirSB.Append(serialNumber.ToString());
                                                         //MessageBox.Show("磁盘描述");
                                                     }
-                                                    else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Fs)
+                                                    else if (currentPart.content == "fs")
                                                     {
                                                         diskDirSB.Append(fileSystemName.ToString());
                                                         //MessageBox.Show("文件系统");
                                                     }
                                                     else { }
+
+
+                                                    //if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Name)
+                                                    //{
+                                                    //    if (!string.IsNullOrEmpty(diskname))
+                                                    //    {
+                                                    //        diskDirSB.Append(diskname);
+                                                    //    }
+                                                    //    else
+                                                    //    {
+                                                    //        diskDirSB.Append("UDisk");
+                                                    //    }
+                                                    //    //MessageBox.Show("卷标");
+                                                    //}
+                                                    //else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Serial)
+                                                    //{
+                                                    //    diskDirSB.Append(diskser);
+                                                    //    //MessageBox.Show("序列号");
+                                                    //}
+                                                    //else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Letter)
+                                                    //{
+                                                    //    diskDirSB.Append(disk.Substring(0, 1));
+                                                    //    //MessageBox.Show("盘符");
+                                                    //}
+                                                    //else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Type)
+                                                    //{
+                                                    //    diskDirSB.Append(serialNumber.ToString());
+                                                    //    //MessageBox.Show("磁盘描述");
+                                                    //}
+                                                    //else if (currentPart.content == FolderRuleHelper.FolderRulePart.InterpolationType.Fs)
+                                                    //{
+                                                    //    diskDirSB.Append(fileSystemName.ToString());
+                                                    //    //MessageBox.Show("文件系统");
+                                                    //}
+                                                    //else { }
                                                 }
                                             }
                                         diskdir=diskDirSB.ToString();
