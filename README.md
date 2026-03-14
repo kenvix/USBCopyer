@@ -37,7 +37,7 @@
 3. 快捷地备份U盘（从V5.0开始）         
 4. 备份U盘的同时进行版本控制
 
-#### 如何使用
+### 如何使用
 
 1.下载
 2.双击 USBCopyer.exe
@@ -69,9 +69,13 @@ USBCopyer.exe [/hide] [/gui] [/reset]
 |type|描述|
 |fs|文件系统|
 
-例：规则为`[letter]"foo@"bar"[name]`,如果有各项参数为如图所示的U盘插入，   
-
+该规则表达式区分大小写。例如不能把`[name]`写成`[Name]`/`[NAME]`等。  
+字符部分的优先级最高，除转义外所有包裹在`"`内的字符都会被认定为字符部分。
+   
+例：规则为`[letter]"-foo[name]bar-@@-"[name]`,如果有各项参数为如图所示的U盘插入，   
+![Screenshot](/git-resources/example-udisk.png)   
 则会创建如下文件夹用于存储从此U盘内复制出的文件   
+![Screenshot](/git-resources/example-folder.png)   
 
 
 ### 常见问题
