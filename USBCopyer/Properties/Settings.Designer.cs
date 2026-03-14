@@ -386,5 +386,18 @@ namespace USBCopyer.Properties {
                 this["confdir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.SettingsProviderAttribute(typeof(Kenvix.AppConfigProvider))]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FolderRule {
+            get {
+                return ((string)(this["FolderRule"]));
+            }
+            set {
+                this["FolderRule"] = value;
+            }
+        }
     }
 }

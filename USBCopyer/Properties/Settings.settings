@@ -83,7 +83,10 @@
     <Setting Name="SkipEmptyFolder" Provider="Kenvix.AppConfigProvider" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="confdir" Type="System.String" Provider="Kenvix.AppConfigProvider" Scope="User">
+    <Setting Name="confdir" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FolderRule" Provider="Kenvix.AppConfigProvider" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
